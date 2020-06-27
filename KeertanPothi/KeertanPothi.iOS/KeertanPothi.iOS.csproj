@@ -77,9 +77,50 @@
     <BundleResource Include="Resources\gurbaniwebthick.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
+    <BundleResource Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\writer.png" />
+    <BundleResource Include="Resources\help.png" />
+    <BundleResource Include="Resources\History.png" />
+    <BundleResource Include="Resources\info2.png" />
+    <BundleResource Include="Resources\Menu.png" />
+    <BundleResource Include="Resources\next.png" />
+    <BundleResource Include="Resources\Nitnem.png" />
+    <BundleResource Include="Resources\Number.png" />
+    <BundleResource Include="Resources\Pause.png" />
+    <BundleResource Include="Resources\Play.png" />
+    <BundleResource Include="Resources\prev.png" />
+    <BundleResource Include="Resources\Raag.png" />
+    <BundleResource Include="Resources\Random.png" />
+    <BundleResource Include="Resources\search.png" />
+    <BundleResource Include="Resources\settings1.png" />
+    <BundleResource Include="Resources\settings2.png" />
+    <BundleResource Include="Resources\settings3.png" />
+    <BundleResource Include="Resources\settings4.png" />
+    <BundleResource Include="Resources\share.png" />
+    <BundleResource Include="Resources\share2.png" />
+    <BundleResource Include="Resources\SplashScreen.png" />
+    <BundleResource Include="Resources\Toolbar.png" />
+    <BundleResource Include="Resources\up.png" />
+    <BundleResource Include="Resources\up1.png" />
+    <BundleResource Include="Resources\up2.png" />
+    <BundleResource Include="Resources\up3.png" />
+    <BundleResource Include="Resources\bookmark.png" />
+    <BundleResource Include="Resources\add.png" />
+    <BundleResource Include="Resources\AddToPothi.png" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\Book.png" />
+    <BundleResource Include="Resources\Contact.png" />
+    <BundleResource Include="Resources\delete.png" />
+    <BundleResource Include="Resources\divider.png" />
+    <BundleResource Include="Resources\down.png" />
+    <BundleResource Include="Resources\error.png" />
+    <BundleResource Include="Resources\errorBU.png" />
+    <BundleResource Include="Resources\exit_full_screen.png" />
+    <BundleResource Include="Resources\fullscreen.png" />
+    <BundleResource Include="Resources\fullscreen1.png" />
+    <BundleResource Include="Resources\gradient.png" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -150,7 +191,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\KeertanPothi\KeertanPothi.csproj">
-      <Project>{96C3552B-6944-47F8-B0DB-971E270DFC70}</Project>
+      <Project>{7DC972D4-5516-45AF-9F36-037A50F04781}</Project>
       <Name>KeertanPothi</Name>
     </ProjectReference>
   </ItemGroup>

@@ -5,10 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              x:Class="KeertanPothi.Views.Search" BackgroundColor="{Binding PageBg}">
     <NavigationPage.TitleView>
-        <StackLayout Margin="0" Padding="0,5,5,5" Spacing="0" Orientation="Horizontal">
+         <StackLayout Margin="0" Padding="25,5,5,5" Spacing="0" Orientation="Horizontal" StyleClass="DarkBlueBg">
             <Frame CornerRadius="10" Padding="0" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" >
                 <StackLayout BackgroundColor="#cfe2f3" HeightRequest="32" Padding="10,5,0,0" Orientation="Horizontal"  >
                     <StackLayout.GestureRecognizers>

@@ -309,24 +309,39 @@ namespace KeertanPothi.Views
             }
         }
 
+        private void ReloadGrid()
+        {
+            if (Device.RuntimePlatform == Device.iOS)
+            //if (Device.OS == Device.iOS)
+            {
+                lstShabad.ItemsSource = null;
+                lstShabad.ItemsSource = versesObs;
+            }
+            
+        }
+
         private void SettingChanged(Util.SettingName settingName, bool? value)
         {
             switch (settingName)
             {
                 case Util.SettingName.GurmukhiVisible:
                     versesObs.ToList().ForEach(a => a.GurmukhiVisible = value.Value);
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.EngTranslationVisible:
                     versesObs.ToList().ForEach(a => a.TranslationVisible = value.Value);
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.PunTranslationVisible:
                     versesObs.ToList().ForEach(a => a.PunjabiTranslationVisible = value.Value);
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.TransliterationVisible:
                     versesObs.ToList().ForEach(a => a.TransliterationVisible = value.Value);
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.GurmukhiFontSize:
@@ -337,6 +352,7 @@ namespace KeertanPothi.Views
                         if (versesObs[0].GurmukhiFontSize >= 8)
                             versesObs.ToList().ForEach(a => a.GurmukhiFontSize -= 2);
                     }
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.EngTranslationFontSize:
@@ -347,6 +363,7 @@ namespace KeertanPothi.Views
                         if (versesObs[0].EnglishFontSize >= 8)
                             versesObs.ToList().ForEach(a => a.EnglishFontSize -= 2);
                     }
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.PunTranslationFontSize:
@@ -357,6 +374,7 @@ namespace KeertanPothi.Views
                         if (versesObs[0].PunjabiFontSize >= 8)
                             versesObs.ToList().ForEach(a => a.PunjabiFontSize -= 2);
                     }
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.TransliterationFontSize:
@@ -367,6 +385,7 @@ namespace KeertanPothi.Views
                         if (versesObs[0].TransliterationFontSize >= 8)
                             versesObs.ToList().ForEach(a => a.TransliterationFontSize -= 2);
                     }
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.FullScreen:
@@ -376,21 +395,25 @@ namespace KeertanPothi.Views
                 case Util.SettingName.NormalFont:
                     string fontName = value.Value ? Util.PunjabiFontKey : Util.HandFontKey;
                     versesObs.ToList().ForEach(a => a.GurmukhiFontName = fontName);
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.HandFont:
                     string fontName2 = value.Value ? Util.HandFontKey : Util.PunjabiFontKey;
                     versesObs.ToList().ForEach(a => a.GurmukhiFontName = fontName2);
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.Ladivaar:
                     versesObs.ToList().ForEach(a => a.GurmukhiHtml = a.Gurmukhi);
                     VishraamLadivaar();
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.Vishraam:
                     versesObs.ToList().ForEach(a => a.GurmukhiHtml = a.Gurmukhi);
                     VishraamLadivaar();
+                    ReloadGrid();
                     break;
 
                 case Util.SettingName.Theme:
