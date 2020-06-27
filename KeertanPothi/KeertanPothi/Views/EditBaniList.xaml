@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="KeertanPothi.Views.EditBaniList">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True" >
+        </animations:ScaleAnimation>
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <Frame BorderColor="DarkBlue" HasShadow="True" CornerRadius="10" Margin="25,0,25,0" VerticalOptions="Center">
+            <StackLayout Spacing="2" Margin="-20,-20,-20,0" BackgroundColor="{Binding PageBg}">
+                <StackLayout Orientation="Horizontal" HeightRequest="40" Padding="0" Margin="0,0,0,0" StyleClass="DarkBlueBg" HorizontalOptions="Fill">
+                    <Button IsEnabled="False" Text="" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
+                    <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Gurbani List" TextColor="White" FontSize="Medium"></Label>
+                    <Button Text="X" Clicked="btnClose_Clicked" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
+                </StackLayout>
+                <StackLayout Padding="20" Spacing="20">
+                    <StackLayout Orientation="Horizontal">
+                        <Button HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="40" Text="Select All" Clicked="AddAll_Clicked"></Button>
+                        <Button HorizontalOptions="FillAndExpand" HeightRequest="40" Text="Remove All" Clicked="RemoveAll_Clicked"></Button>
+                    </StackLayout>
+                    <ListView BackgroundColor="Transparent" VerticalOptions="Start" RowHeight="70" x:Name="lstNitnem" SelectionMode="None">
+                        <ListView.Header>
+                            <StackLayout>
+                                <Label Text="* Banis can be removed and added back from here" FontSize="Micro" FontAttributes="Italic"
+                                    TextColor="{Binding PunjabiTranslationColor}" HorizontalOptions="CenterAndExpand"></Label>
+                            </StackLayout>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                                        <StackLayout HorizontalOptions="StartAndExpand">
+                                            <Label TextColor="{Binding PageBgTheme.FontColor}" Text="{Binding PunjabiName}" FontSize="24" FontFamily="PunjabiFont"></Label>
+                                            <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" Text="{Binding EnglishName}" FontSize="14" ></Label>
+                                        </StackLayout>
+                                        <Switch IsToggled="{Binding IsVisible}" Toggled="Bani_Toggled"></Switch>
+                                        <!--<ImageButton HeightRequest="40" WidthRequest="40" IsVisible="{Binding IsNotVisible}" CommandParameter="{Binding .}" Clicked="Add_Clicked" BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.add.png}"></ImageButton>
+                                        <ImageButton HeightRequest="40" WidthRequest="40" IsVisible="{Binding IsVisible}" CommandParameter="{Binding .}" Clicked="Remove_Clicked" BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.delete.png}"></ImageButton>-->
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Padding="0" HeightRequest="40" Text="Close" x:Name="btnClose" Clicked="btnClose_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>
+
+                    

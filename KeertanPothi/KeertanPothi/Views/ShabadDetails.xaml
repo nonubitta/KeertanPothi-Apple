@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
+             x:Class="KeertanPothi.Views.ShabadDetails" BackgroundColor="{Binding PageBg}"
+              >
+
+    <StackLayout x:Name="slMain">
+        <StackLayout VerticalOptions="StartAndExpand">
+            <ListView BackgroundColor="Transparent" x:Name="lstShabad" HasUnevenRows="True" SelectionMode="None">
+                <!--Scrolled="lstShabad_Scrolled"-->
+                <ListView.Header>
+                        <StackLayout BackgroundColor="#5e6573" Padding="20,10,20,10" Spacing="0">
+                            <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblScripture" FontAttributes="Bold"></Label>
+                            <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblAng" FontAttributes="Bold"></Label>
+                            <Label TextColor="#cfe2f3" IsVisible="False" FontSize="12" x:Name="lblWriter" FontAttributes="Bold"></Label>
+                            <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblRaag" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="{Binding ListBgColor}" VerticalOptions="StartAndExpand" Padding="20, 10, 20, 5" Spacing="3">
+                                <Label HorizontalTextAlignment="{Binding TextAlign}" TextColor="{Binding PageBgTheme.FontColor}" TextType="Html" x:Name="lblGurmukhi" IsVisible="{Binding GurmukhiVisible}" 
+                                       FontSize="{Binding GurmukhiFontSize}" Text="{Binding GurmukhiHtml}" 
+                                       FontFamily="{Binding GurmukhiFontName}"></Label>
+                                <Label TextColor="{Binding PageBgTheme.EnglishTransliterationColor}" x:Name="lblTransliteration" IsVisible="{Binding TransliterationVisible}" 
+                                       FontSize="{Binding TransliterationFontSize}" Text="{Binding Transliteration}" ></Label>
+                                <Label x:Name="lblTranslation" IsVisible="{Binding TranslationVisible}" 
+                                       TextColor="{Binding PageBgTheme.EnglishTranslationColor}"
+                                       FontSize="{Binding EnglishFontSize}" Text="{Binding English}" ></Label>
+                                <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" x:Name="lblPTranslation" IsVisible="{Binding PunjabiTranslationVisible}" 
+                                       FontSize="{Binding PunjabiFontSize}" Text="{Binding Punjabi}" 
+                                       FontFamily="PunjabiFont" ></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <StackLayout x:Name="EditToolbar" BackgroundColor="#1976D2"  Opacity="1" AbsoluteLayout.LayoutBounds="0,1,1,45" 
+                     AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" Orientation="Horizontal" 
+                     VerticalOptions="End" Padding="20,0,20,0">
+            <Grid HorizontalOptions="FillAndExpand" Padding="0,7,0,7" RowDefinitions="*" 
+                  ColumnDefinitions="*,*,*,*,*">
+                
+                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.prev.png}"
+                             Grid.Row="0" Grid.Column="0" Clicked="PrevVerse_Clicked">
+                </ImageButton>
+                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.fullscreen.png}"
+                             Grid.Row="0" Grid.Column="1" Clicked="btnMaximize_Clicked">
+                </ImageButton>
+                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.settings2.png}" 
+                             Grid.Row="0" Grid.Column="2" Clicked="menu_Clicked">
+                </ImageButton>
+                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.AddToPothi.png}"
+                             x:Name="btnAddToPothi" Grid.Row="0" Grid.Column="3" Clicked="addPothi_Clicked">
+                </ImageButton>
+                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.next.png}"
+                             Grid.Row="0" Grid.Column="4" Clicked="NextVerse_Clicked">
+                </ImageButton>
+            </Grid>
+        </StackLayout>
+        <ImageButton IsVisible="False" BackgroundColor="Transparent" x:Name="btnRestore" Margin="0" Padding="0" Clicked="btnRestore_Clicked" 
+                     HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                     AbsoluteLayout.LayoutBounds="0,1,1,25" Source="{local:EmbeddedImage KeertanPothi.images.Toolbar.png}">
+        </ImageButton>
+    </StackLayout>
+</ContentPage>
