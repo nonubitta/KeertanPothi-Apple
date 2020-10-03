@@ -1,4 +1,5 @@
-﻿using KeertanPothi.model;
+﻿using DBTest.Models;
+using KeertanPothi.model;
 using KeertanPothi.Views;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,23 @@ namespace KeertanPothi
         public MainPage()
         {
             InitializeComponent();
-            lblVersion.Text = $"Version: {VersionTracking.CurrentVersion} (Db V: {Util.CurrentDbVersion})" ;
-            this.Detail = new NavigationPage (new Search());
+            lblVersion.Text = $"Version: {VersionTracking.CurrentVersion} (Db V: {Util.CurrentDbVersion})";
+            this.Detail = new NavigationPage(new Search());
             LoadMenu();
         }
 
         private void LoadMenu()
         {
             Util.PrefIsAdmin = true;
-            lstMenu.ItemsSource = Util.GetStaticMenu().Where(a=>a.IsVisible);
+            lstMenu.ItemsSource = Util.GetStaticMenu().Where(a => a.IsVisible);
+        }
+        protected override void OnAppearing()
+        {
+            Theme theme = new Theme();
+            slFooterBg.BackgroundColor = Color.FromHex(Util.DarkThemeBgColor);
+            slMenuBg.BackgroundColor = Color.FromHex(Util.DarkThemeBgColor);
+            BindingContext = theme;
+            base.OnAppearing();
         }
 
         private void lstMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)

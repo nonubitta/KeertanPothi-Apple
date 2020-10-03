@@ -66,8 +66,12 @@
             </StackLayout>
         </StackLayout>
         <StackLayout x:Name="EditToolbar" Margin="0">
-            <Frame BackgroundColor="LightGray" BorderColor="#606060" Padding="5,20,5,10" >
+            <Frame BackgroundColor="DarkGray" BorderColor="#606060" Padding="5,20,5,10" >
                 <StackLayout>
+
+                    <Picker FontSize="Small" ItemDisplayBinding="{Binding Value }" x:Name="pckSearchType" 
+                            SelectedIndexChanged="pckSearchType_SelectedIndexChanged">
+                    </Picker>
                     <Grid x:Name="controlGrid2" RowSpacing="1" ColumnSpacing="1"
                       RowDefinitions="50,50,50,50,50" ColumnDefinitions="*,*,*,*,*,*,*,*,*" >
 
@@ -156,19 +160,15 @@
                     <Button StyleClass="KeyboardBtn"  Clicked="Akhar_Clicked" Text = "←" Grid.Row="3" Grid.Column="8"
                         FontFamily="PunjabiFont" CommandParameter="B" />
 
-                    <Picker FontSize="Small" ItemDisplayBinding="{Binding Value }" x:Name="pckSearchType" 
-                            SelectedIndexChanged="pckSearchType_SelectedIndexChanged" 
-                            Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" >
-                    </Picker>
 
                     <Button x:Name="btnNxtKeyboard" FontSize="Small" StyleClass="KeyboardBtn"  Clicked="Akhar_Clicked" CommandParameter="N" Text = "123" 
-                         FontFamily="PunjabiFont" Grid.Row="4" Grid.Column="4" />
+                         FontFamily="PunjabiFont" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" />
 
                     <Button x:Name="btnSpace" FontSize="Small" StyleClass="KeyboardBtn"  Clicked="Akhar_Clicked" CommandParameter="S" Text = "Space" 
-                        Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="2" />
+                        Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" />
 
                     <Button FontSize="Small" StyleClass="KeyboardBtn"  Clicked="Akhar_Clicked" CommandParameter="F" Text="Search" 
-                        Grid.Row="4" Grid.Column="7" Grid.ColumnSpan="2" />
+                        Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="3" />
 
                 </Grid>
                     <Grid x:Name="controlGrid3" RowSpacing="1" ColumnSpacing="1" IsVisible="False"
@@ -241,11 +241,6 @@
                         <Button StyleClass="KeyboardBtn"  Clicked="Akhar_Clicked" Text = "←" Grid.Row="2" Grid.Column="9"
                         FontFamily="PunjabiFont" CommandParameter="B" />
                         
-                        <Picker FontSize="Small" ItemDisplayBinding="{Binding Value }" x:Name="pckSearchType2" 
-                            SelectedIndexChanged="pckSearchType_SelectedIndexChanged" 
-                            Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" >
-                        </Picker>
-
                         <Button x:Name="btnNxtKeyboard2" FontSize="Small" StyleClass="KeyboardBtn"  Clicked="Akhar_Clicked" CommandParameter="N" Text = "123" 
                         Grid.Row="3" Grid.Column="4" FontFamily="PunjabiFont" />
 

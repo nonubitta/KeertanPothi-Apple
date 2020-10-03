@@ -45,7 +45,20 @@ namespace KeertanPothi.Views
             chbHand.IsChecked = Util.PrefGurmukhiFontName == Util.HandFontKey;
             swtVishraam.IsToggled = Util.PrefShowVishraam;
             swtLadivaar.IsToggled = Util.PrefShowLadivaar;
-            swtDark.IsToggled = Util.PrefDarkTheme;
+            switch (Util.PrefDarkTheme)
+            {
+                case "BLACK":
+                    rbBlack.IsChecked = true;
+                    break;
+                case "GRAY":
+                    rbGray.IsChecked = true;
+                    break;
+                case "BLUE":
+                    rbBlue.IsChecked = true;
+                    break;
+
+            }
+            //swtDark.IsToggled = Util.PrefDarkTheme;
             Initializing = false;
         }
 
@@ -53,6 +66,12 @@ namespace KeertanPothi.Views
         {
             Util.PrefGurmukhiVisible = swtGurmukhi.IsToggled;
             InvokeSettingChanged(Util.SettingName.GurmukhiVisible, swtGurmukhi.IsToggled);
+        }
+        protected override void OnAppearing()
+        {
+            Theme theme = new Theme();
+            BindingContext = theme;
+            base.OnAppearing();
         }
 
         private void stpGurmukhi_ValueChanged(object sender, EventArgs e)
@@ -150,17 +169,48 @@ namespace KeertanPothi.Views
             InvokeSettingChanged(Util.SettingName.HandFont, chbHand.IsChecked);
         }
 
-        private void swtDark_Toggled(object sender, ToggledEventArgs e)
-        {
-            Util.PrefDarkTheme = swtDark.IsToggled;
-            BindingContext = new Theme();
-            InvokeSettingChanged(Util.SettingName.Theme, swtDark.IsToggled);
-        }
+        //private void swtDark_Toggled(object sender, ToggledEventArgs e)
+        //{
+            //Util.PrefDarkTheme = swtDark.IsToggled;
+            //BindingContext = new Theme();
+            //InvokeSettingChanged(Util.SettingName.Theme, swtDark.IsToggled);
+        //}
 
         private void swtTransliteration_Toggled(object sender, ToggledEventArgs e)
         {
             Util.PrefTransliterationVisible = swtTransliteration.IsToggled;
             InvokeSettingChanged(Util.SettingName.TransliterationVisible, swtTransliteration.IsToggled);
         }
+
+        private void rbBlue_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (rbBlue.IsChecked)
+            {
+                Util.PrefDarkTheme = "BLUE";
+                BindingContext = new Theme();
+                InvokeSettingChanged(Util.SettingName.Theme, true);
+            }
+        }
+
+        private void rbGray_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (rbGray.IsChecked)
+            {
+                Util.PrefDarkTheme = "GRAY";
+                BindingContext = new Theme();
+                InvokeSettingChanged(Util.SettingName.Theme, true);
+            }
+        }
+
+        private void rbBlack_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (rbBlack.IsChecked)
+            {
+                Util.PrefDarkTheme = "BLACK";
+                BindingContext = new Theme();
+                InvokeSettingChanged(Util.SettingName.Theme, true);
+            }
+        }
+
     }
 }

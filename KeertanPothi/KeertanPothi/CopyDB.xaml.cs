@@ -22,23 +22,20 @@ namespace KeertanPothi
 
         public static async void CopyDBFile(bool initialLoad)
         {
-            UserDialogs.Instance.ShowLoading("Initializing database...");
-            await Task.Delay(100);
-            bool exported = true;
-            //back up pothis
-            if (!initialLoad)
-                exported = await Queries.ExportPothis();
-            if (exported || true)
+            try
             {
+                //UserDialogs.Instance.ShowLoading("Initializing database...");
+                await Task.Delay(100);
                 Util.CopyDBFile();
-
-                if (!initialLoad)
-                {
-                    bool imported = await Queries.ImportPothi();
-                }
+                    
+                //Load pothis
+                bool imported = await Queries.ImportPothi();
+                UserDialogs.Instance.HideLoading();
             }
-            //Load pothis
-            UserDialogs.Instance.HideLoading();
+            catch(Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
     }
 }

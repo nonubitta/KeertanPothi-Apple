@@ -38,6 +38,12 @@ namespace KeertanPothi.Views
             base.OnAppearing();
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<App, object>(this, "BaniListUpdated");
+        }
+
         protected void OnListUpdated()
         {
             LoadBaniList();

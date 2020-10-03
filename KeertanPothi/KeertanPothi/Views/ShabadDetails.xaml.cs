@@ -39,8 +39,11 @@ namespace KeertanPothi.Views
         ISimpleAudioPlayer AudioPlayer;
         ToolbarItem itemPlay = null;
         ToolbarItem itemBookmark = null;
+        ToolbarItem itemKeertanMode = null;
         ToolbarItem itemShare = null;
         ToolbarItem itemShare2 = null;
+        ToolbarItem itemShare3 = null;
+        ToolbarItem itemNote = null;
 
 
         public enum RequestSource
@@ -111,7 +114,6 @@ namespace KeertanPothi.Views
             RequestFrom = RequestSource.Pothi;
             InitializeComponent();
             LoadShabad();
-            //addPothi.IsEnabled = false;
             initializing = false;
         }
 
@@ -148,15 +150,7 @@ namespace KeertanPothi.Views
 
         #endregion
 
-        #region General
-
-        protected override void OnAppearing()
-        {
-            if (RequestFrom != RequestSource.Ang && RequestFrom != RequestSource.Nitnem && RequestFrom != RequestSource.History)
-                Queries.SaveShabadToHistory(ShabadId, SelectedVerseId);
-
-            base.OnAppearing();
-        }
+        #region Toolbars
 
         private void CreateToolbars()
         {
@@ -174,10 +168,38 @@ namespace KeertanPothi.Views
                     CreatePlayToolbar();
                 }
                 catch { }
+                if (_nitnemBani.Id == 18) //Asa ki vaar
+                {
+                    CreateKeertanMode();
+                }
             }
             else
-                CreateShareToolbar();
+            {
+                //CreateShareToolbar();
+                CreateSharePopupToolbar();
+                if (RequestFrom == RequestSource.Pothi)
+                    CreateNoteToolbar();
+            }
 
+        }
+
+        private void CreateNoteToolbar()
+        {
+            itemKeertanMode = new ToolbarItem();
+            itemKeertanMode.Text = "Text Note";
+            itemKeertanMode.Order = ToolbarItemOrder.Secondary;
+            itemKeertanMode.Clicked += Note_Clicked;
+            ToolbarItems.Add(itemKeertanMode);
+        }
+
+        private void CreateKeertanMode()
+        {
+            itemKeertanMode = new ToolbarItem();
+            itemKeertanMode.Text = "Keertan";
+            itemKeertanMode.IconImageSource = ImageSource.FromResource("KeertanPothi.images.harmonium.png");
+            itemKeertanMode.Order = ToolbarItemOrder.Primary;
+            itemKeertanMode.Clicked += KeertanMode_Clicked;
+            ToolbarItems.Add(itemKeertanMode);
         }
 
         private void CreateBookmarkToolbar()
@@ -200,36 +222,73 @@ namespace KeertanPothi.Views
             ToolbarItems.Add(itemPlay);
         }
 
+        private void CreateSharePopupToolbar()
+        {
+            itemShare = new ToolbarItem();
+            itemShare.Text = "Share";
+            itemShare.IconImageSource = ImageSource.FromResource("KeertanPothi.images.shareSmall.png");
+            itemShare.Order = ToolbarItemOrder.Primary;
+            itemShare.Clicked += SharePopup_Clicked;
+            ToolbarItems.Add(itemShare);
+        }
+
         private void CreateShareToolbar()
         {
             itemShare = new ToolbarItem();
             itemShare.Text = "Share as Text";
-            //itemShare.IconImageSource = ImageSource.FromResource("KeertanPothi.images.Share.png");
             itemShare.Order = ToolbarItemOrder.Secondary;
             itemShare.Clicked += share_Clicked;
             ToolbarItems.Add(itemShare);
 
             itemShare2 = new ToolbarItem();
             itemShare2.Text = "Share as File";
-            //itemShare.IconImageSource = ImageSource.FromResource("KeertanPothi.images.Share.png");
             itemShare2.Order = ToolbarItemOrder.Secondary;
             itemShare2.Clicked += shareFile_Clicked;
             ToolbarItems.Add(itemShare2);
+
+            itemShare3 = new ToolbarItem();
+            itemShare3.Text = "Copy to clipboard";
+            itemShare3.Order = ToolbarItemOrder.Secondary;
+            itemShare3.Clicked += Clipboard_Clicked;
+            ToolbarItems.Add(itemShare3);
+        }
+
+        #endregion
+
+        #region General
+
+        protected override void OnAppearing()
+        {
+            if (RequestFrom != RequestSource.Ang && RequestFrom != RequestSource.Nitnem && RequestFrom != RequestSource.History)
+                Queries.SaveShabadToHistory(ShabadId, SelectedVerseId);
+
+            base.OnAppearing();
         }
 
         protected override void OnDisappearing()
         {
             AudioPlayer?.Stop();
             base.OnDisappearing();
+            MessagingCenter.Unsubscribe<App, object>(this, "NoteUpdated");
         }
 
         private async void LoadShabad()
         {
+            MessagingCenter.Subscribe<App, string>((App)Application.Current, "NoteUpdated", (sender, arg) => {
+                OnNoteUpdated(arg);
+            });
+      
             using (UserDialogs.Instance.Loading("Loading Shabad..."))
             {
                 CreateToolbars();
                 _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
                 List<Verse> verses;
+                string notes = string.Empty;
+                if (RequestFrom == RequestSource.Pothi) {
+                    notes = await _con.ExecuteScalarAsync<string>(Queries.GetNotes(PothiId, ShabadId));
+                    if (!string.IsNullOrEmpty(notes))
+                        ToggleNotes(notes);
+                }
                 if (RequestFrom == RequestSource.Ang)
                 {
                     verses = await _con.QueryAsync<Verse>(Queries.VerseByAng(AngNo));
@@ -243,11 +302,14 @@ namespace KeertanPothi.Views
                 {
                     verses = await _con.QueryAsync<Verse>(Queries.ShabadById(ShabadId));
                 }
-                versesObs = new ObservableCollection<Verse>(verses);
-                if (versesObs.Count > 0)
+                if (verses.Count > 0)
                 {
+                    versesObs = new ObservableCollection<Verse>(verses);
+                    Theme theme = new Theme();
                     AddVishram();
                     ShowLadivaar();
+                    versesObs.ToList().ForEach(a=> a.GurmukhiHtml = $"<font color=\"{theme.FontColor}\"> {a.GurmukhiHtml}</font>");
+
                     lstShabad.ItemsSource = versesObs;
                     Verse verse = verses.FirstOrDefault(a => a.WriterID != null);
                     if (verse != null)
@@ -260,15 +322,42 @@ namespace KeertanPothi.Views
                     }
                     else
                         lstShabad.ScrollTo(versesObs[0], ScrollToPosition.MakeVisible, false);
+                    
                 }
                 else
                     Util.ShowRoast("Error loading shabad...");
             }
+        }
 
-            //if (RequestFrom == RequestSource.Nitnem)
-            //{
-            //    LoadMoreShabads();
-            //}
+        private void ToggleNotes(string notes)
+        {
+            if (!string.IsNullOrEmpty(notes))
+            {
+                editNotes.Text = notes;
+                expNotes.IsVisible = true;
+            }
+            else
+            {
+                expNotes.IsVisible = false;
+                editNotes.Text = string.Empty;
+            }
+        }
+
+        private void OnNoteUpdated(string note)
+        {
+            if (!string.IsNullOrWhiteSpace(note))
+            {
+                editNotes.Text = note;
+                expNotes.IsExpanded = true;
+                Util.ShowRoast("Note Saved.");
+            }
+            else
+            {
+                expNotes.IsVisible = false;
+                Util.ShowRoast("Note Deleted.");
+            }
+            LoadShabad();
+            UserDialogs.Instance.HideLoading();
         }
 
         private void LoadShabadDetails(Verse verse, string writerEnglish)
@@ -312,10 +401,13 @@ namespace KeertanPothi.Views
         private void ReloadGrid()
         {
             if (Device.RuntimePlatform == Device.iOS)
-            //if (Device.OS == Device.iOS)
             {
-                lstShabad.ItemsSource = null;
-                lstShabad.ItemsSource = versesObs;
+                using (UserDialogs.Instance.Loading("Updating Shabad..."))
+                {
+                    Task.Delay(100);
+                    lstShabad.ItemsSource = null;
+                    lstShabad.ItemsSource = versesObs;
+                }
             }
             
         }
@@ -405,13 +497,11 @@ namespace KeertanPothi.Views
                     break;
 
                 case Util.SettingName.Ladivaar:
-                    versesObs.ToList().ForEach(a => a.GurmukhiHtml = a.Gurmukhi);
                     VishraamLadivaar();
                     ReloadGrid();
                     break;
 
                 case Util.SettingName.Vishraam:
-                    versesObs.ToList().ForEach(a => a.GurmukhiHtml = a.Gurmukhi);
                     VishraamLadivaar();
                     ReloadGrid();
                     break;
@@ -425,6 +515,7 @@ namespace KeertanPothi.Views
                         SelectedVerse = versesObs.FirstOrDefault(a => a.ID == SelectedVerseId);
                         SelectedVerse.ListBgColor = SelectedVerse.PageBgTheme.DefaultItemBg;
                     }
+                    VishraamLadivaar();
                     break;
             }
         }
@@ -440,7 +531,7 @@ namespace KeertanPothi.Views
                 await Task.Delay(50);
                 EditToolbar.IsVisible = false;
                 btnRestore.IsVisible = true;
-                //await btnRestore.TranslateTo(0, 0, 500, Easing.SinOut);
+                await btnRestore.TranslateTo(0, 0, 500, Easing.SinOut);
             }
             else
             {
@@ -448,8 +539,8 @@ namespace KeertanPothi.Views
                 NavigationPage.SetHasNavigationBar(this, true);
                 EditToolbar.IsVisible = true;
                 await EditToolbar.TranslateTo(0, 0, 200, Easing.SinOut);
-                //await btnRestore.TranslateTo(0, 70, 200, Easing.SinOut);
-                //await Task.Delay(200);
+                await btnRestore.TranslateTo(0, 70, 200, Easing.SinOut);
+                await Task.Delay(200);
             }
         }
 
@@ -493,15 +584,15 @@ namespace KeertanPothi.Views
         private string GetVishraamSource(JObject vishram)
         {
             string vishraamSource = string.Empty;
-            if (vishram[Util.VishraamSource].HasValues || vishram[Util.VishraamSource].Children().Count() > 0)
+            if (vishram[Util.VishraamSource] != null && (vishram[Util.VishraamSource].HasValues || vishram[Util.VishraamSource].Children().Count() > 0))
             {
                 vishraamSource = Util.VishraamSource;
             }
-            else if (vishram[Util.VishraamSource2].HasValues || vishram[Util.VishraamSource2].Children().Count() > 0)
+            else if (vishram[Util.VishraamSource2] != null && (vishram[Util.VishraamSource2].HasValues || vishram[Util.VishraamSource2].Children().Count() > 0))
             {
                 vishraamSource = Util.VishraamSource2;
             }
-            else if (vishram[Util.VishraamSource3].HasValues || vishram[Util.VishraamSource3].Children().Count() > 0)
+            else if (vishram[Util.VishraamSource3] != null && (vishram[Util.VishraamSource3].HasValues || vishram[Util.VishraamSource3].Children().Count() > 0))
             {
                 vishraamSource = Util.VishraamSource3;
             }
@@ -520,8 +611,11 @@ namespace KeertanPothi.Views
 
         private void VishraamLadivaar()
         {
+            Theme theme = new Theme();
+            versesObs.ToList().ForEach(a => a.GurmukhiHtml = a.Gurmukhi);
             AddVishram();
             ShowLadivaar();
+            versesObs.ToList().ForEach(a => a.GurmukhiHtml = $"<font color=\"{theme.FontColor}\"> {a.GurmukhiHtml}</font>");
         }
 
         #endregion
@@ -551,7 +645,8 @@ namespace KeertanPothi.Views
 
         private void shareFile_Clicked(object sender, EventArgs e)
         {
-            string str = $"<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/></head><body>Shared from Keertan Pothi(Id:{ShabadId.ToString()})\r\n";
+            string str = $"<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/></head><body style=\"background-color:{versesObs[0].PageBgTheme.PageBg}; color:{versesObs[0].PageBgTheme.FontColor}; font-size:40; \">" +
+                $"<span style=\"font-size:20\">Shared from Keertan Pothi(Id:{ShabadId.ToString()})<span>\r\n";
             foreach (Verse verse in versesObs)
             {
                 str += "<br>" + HtmlFileVishraam(verse) + "\r\n";
@@ -559,6 +654,17 @@ namespace KeertanPothi.Views
             str += "<br></body></html>";
             Util.ShareFile(str, "Shabad.html", "Share Shabad");
         }
+
+        private async void Clipboard_Clicked(object sender, EventArgs e)
+        {
+            string str = string.Empty;
+            foreach (Verse verse in versesObs)
+            {
+                str += verse.GurmukhiUni + "\r\n";
+            }
+            await Clipboard.SetTextAsync(str);
+        }
+        
 
         private string HtmlFileVishraam(Verse verse)
         {
@@ -608,17 +714,7 @@ namespace KeertanPothi.Views
 
         void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            //NavigationPage.SetHasNavigationBar(this, !ToolbarVisible.Value);
-            //ToolbarVisible = !ToolbarVisible.Value;
-            //PrevNext.IsVisible = ToolbarVisible.Value;
-            //if (ToolbarVisible.Value)
-            //{
-            //    await PrevNext.TranslateTo(PrevNext.X, PrevNext.Y - 100, 1000, Easing.SinOut);
-            //}
-            //else
-            //{
-            //    await PrevNext.TranslateTo(PrevNext.X, PrevNext.Y + 100, 2000, Easing.SinIn);
-            //}
+            FullScreen(ToolbarVisible);
         }
 
         private void PrevVerse_Clicked(object sender, EventArgs e)
@@ -651,6 +747,7 @@ namespace KeertanPothi.Views
                     break;
                 case RequestSource.Search:
                 case RequestSource.Random:
+                case RequestSource.History:
                     if (nxtOne)
                         newShabadId = ShabadId + 1;
                     else
@@ -723,7 +820,7 @@ namespace KeertanPothi.Views
 
         private void btnMaximize_Clicked(object sender, EventArgs e)
         {
-            FullScreen(true);
+            FullScreen(ToolbarVisible);
         }
 
         private void btnRestore_Clicked(object sender, EventArgs e)
@@ -762,6 +859,26 @@ namespace KeertanPothi.Views
             Navigation.PushPopupAsync(bookmarkPopup);
         }
 
+        private void SharePopup_Clicked(object sender, EventArgs e)
+        {
+            ShareShabadPopup shareShabadPopup = new ShareShabadPopup(versesObs, ShabadId);
+            Navigation.PushPopupAsync(shareShabadPopup);
+        }
+
+        private void KeertanMode_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AsaDiVaar());
+        }
+
+        private void Note_Clicked(object sender, EventArgs e)
+        {
+            string abc = editNotes.Text;
+            editNotes.Text = string.Empty;
+            expNotes.IsExpanded = false;
+
+            Navigation.PushPopupAsync(new NotesPopup(PothiId, ShabadId, abc));
+        }
+
         private void BookmarkSelected(int verseId)
         {
             if (verseId > 0)
@@ -769,6 +886,16 @@ namespace KeertanPothi.Views
                 SelectedVerse = versesObs.FirstOrDefault(a => a.ID == verseId);
                 lstShabad.ScrollTo(SelectedVerse, ScrollToPosition.MakeVisible, false);
             }
+        }
+        
+        private void SwipeNext(object sender, EventArgs e)
+        {
+            LoadNextVerse(true);
+        }
+
+        private void SwipePrevious(object sender, EventArgs e)
+        {
+            LoadNextVerse(false);
         }
     }
     #endregion

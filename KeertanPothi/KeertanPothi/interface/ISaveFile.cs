@@ -7,7 +7,7 @@ namespace KeertanPothi
 {
     public interface ISaveFile
     {
-        void SaveFile(string fileName, string json);
-        List<string> ReadFile();
+        void SaveFile(string fileName, string json, bool autoSave);
+        List<string> ReadFile(bool autoSave);
     }
 }

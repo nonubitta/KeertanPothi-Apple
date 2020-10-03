@@ -64,6 +64,7 @@ namespace KeertanPothi.Views
             List<Pothi> pothis = await _con.QueryAsync<Pothi>(Queries.GetAllPothisWithSortOrder());
             PothiOrb = new ObservableCollection<Pothi>(pothis);
             ddlPothi.ItemsSource = PothiOrb;
+
             if (pothis.Count == 1)
                 ddlPothi.SelectedIndex = 0;
             if (pothis.Count == 0)
@@ -76,6 +77,15 @@ namespace KeertanPothi.Views
                 swtExpandSwitch.IsToggled = true;
                 lblSelect.Text = SelectText;
             }
+
+            List<Verse> verses = await _con.QueryAsync<Verse>(Queries.ShabadById(ShabadId));
+            if (verses.Count > 0)
+            {
+                pckLine.ItemsSource = verses;
+                Verse selectedVerse = verses.FirstOrDefault(a => a.ID == VerseId);
+                pckLine.SelectedItem = selectedVerse;
+                pckLine.IsVisible = true;
+            }
         }
 
         private async void Save_Clicked(object sender, EventArgs e)
@@ -87,10 +97,11 @@ namespace KeertanPothi.Views
             {
                 if (RequestType == RequestSource.Single)
                 {
+                    Verse verse = pckLine.SelectedItem as Verse;
                     PothiShabad pothiShabad = new PothiShabad();
                     pothiShabad.PothiId = pothiId.Value;
                     pothiShabad.ShabadId = ShabadId;
-                    pothiShabad.VerseId = VerseId;
+                    pothiShabad.VerseId = verse.ID;
                     pothiShabad.SortOrder = SortOrder + 1;
                     PothiShabad.Add(pothiShabad);
                 }
@@ -119,7 +130,7 @@ namespace KeertanPothi.Views
                 {
                     await _con.InsertAsync(pothiShabad);
                     Util.ShowRoast($"Shabad {Action.ToString()} to pothi.");
-
+                    await Queries.ExportPothis(null, true);
                 }
                 catch (SQLiteException ex)
                 {

@@ -5,48 +5,80 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
-             x:Class="KeertanPothi.Views.ShabadDetails" BackgroundColor="{Binding PageBg}"
-              >
+             xmlns:tb="clr-namespace:KeertanPothi.Controls"
+             x:Class="KeertanPothi.Views.ShabadDetails" BackgroundColor="{Binding PageBg}" >
 
     <StackLayout x:Name="slMain">
-        <StackLayout VerticalOptions="StartAndExpand">
-            <ListView BackgroundColor="Transparent" x:Name="lstShabad" HasUnevenRows="True" SelectionMode="None">
-                <!--Scrolled="lstShabad_Scrolled"-->
-                <ListView.Header>
-                        <StackLayout BackgroundColor="#5e6573" Padding="20,10,20,10" Spacing="0">
-                            <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblScripture" FontAttributes="Bold"></Label>
-                            <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblAng" FontAttributes="Bold"></Label>
-                            <Label TextColor="#cfe2f3" IsVisible="False" FontSize="12" x:Name="lblWriter" FontAttributes="Bold"></Label>
-                            <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblRaag" FontAttributes="Bold"></Label>
-                        </StackLayout>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout BackgroundColor="{Binding ListBgColor}" VerticalOptions="StartAndExpand" Padding="20, 10, 20, 5" Spacing="3">
-                                <Label HorizontalTextAlignment="{Binding TextAlign}" TextColor="{Binding PageBgTheme.FontColor}" TextType="Html" x:Name="lblGurmukhi" IsVisible="{Binding GurmukhiVisible}" 
+        <SwipeView BackgroundColor="Transparent">
+            <SwipeView.RightItems>
+                <SwipeItems Mode="Execute">
+                    <SwipeItem Text="" BackgroundColor="Transparent" Invoked="SwipeNext"  />
+                </SwipeItems>
+            </SwipeView.RightItems>
+            <SwipeView.LeftItems>
+                <SwipeItems Mode="Execute">
+                    <SwipeItem Text="" BackgroundColor="Transparent" Invoked="SwipePrevious" />
+                </SwipeItems>
+            </SwipeView.LeftItems>
+            <SwipeView.Content>
+                <StackLayout VerticalOptions="StartAndExpand">
+                    <ListView BackgroundColor="Transparent" x:Name="lstShabad" HasUnevenRows="True" SelectionMode="None">
+                        <ListView.Header>
+                            <StackLayout>
+                                <Expander x:Name="expNotes" IsVisible="False">
+                                    <Expander.Header>
+                                        <StackLayout Padding="10,2,10,2" BackgroundColor="Orange" Orientation="Horizontal">
+                                            <Label TextColor="{Binding FontColor}" HorizontalOptions="CenterAndExpand" Text="Notes" FontSize="Medium" />
+                                        </StackLayout>
+                                    </Expander.Header>
+                                    <StackLayout BackgroundColor="#FEFF9C" Padding="20,10,20,10" >
+                                        <Label Text="*Notes functionality is still in Beta and may have issue" FontSize="Micro" 
+                                       HorizontalOptions="Center"></Label>
+                                        <ScrollView>
+                                            <Label x:Name="editNotes" Text="{Binding Notes}"></Label>
+                                        </ScrollView>
+                                    </StackLayout>
+                                </Expander>
+                                <StackLayout BackgroundColor="#5e6573" Padding="20,10,20,10" Spacing="0">
+                                    <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblScripture" FontAttributes="Bold"></Label>
+                                    <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblAng" FontAttributes="Bold"></Label>
+                                    <Label TextColor="#cfe2f3" IsVisible="False" FontSize="12" x:Name="lblWriter" FontAttributes="Bold"></Label>
+                                    <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblRaag" FontAttributes="Bold"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout BackgroundColor="{Binding ListBgColor}" VerticalOptions="StartAndExpand" Padding="20, 10, 20, 5" Spacing="3">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
+                                        <Label HorizontalTextAlignment="{Binding TextAlign}" TextType="Html" x:Name="lblGurmukhi" IsVisible="{Binding GurmukhiVisible}" 
                                        FontSize="{Binding GurmukhiFontSize}" Text="{Binding GurmukhiHtml}" 
                                        FontFamily="{Binding GurmukhiFontName}"></Label>
-                                <Label TextColor="{Binding PageBgTheme.EnglishTransliterationColor}" x:Name="lblTransliteration" IsVisible="{Binding TransliterationVisible}" 
+                                        <Label TextColor="{Binding PageBgTheme.EnglishTransliterationColor}" x:Name="lblTransliteration" IsVisible="{Binding TransliterationVisible}" 
                                        FontSize="{Binding TransliterationFontSize}" Text="{Binding Transliteration}" ></Label>
-                                <Label x:Name="lblTranslation" IsVisible="{Binding TranslationVisible}" 
+                                        <Label x:Name="lblTranslation" IsVisible="{Binding TranslationVisible}" 
                                        TextColor="{Binding PageBgTheme.EnglishTranslationColor}"
                                        FontSize="{Binding EnglishFontSize}" Text="{Binding English}" ></Label>
-                                <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" x:Name="lblPTranslation" IsVisible="{Binding PunjabiTranslationVisible}" 
+                                        <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" x:Name="lblPTranslation" IsVisible="{Binding PunjabiTranslationVisible}" 
                                        FontSize="{Binding PunjabiFontSize}" Text="{Binding Punjabi}" 
                                        FontFamily="PunjabiFont" ></Label>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </SwipeView.Content>
+        </SwipeView>
         <StackLayout x:Name="EditToolbar" BackgroundColor="#1976D2"  Opacity="1" AbsoluteLayout.LayoutBounds="0,1,1,45" 
                      AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" Orientation="Horizontal" 
                      VerticalOptions="End" Padding="20,0,20,0">
             <Grid HorizontalOptions="FillAndExpand" Padding="0,7,0,7" RowDefinitions="*" 
                   ColumnDefinitions="*,*,*,*,*">
-                
+
                 <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.prev.png}"
                              Grid.Row="0" Grid.Column="0" Clicked="PrevVerse_Clicked">
                 </ImageButton>

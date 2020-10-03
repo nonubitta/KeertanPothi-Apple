@@ -176,7 +176,7 @@ namespace KeertanPothi.Views
 			searchOptions.Add(new KeyValue { Value = "Ang Search", Key = "A" });
 			pckSearchType.ItemsSource = searchOptions;
 			pckSearchType.SelectedIndex = 0;
-			pckSearchType2.ItemsSource = searchOptions;
+			//pckSearchType2.ItemsSource = searchOptions;
 		}
 
 		private async void pckSearchType_SelectedIndexChanged(object sender, EventArgs e)
@@ -184,16 +184,16 @@ namespace KeertanPothi.Views
 			KeyValue keyValue1 = pckSearchType.SelectedItem as KeyValue;
 			if (keyValue1 != null)
 			{
-				if (keyValue1.Key == "F")
-				{
-					btnSpace.IsEnabled = false;
-					btnNxtKeyboard.IsEnabled = false;
-				}
-				else
-				{
-					btnSpace.IsEnabled = true;
-					btnNxtKeyboard.IsEnabled = true;
-				}
+				//if (keyValue1.Key == "F")
+				//{
+				//	btnSpace.IsEnabled = false;
+				//	btnNxtKeyboard.IsEnabled = false;
+				//}
+				//else
+				//{
+				//	btnSpace.IsEnabled = true;
+				//	btnNxtKeyboard.IsEnabled = true;
+				//}
 
 				if (keyValue1.Key == "A")
 				{

@@ -386,12 +386,16 @@ namespace DBTest.Models
 
         public int? SortOrder { get; set; }
 
+        public string Notes { get; set; }
+
     }
 
     public class PothiShabadExt
     {
         public Pothi pothi { get; set; }
         public List<PothiShabad> shabadList { get; set; }
+
+        public int shabadCount { get; set; }
     }
 
     public class VerseSearch : ModalBase
@@ -404,7 +408,8 @@ namespace DBTest.Models
         public string RaagEnglish { get; set; }
         public int? PageNo { get; set; }
         public int? ShabadId { get; set; }
-        
+        public string Notes { get; set; }
+
         private int? sortOrder;
         public int? SortOrder 
         {
@@ -658,23 +663,35 @@ namespace DBTest.Models
 
         public Theme()
         {
-            if (Util.PrefDarkTheme)
+            switch(Util.PrefDarkTheme)
             {
-                PageBg = Util.DarkThemeBgColor;
-                FontColor = Util.DarkThemeFontColor;
-                DefaultItemBg = Util.DarkThemeSelectedItemBg;
-                PunjabiTranslationColor = Util.DarkThemePunjabiTranlationColor;
-                EnglishTranslationColor = Util.DarkThemeEnglishTranlationColor;
-                EnglishTransliterationColor = Util.DarkThemeEnglishTransliterationColor;
-            }
-            else
-            {
-                PageBg = Util.LightThemeBgColor;
-                FontColor = Util.LightThemeFontColor; 
-                DefaultItemBg = Util.LightThemeSelectedItemBg;
-                PunjabiTranslationColor = Util.LightThemePunjabiTranlationColor;
-                EnglishTranslationColor = Util.LightThemeEnglishTranlationColor;
-                EnglishTransliterationColor = Util.LightThemeEnglishTransliterationColor;
+                case "BLACK":
+                    PageBg = Util.DarkThemeBgColor;
+                    FontColor = Util.DarkThemeFontColor;
+                    DefaultItemBg = Util.DarkThemeSelectedItemBg;
+                    PunjabiTranslationColor = Util.DarkThemePunjabiTranlationColor;
+                    EnglishTranslationColor = Util.DarkThemeEnglishTranlationColor;
+                    EnglishTransliterationColor = Util.DarkThemeEnglishTransliterationColor;
+                    break;
+                
+                case "GRAY":
+                    PageBg = Util.GrayThemeBgColor;
+                    FontColor = Util.LightThemeFontColor;
+                    DefaultItemBg = Util.LightThemeSelectedItemBg;
+                    PunjabiTranslationColor = Util.LightThemePunjabiTranlationColor;
+                    EnglishTranslationColor = Util.LightThemeEnglishTranlationColor;
+                    EnglishTransliterationColor = Util.LightThemeEnglishTransliterationColor;
+                    break;
+
+                case "BLUE":
+                    PageBg = Util.LightThemeBgColor;
+                    FontColor = Util.LightThemeFontColor; 
+                    DefaultItemBg = Util.LightThemeSelectedItemBg;
+                    PunjabiTranslationColor = Util.LightThemePunjabiTranlationColor;
+                    EnglishTranslationColor = Util.LightThemeEnglishTranlationColor;
+                    EnglishTransliterationColor = Util.LightThemeEnglishTransliterationColor;
+                    break;
+
             }
         }
     }

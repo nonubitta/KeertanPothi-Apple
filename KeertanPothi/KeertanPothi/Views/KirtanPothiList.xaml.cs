@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using Acr.UserDialogs;
+using Rg.Plugins.Popup.Extensions;
 
 namespace KeertanPothi.Views
 {
@@ -24,9 +25,17 @@ namespace KeertanPothi.Views
             BindingContext = new Theme();
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
             InitializeComponent();
+            MessagingCenter.Subscribe<App, bool>((App)Application.Current, "PothisImported", (sender, arg) => {
+                PothisCreated(arg);
+            });
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<App, object>(this, "PothisImported");
         }
 
-        private async void LoadPothis()
+        private async Task<bool> LoadPothis()
         {
             List<Pothi> pothis = await _con.QueryAsync<Pothi>(Queries.GetAllPothis());
             foreach (Pothi p in pothis)
@@ -46,7 +55,7 @@ namespace KeertanPothi.Views
                 lstPothi.IsVisible = true;
                 lblNoPothi.IsVisible = false;
             }
-
+            return true;
         }
 
         private async void lstPothi_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -80,6 +89,7 @@ namespace KeertanPothi.Views
                     {
                         PothiObs.Remove(pothi);
                         Util.ShowRoast("Pothi deleted successfully");
+                        await Queries.ExportPothis(PothiObs.ToList(), true);
                     }
                 }
                 catch (Exception ex)
@@ -103,7 +113,8 @@ namespace KeertanPothi.Views
                     PothiObs.Add(pothi);
                 }
                 Util.ShowRoast("Pothi added successfully");
-                LoadPothis();
+                await LoadPothis();
+                await Queries.ExportPothis(PothiObs.ToList(), true);
             }
         }
 
@@ -124,6 +135,7 @@ namespace KeertanPothi.Views
                 {
                     PothiObs[PothiObs.IndexOf(pothi)].Name = newPothiName;
                 }
+                await Queries.ExportPothis(PothiObs.ToList(), true);
             }
         }
 
@@ -133,7 +145,7 @@ namespace KeertanPothi.Views
             {
                 bool exported = await Queries.ExportPothis(PothiObs.ToList());
                 if (exported)
-                    Util.ShowRoast("Pothi(s) exported successfully to Internal Storage/KeertanPothi/Pothis.json.");
+                    Util.ShowRoast("Pothi(s) exported successfully to Internal Storage/Documents/Pothis.json.");
                 else
                     Util.ShowRoast("Failed to export pothis");
             }
@@ -147,16 +159,8 @@ namespace KeertanPothi.Views
 
             if (jsons != null && jsons.Count > 0)
             {
-                bool ans = await DisplayAlert("Import pothis", "Pothis found at Internal Storage/KeertanPothi/Pothis.json. Do you want to import them?", "Yes", "No");
-                if (ans)
-                {
-                    bool exp = await Queries.ImportPothi();
-                    if (exp)
-                    {
-                        Util.ShowRoast("Pothi imported successfully.");
-                        LoadPothis();
-                    }
-                }
+                ImportPothiPopup importPothi = new ImportPothiPopup(jsons);
+                await Navigation.PushPopupAsync(importPothi);
             }
             else
                 Util.ShowRoast("No file found");
@@ -198,6 +202,16 @@ namespace KeertanPothi.Views
         private void SwipeView_SwipeEnded(object sender, SwipeEndedEventArgs e)
         {
             DisplayAlert("ended", "ended", "Cancel");
+        }
+
+        private async void PothisCreated(bool arg)
+        {
+            if (arg)
+            {
+                await LoadPothis();
+                Util.ShowRoast("Pothi imported successfully.");
+                await Queries.ExportPothis(PothiObs.ToList(), true);
+            }
         }
     }
 }

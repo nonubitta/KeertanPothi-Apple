@@ -1,15 +1,12 @@
 ﻿using DBTest.Models;
-using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Pages;
 using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.Collections.ObjectModel;
 
 namespace KeertanPothi.Views
 {

@@ -31,7 +31,7 @@ namespace KeertanPothi.Views
                     Credentials = new NetworkCredential("KeertanPothi@gmail.com", "KeertanPothi1699"),
                     EnableSsl = true
                 };
-                client.Send("KeertanPothi@gmail.com", "nonubitta@gmail.com", txtSubject.Text, txtBody.Text);
+                client.Send("KeertanPothi@gmail.com", "nonubitta@gmail.com", txtSubject.Text, txtEmail.Text + ": " + txtBody.Text);
                 Util.ShowRoast("Message sent !!!");
             }
             catch (Exception ex)
@@ -79,6 +79,21 @@ namespace KeertanPothi.Views
             }
             else
                 lbl3.Text = "↓";
+        }
+
+        private async void TapGestureRecognizer_Punjabi(object sender, EventArgs e)
+        {
+            await Launcher.OpenAsync("https://youtu.be/jsny2dOcLjU");
+        }
+
+        private async void TapGestureRecognizer_English(object sender, EventArgs e)
+        {
+            await Launcher.OpenAsync("https://youtu.be/HVJgWXapYiA");
+        }
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            await Launcher.OpenAsync("https://youtu.be/jsny2dOcLjU");
         }
     }
 }

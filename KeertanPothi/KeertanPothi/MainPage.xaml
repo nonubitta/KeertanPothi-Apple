@@ -14,9 +14,10 @@
                     <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="#ffffff" 
                            FontFamily="PunjabiFont" Text="kIrqnu poQI" FontSize="32"></Label>
                     <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="#ffffff" 
-                           Text="Keertan Pothi" FontSize="16"></Label>
+                           Text="Keertan Pothi" FontSize="16"></Label><Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="#ffffff" 
+                           Text="Beta" FontSize="12"></Label>
                 </StackLayout>
-                <StackLayout VerticalOptions="StartAndExpand">
+                <StackLayout VerticalOptions="StartAndExpand" x:Name="slMenuBg">
                     <ListView BackgroundColor="Transparent" VerticalOptions="Start" RowHeight="60" x:Name="lstMenu" ItemSelected="lstMenu_ItemSelected"
                           SeparatorColor="#4E4E4F">
                         <ListView.ItemTemplate>
@@ -24,7 +25,7 @@
                             <ViewCell IsEnabled="{Binding ItemEnabled}">
                                 <StackLayout Padding="20,5,20,5" Orientation="Horizontal" VerticalOptions="Center" Spacing="8">
                                     <Image VerticalOptions="Center" WidthRequest="22" HeightRequest="22" Source="{Binding ImageUrl}"></Image>
-                                        <Label VerticalOptions="Center" Text="{Binding ItemName}" FontSize="24" 
+                                        <Label VerticalOptions="Center" Text="{Binding ItemName}" FontSize="18" 
                                                TextColor="#eef0f1" ></Label>
                                 </StackLayout>
                             </ViewCell>
@@ -32,7 +33,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 </StackLayout>
-                <StackLayout Padding="20, 0, 20, 20" Orientation="Horizontal" VerticalOptions="End">
+                <StackLayout Padding="20, 0, 20, 20" Orientation="Horizontal" VerticalOptions="End" x:Name="slFooterBg">
                     <Label x:Name="lblVersion" HorizontalOptions="EndAndExpand" TextColor="#eef0f1" FontSize="Small"></Label>
                 </StackLayout>
             </StackLayout>

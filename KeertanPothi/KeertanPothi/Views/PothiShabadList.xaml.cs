@@ -40,6 +40,7 @@ namespace KeertanPothi.Views
         {
             using (UserDialogs.Instance.Loading("Loading Shabad List..."))
             {
+                var test = _con.Table<PothiShabad>();
                 List<VerseSearch> verseSearch = await _con.QueryAsync<VerseSearch>(Queries.ShabadByPothiId(_pothi.PothiId.Value));
                 VerseObs = new ObservableCollection<VerseSearch>(verseSearch);
                 lstVerse.ItemsSource = VerseObs;
@@ -117,6 +118,7 @@ namespace KeertanPothi.Views
             pothiShabad.VerseId = vs.VerseID;
             pothiShabad.PothiId = _pothi.PothiId.Value;
             pothiShabad.SortOrder = vs.SortOrder;
+            pothiShabad.Notes = vs.Notes;
             return pothiShabad;
         }
 

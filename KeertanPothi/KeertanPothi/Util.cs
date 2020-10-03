@@ -18,15 +18,16 @@ namespace KeertanPothi
     public class Util
     {
         #region Theme
-        
-        internal static string DarkThemeBgColor = "#373b42"; /** Main background color dark **/
+
+        internal static string DarkThemeBgColor = "#202124"; /** Main background color Black **/
+        internal static string GrayThemeBgColor = "#FEFEFE"; /** Main background color Gray **/
         internal static string DarkThemeFontColor = "#eef0f1";
         internal static string DarkThemePunjabiTranlationColor = "#aad0ef";
         internal static string DarkThemeEnglishTranlationColor = "#f7f2d0";
-        internal static string DarkThemeEnglishTransliterationColor = "#eae1f7"; 
+        internal static string DarkThemeEnglishTransliterationColor = "#eae1f7";
         internal static string DarkThemeSelectedItemBg = "#545a66";
 
-        internal static string LightThemeBgColor = "#cfe2f3"; /** Main background color light **/
+        internal static string LightThemeBgColor = "#cfe2f3"; /** Main background color blue **/
         internal static string LightThemeFontColor = "#00008B";
         internal static string LightThemePunjabiTranlationColor = "#255fbc";
         internal static string LightThemeEnglishTranlationColor = "#2b2a27"; //292825
@@ -39,7 +40,7 @@ namespace KeertanPothi
 
         internal static string NewLineChar = "&#10;";
         internal static string PunjabiFontKey = "PunjabiFont";
-        internal static string HandFontKey = "HandFont"; 
+        internal static string HandFontKey = "HandFont";
         internal static string SampleHTMLXaml = "This is &lt;strong style=&quot;color:red&quot;&gt;HTML&lt;/strong&gt; text.";
         internal static string SampleHTMLCS = "This is <strong style=\"color:red\">HTML</strong> text.";
         internal static string MainVishraamColor = "#f97b4d";
@@ -49,8 +50,8 @@ namespace KeertanPothi
         internal static string VishraamSource3 = "sttm2";
         internal static string PrefDataExistsKey = "DataExists";
         internal static string PrefCurrentDbVersionKey = "CurrentDbVersion";
-        internal static int CurrentDbVersion = 9;
-        internal static string ListSelectionColor = "#9dcaf2"; //#8ee1ff    E3DAED
+        internal static int CurrentDbVersion = 13;
+        internal static string ListSelectionColor = "#9dcaf2"; 
 
         public enum SettingName
         {
@@ -84,7 +85,7 @@ namespace KeertanPothi
 
         private static string PrefPunjabiVisibleKey = "PunjabiVisible";
         private static string PrefPunjabiFontSizeKey = "PunjabiFontSize";
-        
+
         private static string PrefTransliterationVisibleKey = "TransliterationVisible";
         private static string PrefTransliterationFontSizeKey = "TransliterationFontSize";
 
@@ -110,7 +111,7 @@ namespace KeertanPothi
 
         private static int PrefShabadListFontSizeInit = 26;
 
-        private static bool PrefDarkThemeInit = true;
+        private static string PrefDarkThemeInit = "BLACK";
 
 
         #endregion
@@ -199,13 +200,17 @@ namespace KeertanPothi
 
         internal static void SetThemeOnPage(Page page)
         {
-            if (PrefDarkTheme)
+            switch (PrefDarkTheme)
             {
-                page.BackgroundColor = Color.FromHex(Util.DarkThemeBgColor);
-            }
-            else
-            {
-                page.BackgroundColor = Color.FromHex(Util.LightThemeBgColor);
+                case "BLACK":
+                    page.BackgroundColor = Color.FromHex(Util.DarkThemeBgColor);
+                    break;
+                case "GRAY":
+                    page.BackgroundColor = Color.FromHex(Util.GrayThemeBgColor);
+                    break;
+                case "BLUE":
+                    page.BackgroundColor = Color.FromHex(Util.LightThemeBgColor);
+                    break;
             }
         }
 
@@ -271,6 +276,9 @@ namespace KeertanPothi
 
         private static string PrefIsAdminKey = "IsAdmin";
         private static bool PrefIsAdminInit = false;
+        internal static readonly string AutoSaveFileName = "AutoSave.json";
+        public static readonly string LogFileName = "KeertanPothi.log";
+
         public static bool PrefIsAdmin
         {
             get
@@ -285,15 +293,15 @@ namespace KeertanPothi
 
         internal static int PrefCurrentDbVersion
         {
-            get { return Preferences.Get(Util.PrefCurrentDbVersionKey, CurrentDbVersion); }
+            get { return Preferences.Get(Util.PrefCurrentDbVersionKey, 1); }
             set { Preferences.Set(Util.PrefCurrentDbVersionKey, value); }
         }
 
-        public static bool PrefDarkTheme
+        public static string PrefDarkTheme
         {
             get
             {
-                return Preferences.Get(Util.PrefDarkThemeKey, false);
+                return Preferences.Get(Util.PrefDarkThemeKey, string.Empty);
             }
             set
             {
@@ -308,35 +316,35 @@ namespace KeertanPothi
         {
             bool isAdmin = PrefIsAdmin;
             List<SideMenu> menu = new List<SideMenu>();
-            menu.Add(new SideMenu("Search", "Search", true, "images/search.png", true));
-            menu.Add(new SideMenu("Random Shabad", "ShabadDetails", true, "images/Random.png", true));
-            menu.Add(new SideMenu("Keertan Pothi", "KirtanPothiList", true, "images/Book.png", true));
-            menu.Add(new SideMenu("Sundar Gutka", "NitnemList", true, "images/Nitnem.png", true));
+            menu.Add(new SideMenu("Search", "Search", true, "search.png", true));
+            menu.Add(new SideMenu("Random Shabad", "ShabadDetails", true, "Random.png", true));
+            menu.Add(new SideMenu("Keertan Pothi", "KirtanPothiList", true, "Book.png", true));
+            menu.Add(new SideMenu("Sundar Gutka", "NitnemList", true, "Nitnem.png", true));
             //menu.Add(new SideMenu("Shabad Set", "CreateSet", true, "KeertanPothi.images.search.png"));
-            menu.Add(new SideMenu("Writer List", "WriterList", true, "images/writer.png", true));
-            menu.Add(new SideMenu("Raag List", "RaagList", true, "images/Raag.png", true));
+            menu.Add(new SideMenu("Writer List", "WriterList", true, "writer.png", true));
+            menu.Add(new SideMenu("Raag List", "RaagList", true, "Raag.png", true));
             //menu.Add(new SideMenu("Ang", "AngSearch", true, "images/Number.png", true));
-            menu.Add(new SideMenu("History", "History", true, "images/History.png", true));
-            menu.Add(new SideMenu("Help/Contact", "ContactUs", true, "images/help.png", true));
+            menu.Add(new SideMenu("History", "History", true, "History.png", true));
+            menu.Add(new SideMenu("Help/Contact", "ContactUs", true, "help.png", true));
 
-           //menu.Add(new SideMenu("Test", "NotifyTest", true, "KeertanPothi.images.search.png", true));
+            //menu.Add(new SideMenu("Test", "TestPage", true, "KeertanPothi.images.search.png", true));
             //menu.Add(new SideMenu("SQL", "SqlView", true, "KeertanPothi.images.search.png", isAdmin));
             //menu.Add(new SideMenu("Admin", "Admin", true, "KeertanPothi.images.search.png", isAdmin));
             return menu;
         }
         //public static List<NitnemBani> GetNitnemBanis()
         //{
-            //List<NitnemBani> menu = new List<NitnemBani>();
-            //menu.Add(new NitnemBani(1, "jpjI swihb", "Japji Sahib", true, "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39"));
-            //menu.Add(new NitnemBani(2, "jwpu swihb", "Jaap Sahib", true, "7402,7403,7404,7405,7406,7407,7408,7409,7410,7411,7412,7413,7414,7415,7416,7417,7418,7419,7420,7421,7422,7423"));
-            //menu.Add(new NitnemBani(3, "qÍ pRswid ] sv`Xy ]", "Tav Prasad  Savayiye", true, "7426"));
-            //menu.Add(new NitnemBani(4, "bynqI cOpeI", "Benti Chaupai", true, "12794,12795"));
-            //menu.Add(new NitnemBani(5, "Anµdu swihb", "Anand Sahib", true, "333375,3375,333376"));
-            //menu.Add(new NitnemBani(6, "rhrwis swihb", "Rehraas Sahib", false, "1721, 40, 41, 42, 43, 44, 45, 46, 47, 48, 12794, 12795, 8095, 8096, 333375, 333376,5538, 5539, 1943,1944"));
-            //menu.Add(new NitnemBani(7, "soihlw swihb", "Sohila Sahib", false, "49,50,51,52,53"));
-            //menu.Add(new NitnemBani(8, "suKmnI swihb", "Sukhmani Sahib", false, "871,1086"));
-            //return menu;
-            //SukhmaniSahib ; 
+        //List<NitnemBani> menu = new List<NitnemBani>();
+        //menu.Add(new NitnemBani(1, "jpjI swihb", "Japji Sahib", true, "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39"));
+        //menu.Add(new NitnemBani(2, "jwpu swihb", "Jaap Sahib", true, "7402,7403,7404,7405,7406,7407,7408,7409,7410,7411,7412,7413,7414,7415,7416,7417,7418,7419,7420,7421,7422,7423"));
+        //menu.Add(new NitnemBani(3, "qÍ pRswid ] sv`Xy ]", "Tav Prasad  Savayiye", true, "7426"));
+        //menu.Add(new NitnemBani(4, "bynqI cOpeI", "Benti Chaupai", true, "12794,12795"));
+        //menu.Add(new NitnemBani(5, "Anµdu swihb", "Anand Sahib", true, "333375,3375,333376"));
+        //menu.Add(new NitnemBani(6, "rhrwis swihb", "Rehraas Sahib", false, "1721, 40, 41, 42, 43, 44, 45, 46, 47, 48, 12794, 12795, 8095, 8096, 333375, 333376,5538, 5539, 1943,1944"));
+        //menu.Add(new NitnemBani(7, "soihlw swihb", "Sohila Sahib", false, "49,50,51,52,53"));
+        //menu.Add(new NitnemBani(8, "suKmnI swihb", "Sukhmani Sahib", false, "871,1086"));
+        //return menu;
+        //SukhmaniSahib ; 
         //}
 
         #endregion
@@ -374,7 +382,7 @@ namespace KeertanPothi
             Preferences.Set(Util.PrefDarkThemeKey, Util.PrefDarkThemeInit);
         }
 
-        internal static void ShowRoast(string msg)
+        public static void ShowRoast(string msg)
         {
             DependencyService.Get<IMessage>().LongAlert(msg);
         }
@@ -477,6 +485,13 @@ namespace KeertanPothi
             await Share.RequestAsync(text, "Shared from Keertan Pothi");
         }
 
+        public static void Log(string text)
+        {
+            string append = "------------------------------\r\n";
+            append += DateTime.Now + "\r\n";
+            SaveFile(LogFileName, append+text, true);
+        }
+
         public async static Task<string> GetPothiJson(Pothi pothi)
         {
             if (pothi == null || pothi.PothiId == null || pothi.PothiId < 1)
@@ -491,16 +506,28 @@ namespace KeertanPothi
             }
         }
 
-        public static void SaveFile(string fileName, string json)
+        public static void SaveFile(string fileName, string json, bool autoSave)
         {
-            DependencyService.Get<ISaveFile>().SaveFile(fileName, json);
+            DependencyService.Get<ISaveFile>().SaveFile(fileName, json, autoSave);
+        }
+
+        public static void AutoLoad()
+        {
+            try
+            {
+                DependencyService.Get<ISaveFile>().ReadFile(true);
+            }
+            catch
+            {
+                ShowRoast("Failed to read file");
+            }
         }
 
         public static List<string> ReadFile()
         {
             try
             {
-                return DependencyService.Get<ISaveFile>().ReadFile();
+                return DependencyService.Get<ISaveFile>().ReadFile(false);
             }
             catch
             {
@@ -578,7 +605,7 @@ namespace KeertanPothi
             string str = "select * from BaniName ";
             if (!showAll)
                 str += "Where IsVisible = true;";
-            
+
             return str;
         }
 
@@ -665,7 +692,7 @@ namespace KeertanPothi
 
         internal static string ShabadByPothiId(int pothiId)
         {
-            return $@"select ps.VerseID, Gurmukhi, vr.English, vr.WriterID, vr.RaagID, wr.WriterEnglish, wr.WriterGurmukhi, rg.RaagEnglish, vr.PageNo, sh.ShabadId, ps.SortOrder
+            return $@"select ps.VerseID, Gurmukhi, vr.English, vr.WriterID, vr.RaagID, wr.WriterEnglish, wr.WriterGurmukhi, rg.RaagEnglish, vr.PageNo, sh.ShabadId, ps.SortOrder, ps.Notes
 				from Pothi P 
                 left JOIN PothiShabad PS ON P.POTHIID = PS.PothiId
                 left JOIN shabad sh ON PS.shabadid = SH.ShabadID
@@ -698,7 +725,7 @@ namespace KeertanPothi
         {
             string[] ids = shabadIdList.Split(',');
             string orClause = string.Empty;
-            foreach(string s in ids)
+            foreach (string s in ids)
             {
                 orClause += $" shabadid = {Convert.ToInt32(s)} or";
             }
@@ -725,7 +752,7 @@ namespace KeertanPothi
                 {
                     await _con.ExecuteAsync(query);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return false;
                 }
@@ -749,7 +776,7 @@ namespace KeertanPothi
                 History history = new History(shabadId, verseId);
                 _ = await _con.InsertAsync(history);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Util.ShowRoast("Save history error: " + ex.Message);
             }
@@ -765,7 +792,7 @@ namespace KeertanPothi
 
         internal static string GetShabadHistory(int count = 50)
         {
-           return $@"Select * from History h 
+            return $@"Select * from History h 
 	                    inner join shabad s on case when h.verseid is not null then h.verseid = s.verseid else h.ShabadId = s.shabadid end
                         inner join verse vr on s.verseid = vr.ID
                         left JOIN Raag rg on vr.raagID = rg.RaagID 
@@ -776,12 +803,12 @@ namespace KeertanPothi
                     order by h.CreatedOn Desc Limit { count }";
         }
 
-        public async static Task<bool> ExportPothis(List<Pothi> PothiObs = null)
+        public async static Task<bool> ExportPothis(List<Pothi> PothiObs = null, bool autoSave = false)
         {
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
-            if(PothiObs == null)
+            if (PothiObs == null)
                 PothiObs = await _con.QueryAsync<Pothi>(Queries.GetAllPothis());
-            if (PothiObs != null && PothiObs.Count > 0)
+            if ((PothiObs != null && PothiObs.Count > 0) || autoSave)
             {
                 string folder = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 string path = System.IO.Path.Combine(folder, "Pothis.json");
@@ -795,7 +822,10 @@ namespace KeertanPothi
                         pothis.Add(ext);
                     }
                     string json = JsonConvert.SerializeObject(pothis);
-                    Util.SaveFile("Pothis.json", json);
+                    if(autoSave)
+                        Util.SaveFile(Util.AutoSaveFileName, json, true);
+                    else
+                        Util.SaveFile("Pothis.json", json, false);
                     //Util.ShowRoast("Pothi(s) exported successfully to Internal Storage/KeertanPothi/Pothis.json.");
                     return true;
                 }
@@ -828,20 +858,7 @@ namespace KeertanPothi
                         {
                             foreach (PothiShabadExt cur in pothis)
                             {
-                                Pothi pothi = new Pothi();
-                                pothi.Name = cur.pothi.Name;
-                                pothi.CreatedOn = DateTime.Now;
-                                int cnt = await _con.InsertAsync(pothi);
-                                if (cnt > 0)
-                                {
-                                    int pothiId = await Queries.GetLastId();
-                                    foreach (PothiShabad shabad in cur.shabadList)
-                                    {
-                                        PothiShabad pothiShabad = shabad;
-                                        pothiShabad.PothiId = pothiId;
-                                        await _con.InsertAsync(pothiShabad);
-                                    }
-                                }
+                                await SavePothFromPothiShabadExt(cur);
                             }
                         }
                     }
@@ -850,11 +867,31 @@ namespace KeertanPothi
             return true;
         }
 
-        internal static string ToggleNitnemBani (int? Id, bool visible)
+        internal async static Task<bool> SavePothFromPothiShabadExt(PothiShabadExt cur)
+        {
+            _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
+            Pothi pothi = new Pothi();
+            pothi.Name = cur.pothi.Name;
+            pothi.CreatedOn = DateTime.Now;
+            int cnt = await _con.InsertAsync(pothi);
+            if (cnt > 0)
+            {
+                int pothiId = await Queries.GetLastId();
+                foreach (PothiShabad shabad in cur.shabadList)
+                {
+                    PothiShabad pothiShabad = shabad;
+                    pothiShabad.PothiId = pothiId;
+                    await _con.InsertAsync(pothiShabad);
+                }
+            }
+            return true;
+        }
+
+        internal static string ToggleNitnemBani(int? Id, bool visible)
         {
             string str = $"Update BaniName Set IsVisible = { visible } ";
-            if(Id != null && Id > 0)
-                str += $"Where Id = { Id }"; 
+            if (Id != null && Id > 0)
+                str += $"Where Id = { Id }";
 
             return str;
         }
@@ -863,6 +900,17 @@ namespace KeertanPothi
         {
             return $"Update PothiShabad Set SortOrder = {sortOrder} Where PothiId = {pothiId} and ShabadId = {shabadId}";
         }
+
+        internal static string UpdateNotes(int pothiId, int shabadId, string note)
+        {
+            return $"Update PothiShabad Set Notes = '{note}' Where PothiId = {pothiId} and ShabadId = {shabadId}";
+        }
+
+        internal static string GetNotes(int pothiId, int shabadId)
+        {
+            return $"Select notes from PothiShabad Where PothiId = {pothiId} and ShabadId = {shabadId}";
+        }
+
     }
 
     public class KeyValue

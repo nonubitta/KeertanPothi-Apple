@@ -31,38 +31,42 @@
                         <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Add to Pothi" TextColor="White" FontSize="Medium"></Label>
                         <Button Text="X" Clicked="btnClose_Clicked" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
                     </StackLayout>
-                    <BoxView HeightRequest="10"></BoxView>
-                <Expander x:Name="expSelect" BindingContext="{x:Reference Name=swtExpandSwitch}" IsExpanded="{Binding Path=IsToggled}">
-                    <Expander.Header>
-                        <StackLayout>
-                            <Label x:Name="lblSelect" Text="Select Pothi to add shabad" HorizontalOptions="CenterAndExpand" 
-                                    FontAttributes="Bold" FontSize="Small"></Label>
-                        </StackLayout>
-                    </Expander.Header>
-                    <StackLayout Padding="20,0,20,20" Spacing="10">
-                        <Picker Title="Select pothi" x:Name="ddlPothi" ItemDisplayBinding="{Binding Name}"/>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
-                            <Button Text="Save" x:Name="Save" Clicked="Save_Clicked" ></Button>
-                            <Button Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked"></Button>
-                        </StackLayout>
-                    </StackLayout>
-                </Expander>
-                <BoxView HeightRequest="1" BackgroundColor="DarkBlue"></BoxView>
-                <BoxView HeightRequest="10"></BoxView>
-                <Expander BindingContext="{x:Reference Name=swtExpandSwitch2}" IsExpanded="{Binding Path=IsToggled}">
-                    <Expander.Header>
-                        <StackLayout>
-                            <Label HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Text="Create new Pothi"></Label>
-                        </StackLayout>
-                    </Expander.Header>
-                    <StackLayout Padding="20,0,20,20" Spacing="10">
-                        <Entry x:Name="entPothiName" Placeholder="New pothi name"></Entry>
-                        <Button Text="Add Pothi" Clicked="NewPothi_Clicked"></Button>
-                        <Label FontSize="Micro" FontAttributes="Italic" Text="*Shabad will be added to new pothi"></Label>
-                    </StackLayout>
-                </Expander>
-            </StackLayout>
-        </Frame>
+                        <BoxView HeightRequest="10"></BoxView>
+                        <Label Text="Select default line" HorizontalOptions="CenterAndExpand" 
+                                            FontAttributes="Bold" FontSize="Small"></Label>
+                        <Picker Margin="20,0,20,0" x:Name="pckLine" IsVisible="False" ItemDisplayBinding="{Binding GurmukhiUni}"
+                                FontFamily="PunjabiFont"></Picker>
+                        <Expander x:Name="expSelect" BindingContext="{x:Reference Name=swtExpandSwitch}" IsExpanded="{Binding Path=IsToggled}">
+                            <Expander.Header>
+                                <StackLayout>
+                                    <Label x:Name="lblSelect" Text="Select Pothi to add shabad" HorizontalOptions="CenterAndExpand" 
+                                            FontAttributes="Bold" FontSize="Small"></Label>
+                                </StackLayout>
+                            </Expander.Header>
+                            <StackLayout Padding="20,0,20,20" Spacing="10">
+                                <Picker Title="Select pothi" x:Name="ddlPothi" ItemDisplayBinding="{Binding Name}"/>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                                    <Button Text="Save" x:Name="Save" Clicked="Save_Clicked" ></Button>
+                                    <Button Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked"></Button>
+                                </StackLayout>
+                            </StackLayout>
+                        </Expander>
+                        <BoxView HeightRequest="1" BackgroundColor="DarkBlue"></BoxView>
+                        <BoxView HeightRequest="10"></BoxView>
+                        <Expander BindingContext="{x:Reference Name=swtExpandSwitch2}" IsExpanded="{Binding Path=IsToggled}">
+                            <Expander.Header>
+                                <StackLayout>
+                                    <Label HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Text="Create new Pothi"></Label>
+                                </StackLayout>
+                            </Expander.Header>
+                            <StackLayout Padding="20,0,20,20" Spacing="10">
+                                <Entry x:Name="entPothiName" Placeholder="New pothi name"></Entry>
+                                <Button Text="Add Pothi" Clicked="NewPothi_Clicked"></Button>
+                                <Label FontSize="Micro" FontAttributes="Italic" Text="*Shabad will be added to new pothi"></Label>
+                            </StackLayout>
+                        </Expander>
+                </StackLayout>
+            </Frame>
         </ScrollView>
     </ContentPage.Content>
 </pages:PopupPage>

@@ -15,6 +15,11 @@
     color: #FFFFFF;
     font-size: small;
     border-radius: 5;
+    padding:15;
+}
+
+^RadioButton {
+    padding: 15;
 }
 
 .NoRadiusButton {
@@ -53,7 +58,7 @@
 }
 
 .MenuBlackBg {
-    background-color: #373b42;
+    background-color: #484d57;
 }
 
 .MenuWhiteText {
