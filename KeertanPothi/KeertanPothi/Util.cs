@@ -551,8 +551,33 @@ namespace KeertanPothi
 				left join Raag rg on vr.raagID = rg.RaagID 
 				left join Writer wr on vr.WriterID = wr.writerID 
 				where vr.FirstLetterStr like '%{searchString}%'
-				 order by vr.id";
+				order by vr.id";
         }
+
+        public static string SimilarShabadSearch(string searchString, string keywords)
+        {
+            string keywordWild = keywords;//.Replace(" ", "%");
+            return $@"
+                select distinct  VerseID, Gurmukhi, English, WriterEnglish, WriterGurmukhi, RaagEnglish, PageNo from (
+				select 1 sortby, vr.ID VerseID, Gurmukhi, vr.English, wr.WriterEnglish, wr.WriterGurmukhi, rg.RaagEnglish, vr.PageNo
+				from shabad sh 
+				inner join verse vr on sh.verseID = vr.ID 
+				left join Raag rg on vr.raagID = rg.RaagID 
+				left join Writer wr on vr.WriterID = wr.writerID 
+				where vr.gurmukhi like '%{searchString}%'
+				
+                union
+                select 2 sortby, vr.ID VerseID, Gurmukhi, vr.English, wr.WriterEnglish, wr.WriterGurmukhi, rg.RaagEnglish, vr.PageNo
+				from shabad sh 
+				inner join verse vr on sh.verseID = vr.ID 
+				left join Raag rg on vr.raagID = rg.RaagID 
+				left join Writer wr on vr.WriterID = wr.writerID 
+				where vr.gurmukhi like '%{keywordWild}%'
+				)
+                order by sortby, VerseID
+";
+        }
+
         public static string MainLetterSearch(string searchString)
         {
             return $@"

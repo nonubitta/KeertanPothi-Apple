@@ -398,6 +398,15 @@ namespace DBTest.Models
         public int shabadCount { get; set; }
     }
 
+    public class Words : ModalBase
+    {
+        public Words(string item)
+        {
+            Item = item;
+        }
+        public string Item { get; set; }
+    }
+
     public class VerseSearch : ModalBase
     {
 

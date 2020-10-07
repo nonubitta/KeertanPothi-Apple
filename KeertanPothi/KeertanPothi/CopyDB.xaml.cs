@@ -34,7 +34,7 @@ namespace KeertanPothi
             }
             catch(Exception ex)
             {
-                UserDialogs.Instance.HideLoading();
+                //UserDialogs.Instance.HideLoading();
             }
         }
     }

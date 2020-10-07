@@ -34,7 +34,7 @@
                         <Button HorizontalOptions="FillAndExpand" Padding="0" HeightRequest="40" Text="Select All" Clicked="AddAll_Clicked"></Button>
                         <Button HorizontalOptions="FillAndExpand" HeightRequest="40" Text="Remove All" Clicked="RemoveAll_Clicked"></Button>
                     </StackLayout>
-                    <ListView BackgroundColor="Transparent" VerticalOptions="Start" RowHeight="70" x:Name="lstNitnem" SelectionMode="None">
+                    <ListView BackgroundColor="Transparent" HasUnevenRows="True" VerticalOptions="Start" x:Name="lstNitnem" SelectionMode="None">
                         <ListView.Header>
                             <StackLayout>
                                 <Label Text="* Banis can be removed and added back from here" FontSize="Micro" FontAttributes="Italic"

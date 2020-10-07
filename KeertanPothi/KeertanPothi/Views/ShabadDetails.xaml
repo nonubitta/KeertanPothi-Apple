@@ -12,7 +12,7 @@
         <SwipeView BackgroundColor="Transparent">
             <SwipeView.RightItems>
                 <SwipeItems Mode="Execute">
-                    <SwipeItem Text="" BackgroundColor="Transparent" Invoked="SwipeNext"  />
+                    <SwipeItem Text="" BackgroundColor="Transparent" Invoked="SwipeNext" />
                 </SwipeItems>
             </SwipeView.RightItems>
             <SwipeView.LeftItems>
@@ -50,11 +50,14 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Text="Find similar shabads" Clicked="SimilarShabad_Clicked" />
+                                    </ViewCell.ContextActions>
                                     <StackLayout BackgroundColor="{Binding ListBgColor}" VerticalOptions="StartAndExpand" Padding="20, 10, 20, 5" Spacing="3">
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
                                         </StackLayout.GestureRecognizers>
-                                        <Label HorizontalTextAlignment="{Binding TextAlign}" TextType="Html" x:Name="lblGurmukhi" IsVisible="{Binding GurmukhiVisible}" 
+                                        <Label HorizontalTextAlignment="{Binding TextAlign}" TextColor="{Binding PageBgTheme.FontColor}" TextType="Html" x:Name="lblGurmukhi" IsVisible="{Binding GurmukhiVisible}" 
                                        FontSize="{Binding GurmukhiFontSize}" Text="{Binding GurmukhiHtml}" 
                                        FontFamily="{Binding GurmukhiFontName}"></Label>
                                         <Label TextColor="{Binding PageBgTheme.EnglishTransliterationColor}" x:Name="lblTransliteration" IsVisible="{Binding TransliterationVisible}" 

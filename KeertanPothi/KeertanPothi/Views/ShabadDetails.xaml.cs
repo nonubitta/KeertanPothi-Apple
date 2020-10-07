@@ -261,6 +261,10 @@ namespace KeertanPothi.Views
         {
             if (RequestFrom != RequestSource.Ang && RequestFrom != RequestSource.Nitnem && RequestFrom != RequestSource.History)
                 Queries.SaveShabadToHistory(ShabadId, SelectedVerseId);
+            
+            Theme theme = new Theme();
+            versesObs?.ToList().ForEach(a => a.PageBgTheme = theme);
+            BindingContext = theme;
 
             base.OnAppearing();
         }
@@ -896,6 +900,19 @@ namespace KeertanPothi.Views
         private void SwipePrevious(object sender, EventArgs e)
         {
             LoadNextVerse(false);
+        }
+
+        private void SimilarShabad_Clicked(object sender, EventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            Verse verse = menuItem.BindingContext as Verse;
+            SimilarShabad similarShabad = new SimilarShabad(verse.Gurmukhi);
+            Navigation.PushAsync(similarShabad);
+        }
+
+        private void Research_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
     #endregion

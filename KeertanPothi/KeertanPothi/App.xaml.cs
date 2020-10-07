@@ -14,6 +14,7 @@ namespace KeertanPothi
     {
         public App()
         {
+            VersionTracking.Track();
             DeviceDisplay.KeepScreenOn = true;
             InitializeComponent();
             Device.SetFlags(new[]
@@ -24,8 +25,8 @@ namespace KeertanPothi
                 "RadioButton_Experimental",
                 "Expander_Experimental"
             });
-            //VersionTracking.IsFirstLaunchEver;
-            //VersionTracking.IsFirstLaunchForCurrentVersion;
+            var firstEver = VersionTracking.IsFirstLaunchEver;
+            var firstCurVersion = VersionTracking.IsFirstLaunchForCurrentVersion;
 
             if (!Preferences.Get(Util.PrefDataExistsKey, false))
             {
