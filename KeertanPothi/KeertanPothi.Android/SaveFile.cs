@@ -19,7 +19,7 @@ namespace KeertanPothi.Droid
 {
     public class SaveFile : ISaveFile
     {
-        void ISaveFile.SaveFile(string fileName, string json)
+        void ISaveFile.SaveFile(string fileName, string json, bool autoSave)
         {
             string folderName = "KeertanPothi";
             var externalPath = Android.OS.Environment.ExternalStorageDirectory;
@@ -32,7 +32,7 @@ namespace KeertanPothi.Droid
             System.IO.File.WriteAllText(filePath, json);
         }
 
-        List<string> ISaveFile.ReadFile()
+        List<string> ISaveFile.ReadFile(bool autoSave)
         {
             string folderName = "KeertanPothi";
             var externalPath = Android.OS.Environment.ExternalStorageDirectory;
