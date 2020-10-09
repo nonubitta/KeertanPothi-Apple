@@ -9,7 +9,7 @@
              x:Class="KeertanPothi.Views.ShabadDetails" BackgroundColor="{Binding PageBg}" >
 
     <StackLayout x:Name="slMain">
-        <SwipeView BackgroundColor="Transparent">
+        <SwipeView BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
             <SwipeView.RightItems>
                 <SwipeItems Mode="Execute">
                     <SwipeItem Text="" BackgroundColor="Transparent" Invoked="SwipeNext" />

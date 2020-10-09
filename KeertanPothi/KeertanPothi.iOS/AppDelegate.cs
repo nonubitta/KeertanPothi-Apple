@@ -32,8 +32,6 @@ namespace KeertanPothi.iOS
             UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(25, 118, 210);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White });
             return base.FinishedLaunching(app, options);
-            public override void PerformActionForShortcutItem(UIApplication application, UIApplicationShortcutItem shortcutItem, UIOperationHandler completionHandler)
-            => Xamarin.Essentials.Platform.PerformActionForShortcutItem(application, shortcutItem, completionHandler);
     }
     }
 }
