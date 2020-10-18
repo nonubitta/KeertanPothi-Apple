@@ -50,6 +50,13 @@ namespace KeertanPothi.Views
             Util.ShareFile(str, "Shabad.html", "Share Shabad");
         }
 
+        protected override void OnAppearing()
+        {
+            Theme theme = new Theme();
+            BindingContext = theme;
+            base.OnAppearing();
+        }
+
         private string HtmlFileVishraam(Verse verse)
         {
             bool vishraam = Util.PrefShowVishraam;

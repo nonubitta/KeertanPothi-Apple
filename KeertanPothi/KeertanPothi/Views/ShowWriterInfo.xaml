@@ -22,7 +22,7 @@
     </pages:PopupPage.Animation>
         <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Frame BorderColor="DarkBlue" HasShadow="True" CornerRadius="10" Margin="25,0,25,0" VerticalOptions="Center">
+            <Frame BackgroundColor="{Binding PageBg}" BorderColor="DarkBlue" HasShadow="True" CornerRadius="10" Margin="25,0,25,0" VerticalOptions="Center">
                 <StackLayout Spacing="2" Margin="-20,-20,-20,0">
                     <StackLayout Orientation="Horizontal" HeightRequest="40" Padding="0" Margin="0,0,0,0" StyleClass="DarkBlueBg" HorizontalOptions="Fill">
                         <Button IsEnabled="False" Text="" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
@@ -45,7 +45,7 @@
                                 <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0" FontAttributes="Bold" Grid.Column="0" Text="Born on:"></Label>
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding BirthDtConv, StringFormat='{0:MMMM dd, yyyy}'}"></Label>
+                            <Label Grid.Row="0" TextColor="White" Grid.Column="1" Text="{Binding BirthDtConv, StringFormat='{0:MMMM dd, yyyy}'}"></Label>
 
                             <Label Grid.Row="1" FontAttributes="Bold" Grid.Column="0" Text="Birth place: "></Label>
                             <Label Grid.Row="1" Grid.Column="1" Text="{Binding BirthPlace}"></Label>

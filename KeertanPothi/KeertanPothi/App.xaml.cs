@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
+using DBTest.Models;
 
 [assembly: ExportFont("gurbaniwebthick.ttf", Alias = "PunjabiBoldFont")]
 [assembly: ExportFont("PunjabiFont1.otf", Alias = "PunjabiFont")]
@@ -14,7 +15,6 @@ namespace KeertanPothi
     {
         public App()
         {
-            VersionTracking.Track();
             DeviceDisplay.KeepScreenOn = true;
             InitializeComponent();
             Device.SetFlags(new[]
@@ -25,9 +25,10 @@ namespace KeertanPothi
                 "RadioButton_Experimental",
                 "Expander_Experimental"
             });
-            var firstEver = VersionTracking.IsFirstLaunchEver;
-            var firstCurVersion = VersionTracking.IsFirstLaunchForCurrentVersion;
-
+            //VersionTracking.IsFirstLaunchEver;
+            //VersionTracking.IsFirstLaunchForCurrentVersion;
+            //Theme CurTheme = new Theme();
+            //Util.SetStatusBarColor(Color.FromHex(CurTheme.HeaderColor));
             if (!Preferences.Get(Util.PrefDataExistsKey, false))
             {
                 try

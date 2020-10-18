@@ -652,7 +652,7 @@ namespace DBTest.Models
         public string EnglishTranslationColor { get; set; }
         public string EnglishTransliterationColor { get; set; }
         public string DefaultItemBg { get; set; }
-
+        public string HeaderColor { get; set; }
         public string selectedItemBg;
         public string SelectedItemBg
         {
@@ -674,33 +674,45 @@ namespace DBTest.Models
         {
             switch(Util.PrefDarkTheme)
             {
-                case "BLACK":
+                case Util.ThemeNameBlack:
                     PageBg = Util.DarkThemeBgColor;
                     FontColor = Util.DarkThemeFontColor;
                     DefaultItemBg = Util.DarkThemeSelectedItemBg;
                     PunjabiTranslationColor = Util.DarkThemePunjabiTranlationColor;
                     EnglishTranslationColor = Util.DarkThemeEnglishTranlationColor;
                     EnglishTransliterationColor = Util.DarkThemeEnglishTransliterationColor;
+                    HeaderColor = Util.RegularHeaderColor;
                     break;
-                
-                case "GRAY":
+
+                case Util.ThemeNameGray:
                     PageBg = Util.GrayThemeBgColor;
                     FontColor = Util.LightThemeFontColor;
                     DefaultItemBg = Util.LightThemeSelectedItemBg;
                     PunjabiTranslationColor = Util.LightThemePunjabiTranlationColor;
                     EnglishTranslationColor = Util.LightThemeEnglishTranlationColor;
                     EnglishTransliterationColor = Util.LightThemeEnglishTransliterationColor;
+                    HeaderColor = Util.RegularHeaderColor;
                     break;
 
-                case "BLUE":
+                case Util.ThemeNameBlue:
                     PageBg = Util.LightThemeBgColor;
                     FontColor = Util.LightThemeFontColor; 
                     DefaultItemBg = Util.LightThemeSelectedItemBg;
                     PunjabiTranslationColor = Util.LightThemePunjabiTranlationColor;
                     EnglishTranslationColor = Util.LightThemeEnglishTranlationColor;
                     EnglishTransliterationColor = Util.LightThemeEnglishTransliterationColor;
+                    HeaderColor = Util.RegularHeaderColor;
                     break;
 
+                case Util.ThemeNameFblack:
+                    PageBg = Util.DarkThemeBgColor;
+                    FontColor = Util.DarkThemeFontColor;
+                    DefaultItemBg = Util.DarkThemeSelectedItemBg;
+                    PunjabiTranslationColor = Util.DarkThemePunjabiTranlationColor;
+                    EnglishTranslationColor = Util.DarkThemeEnglishTranlationColor;
+                    EnglishTransliterationColor = Util.DarkThemeEnglishTransliterationColor;
+                    HeaderColor = Util.FullBlackHeaderColor;
+                    break;
             }
         }
     }

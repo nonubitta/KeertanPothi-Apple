@@ -18,6 +18,11 @@
     padding:15;
 }
 
+^Picker {
+    background-color: #606060;
+    TextColor: #eef0f1;
+}
+
 ^RadioButton {
     padding: 15;
 }
@@ -32,7 +37,7 @@
 
 .MainText {
     color:darkblue;
-    font-size:24;
+    font-size:26;
 }
 
 .SecondaryText {
@@ -54,7 +59,7 @@
 .KeyboardBtn {
     padding: 0 0 0 0;
     background-color: #606060;
-    font-size:medium;
+    font-size:large;
 }
 
 .MenuBlackBg {
@@ -67,6 +72,11 @@
 
 .CommonThemeOrange {
     color: #f97b4d;
+}
+
+.NoPad{
+    padding:0;
+    margin:0;
 }
 
 /*icon-bg outside #3F51B5 inside B3E5FC*/
