@@ -105,6 +105,7 @@
     <None Remove="Resources\Fonts\HandFontEdit.otf" />
     <None Remove="Resources\Fonts\PunjabiFont1.otf" />
     <None Remove="images\shareSmall.png" />
+    <None Remove="images\Menu.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -164,6 +165,7 @@
     <EmbeddedResource Include="Resources\Fonts\HandFont3.otf" />
     <EmbeddedResource Include="Resources\Fonts\PunjabiFont1.otf" />
     <EmbeddedResource Include="images\shareSmall.png" />
+    <EmbeddedResource Include="images\Menu.png" />
   </ItemGroup>
 
   <ItemGroup>

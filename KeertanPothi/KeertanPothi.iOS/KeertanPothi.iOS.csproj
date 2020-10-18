@@ -85,6 +85,16 @@
     <BundleResource Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\add.png" />
     <Compile Include="SaveFile.cs" />
+    <BundleResource Include="Resources\help.png" />
+    <BundleResource Include="Resources\History.png" />
+    <BundleResource Include="Resources\Nitnem.png" />
+    <BundleResource Include="Resources\Raag.png" />
+    <BundleResource Include="Resources\Random.png" />
+    <BundleResource Include="Resources\search.png" />
+    <BundleResource Include="Resources\writer.png" />
+    <BundleResource Include="Resources\Book.png" />
+    <Compile Include="SetStatusBarStyle.cs" />
+    <BundleResource Include="Resources\menu.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

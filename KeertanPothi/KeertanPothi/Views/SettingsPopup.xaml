@@ -17,14 +17,15 @@
     </pages:PopupPage.Animation>
     <ContentPage.Content>
         <ScrollView x:Name="MainScroll" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Frame BackgroundColor="{Binding PageBg}" BorderColor="DarkBlue" HasShadow="True" CornerRadius="10" Margin="25,0,25,0" VerticalOptions="Center">
-                <StackLayout Spacing="2" Margin="-20,-20,-20,0">
+            <Frame BackgroundColor="{Binding PageBg}" BorderColor="#1976D2" HasShadow="True" CornerRadius="10" Margin="25,30,25,0" VerticalOptions="Start">
+                <StackLayout Spacing="2" Margin="0">
                     <StackLayout Orientation="Horizontal" HeightRequest="40" Padding="0" Margin="0,0,0,0" StyleClass="DarkBlueBg" HorizontalOptions="Fill">
                         <Button IsEnabled="False" Text="" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
                         <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Quick Settings" TextColor="White" FontSize="Medium"></Label>
                         <Button Text="X" Clicked="btnSave_Clicked" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
                     </StackLayout>
-                    <StackLayout Padding="20,0,20,0">
+                        <BoxView BackgroundColor="Transparent" HeightRequest="5" ></BoxView>
+                    <StackLayout Padding="10,0,10,0">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Gurmukhi" FontSize="16" FontAttributes="Bold" TextColor="{Binding FontColor}" HorizontalOptions="StartAndExpand"></Label>
                             <Switch x:Name="swtGurmukhi" Toggled="swtGurmukhi_Toggled" HorizontalOptions="End"></Switch>
@@ -85,9 +86,9 @@
                             <Label Text="Theme" FontAttributes="Bold" FontSize="16" TextColor="{Binding FontColor}" HorizontalOptions="StartAndExpand"></Label>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <RadioButton Padding="10" Text="Blue" x:Name="rbBlue" CheckedChanged="rbBlue_CheckedChanged"></RadioButton>
-                            <RadioButton Text="White" x:Name="rbGray" CheckedChanged="rbGray_CheckedChanged"></RadioButton>
-                            <RadioButton Text="Black" x:Name="rbBlack" CheckedChanged="rbBlack_CheckedChanged"></RadioButton>
+                            <RadioButton HorizontalOptions="StartAndExpand" Padding="0" BackgroundColor="Transparent" Text="Blue" x:Name="rbBlue" CheckedChanged="rbBlue_CheckedChanged"></RadioButton>
+                            <RadioButton HorizontalOptions="CenterAndExpand" Padding="0" BackgroundColor="Transparent" Text="Blue/Black" x:Name="rbGray" CheckedChanged="rbGray_CheckedChanged"></RadioButton>
+                            <RadioButton HorizontalOptions="EndAndExpand" Padding="0" BackgroundColor="Transparent" Text="Black" x:Name="rbBlack" CheckedChanged="rbBlack_CheckedChanged"></RadioButton>
                         </StackLayout>
 
                         <BoxView BackgroundColor="DarkGray" HeightRequest="1" ></BoxView>

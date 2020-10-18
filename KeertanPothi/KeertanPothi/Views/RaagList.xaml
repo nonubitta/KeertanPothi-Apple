@@ -13,7 +13,7 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <StackLayout VerticalOptions="Center" Spacing="1" Padding="20, 5, 20, 5">
-                                <Label TextColor="{Binding PageBgTheme.FontColor}" StyleClass="MainText" Text="{Binding RaagGurmukhi}{Binding PageNos}" FontFamily="PunjabiFont"></Label>
+                                <Label TextColor="{Binding PageBgTheme.FontColor}" StyleClass="MainText" Text="{Binding RaagGurmukhi}" FontFamily="PunjabiFont"></Label>
                                 <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" StyleClass="SecondaryText" Text="{Binding RaagEnglish}" FontSize="16" ></Label>
                             </StackLayout>
                             <Label Text="{Binding PageNos}"></Label>

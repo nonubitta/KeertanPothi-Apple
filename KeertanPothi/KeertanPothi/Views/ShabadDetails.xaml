@@ -21,8 +21,9 @@
                 </SwipeItems>
             </SwipeView.LeftItems>
             <SwipeView.Content>
-                <StackLayout VerticalOptions="StartAndExpand">
-                    <ListView BackgroundColor="Transparent" x:Name="lstShabad" HasUnevenRows="True" SelectionMode="None">
+                <StackLayout>
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <ListView BackgroundColor="Transparent" x:Name="lstShabad" HasUnevenRows="True" SelectionMode="None">
                         <ListView.Header>
                             <StackLayout>
                                 <Expander x:Name="expNotes" IsVisible="False">
@@ -35,7 +36,7 @@
                                         <Label Text="*Notes functionality is still in Beta and may have issue" FontSize="Micro" 
                                        HorizontalOptions="Center"></Label>
                                         <ScrollView>
-                                            <Label x:Name="editNotes" Text="{Binding Notes}"></Label>
+                                            <Label x:Name="editNotes" TextColor="Black" Text="{Binding Notes}"></Label>
                                         </ScrollView>
                                     </StackLayout>
                                 </Expander>
@@ -57,7 +58,7 @@
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
                                         </StackLayout.GestureRecognizers>
-                                        <Label HorizontalTextAlignment="{Binding TextAlign}" TextColor="{Binding PageBgTheme.FontColor}" TextType="Html" x:Name="lblGurmukhi" IsVisible="{Binding GurmukhiVisible}" 
+                                        <Label HorizontalTextAlignment="{Binding TextAlign}" TextType="Html" x:Name="lblGurmukhi" IsVisible="{Binding GurmukhiVisible}" 
                                        FontSize="{Binding GurmukhiFontSize}" Text="{Binding GurmukhiHtml}" 
                                        FontFamily="{Binding GurmukhiFontName}"></Label>
                                         <Label TextColor="{Binding PageBgTheme.EnglishTransliterationColor}" x:Name="lblTransliteration" IsVisible="{Binding TransliterationVisible}" 
@@ -73,35 +74,36 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    </StackLayout>
+                    <StackLayout x:Name="EditToolbar" BackgroundColor="#1976D2"  Opacity="1" AbsoluteLayout.LayoutBounds="0,1,1,45" 
+                         AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" Orientation="Horizontal" 
+                         VerticalOptions="End" Padding="20,0,20,0">
+                        <Grid HorizontalOptions="FillAndExpand" Padding="0,7,0,7" RowDefinitions="*" 
+                              ColumnDefinitions="*,*,*,*,*">
+
+                            <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.prev.png}"
+                                         Grid.Row="0" Grid.Column="0" Clicked="PrevVerse_Clicked">
+                            </ImageButton>
+                            <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.fullscreen.png}"
+                                         Grid.Row="0" Grid.Column="1" Clicked="btnMaximize_Clicked">
+                            </ImageButton>
+                            <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.settings2.png}" 
+                                         Grid.Row="0" Grid.Column="2" Clicked="menu_Clicked">
+                            </ImageButton>
+                            <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.AddToPothi.png}"
+                                         x:Name="btnAddToPothi" Grid.Row="0" Grid.Column="3" Clicked="addPothi_Clicked">
+                            </ImageButton>
+                            <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.next.png}"
+                                         Grid.Row="0" Grid.Column="4" Clicked="NextVerse_Clicked">
+                            </ImageButton>
+                        </Grid>
+                    </StackLayout>
+                    <ImageButton IsVisible="False" BackgroundColor="Transparent" x:Name="btnRestore" Margin="0" Padding="0" Clicked="btnRestore_Clicked" 
+                                 HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                 AbsoluteLayout.LayoutBounds="0,1,1,25" Source="{local:EmbeddedImage KeertanPothi.images.Toolbar.png}">
+                    </ImageButton>
                 </StackLayout>
             </SwipeView.Content>
         </SwipeView>
-        <StackLayout x:Name="EditToolbar" BackgroundColor="#1976D2"  Opacity="1" AbsoluteLayout.LayoutBounds="0,1,1,45" 
-                     AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" Orientation="Horizontal" 
-                     VerticalOptions="End" Padding="20,0,20,0">
-            <Grid HorizontalOptions="FillAndExpand" Padding="0,7,0,7" RowDefinitions="*" 
-                  ColumnDefinitions="*,*,*,*,*">
-
-                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.prev.png}"
-                             Grid.Row="0" Grid.Column="0" Clicked="PrevVerse_Clicked">
-                </ImageButton>
-                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.fullscreen.png}"
-                             Grid.Row="0" Grid.Column="1" Clicked="btnMaximize_Clicked">
-                </ImageButton>
-                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.settings2.png}" 
-                             Grid.Row="0" Grid.Column="2" Clicked="menu_Clicked">
-                </ImageButton>
-                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.AddToPothi.png}"
-                             x:Name="btnAddToPothi" Grid.Row="0" Grid.Column="3" Clicked="addPothi_Clicked">
-                </ImageButton>
-                <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.next.png}"
-                             Grid.Row="0" Grid.Column="4" Clicked="NextVerse_Clicked">
-                </ImageButton>
-            </Grid>
-        </StackLayout>
-        <ImageButton IsVisible="False" BackgroundColor="Transparent" x:Name="btnRestore" Margin="0" Padding="0" Clicked="btnRestore_Clicked" 
-                     HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
-                     AbsoluteLayout.LayoutBounds="0,1,1,25" Source="{local:EmbeddedImage KeertanPothi.images.Toolbar.png}">
-        </ImageButton>
     </StackLayout>
 </ContentPage>

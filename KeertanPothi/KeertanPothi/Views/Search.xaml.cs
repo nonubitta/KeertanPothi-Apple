@@ -19,8 +19,9 @@ namespace KeertanPothi.Views
     {
         SQLiteAsyncConnection _con;
 		ObservableCollection<VerseSearch> versesObs;
+		StaticText.SearchText SearchText = new StaticText.SearchText();
 		public Search()
-        {
+		{
 			BindingContext = new Theme();
 			_con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
             InitializeComponent();
@@ -38,7 +39,8 @@ namespace KeertanPothi.Views
 			Theme theme = new Theme();
 			versesObs?.ToList().ForEach(a => a.PageBgTheme = theme);
 			BindingContext = theme;
-
+			lblThreeLetterInfo.Text = SearchText.ThreeLetterInfo;
+			lblHowToHelpInfo.Text = SearchText.HowToHelpInfo;
 			base.OnAppearing();
 			SetSearchOptions();
 			ToggleKeyboard(true);
@@ -126,7 +128,9 @@ namespace KeertanPothi.Views
 						controlGrid2.IsVisible = !controlGrid2.IsVisible;
 						controlGrid3.IsVisible = !controlGrid3.IsVisible;
 						break;
-					case "F": ToggleKeyboard(false);
+					case "F":
+						SearchBar_TextChanged();
+						ToggleKeyboard(false);
 						return;
 				}
 			}
@@ -170,10 +174,10 @@ namespace KeertanPothi.Views
 		private void SetSearchOptions()
 		{
 			List<KeyValue> searchOptions = new List<KeyValue>();
-			searchOptions.Add(new KeyValue { Value = "First Letter Search", Key = "F" });
-			searchOptions.Add(new KeyValue { Value = "Main Letter Search", Key = "M" });
-			searchOptions.Add(new KeyValue { Value = "Exact Search", Key = "E" });
-			searchOptions.Add(new KeyValue { Value = "Ang Search", Key = "A" });
+			searchOptions.Add(new KeyValue { Value = SearchText.DDLFirstLetterSearch, Key = "F" });
+			searchOptions.Add(new KeyValue { Value = SearchText.DDLMainLetterSearch, Key = "M" });
+			searchOptions.Add(new KeyValue { Value = SearchText.DDLExactSearch, Key = "E" });
+			searchOptions.Add(new KeyValue { Value = SearchText.DDLAngSearch, Key = "A" });
 			pckSearchType.ItemsSource = searchOptions;
 			pckSearchType.SelectedIndex = 0;
 			//pckSearchType2.ItemsSource = searchOptions;

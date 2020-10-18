@@ -21,10 +21,10 @@
         </animations:ScaleAnimation>
     </pages:PopupPage.Animation>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" Padding="20,10,20,40" HorizontalOptions="FillAndExpand" >
-            <Frame CornerRadius="10" Padding="0" >
-                <StackLayout Padding="10" BackgroundColor="{Binding PageBg}">
-                    <StackLayout Orientation="Horizontal" HeightRequest="40" Padding="0" Margin="-10,-10,-10,0" StyleClass="DarkBlueBg" HorizontalOptions="Fill">
+        <StackLayout VerticalOptions="Center" Padding="0,0,0,50" HorizontalOptions="FillAndExpand" >
+             <Frame BackgroundColor="{Binding PageBg}" BorderColor="#1976D2" HasShadow="True" CornerRadius="10" Margin="25,10,25,0" VerticalOptions="Start">
+                <StackLayout Spacing="10" >
+                    <StackLayout Orientation="Horizontal" HeightRequest="40" Padding="0" Margin="0,0,0,0" StyleClass="DarkBlueBg" HorizontalOptions="Fill">
                         <Button IsEnabled="False" Text="" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
                         <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Bookmarks" TextColor="White" FontSize="Medium"></Label>
                         <Button Text="X" Clicked="btnSave_Clicked" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>

@@ -5,34 +5,40 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              x:Class="KeertanPothi.Views.Search" BackgroundColor="{Binding PageBg}">
     <NavigationPage.TitleView>
-         <StackLayout Margin="0" Padding="25,5,5,5" Spacing="0" Orientation="Horizontal" StyleClass="DarkBlueBg">
-            <Frame CornerRadius="10" Padding="0" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" >
-                <StackLayout BackgroundColor="#cfe2f3" HeightRequest="32" Padding="10,5,0,0" Orientation="Horizontal"  >
+         <StackLayout Margin="0" Padding="25,2,0,6" Spacing="10" Orientation="Horizontal">
+            <Frame CornerRadius="10" Padding="5" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" HasShadow="False" >
+                <StackLayout HeightRequest="30" Padding="10,5,0,0" Orientation="Horizontal"  >
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
-                    <Label StyleClass="LabelAsText" x:Name="txtSearch" FontSize="20"
+                    <Label StyleClass="LabelAsText" x:Name="txtSearch" FontSize="20" TextColor="Black"
                                FontFamily="PunjabiFont" HorizontalOptions="FillAndExpand" />
-                    <Button Text="X" HorizontalOptions="End" Margin="0,-5,0,0" BackgroundColor="Transparent" StyleClass="DarkBlueFont" 
+                    <Button Text="X" HorizontalOptions="End" Margin="0,-5,0,0" BackgroundColor="Transparent" FontSize="Medium" StyleClass="DarkBlueFont" 
                        FontAttributes="Bold" Clicked="Clear_Clicked" Padding="0" WidthRequest="30"></Button>
                 </StackLayout>
             </Frame>
             <Button BackgroundColor="Transparent" HorizontalOptions="End" Clicked="History_Clicked" Text="History" 
-                    WidthRequest="80" HeightRequest="20"></Button>
+                     Padding="5" HeightRequest="20"></Button>
         </StackLayout>
     </NavigationPage.TitleView>
-    <StackLayout>
-        <StackLayout HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand">
+    <Grid>
+        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"></ColumnDefinition></Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand">
             <StackLayout Padding="20, 20, 20, 20" x:Name="slLogo" Spacing="12" VerticalOptions="StartAndExpand">
                 <Image IsVisible="False" HeightRequest="140" WidthRequest="140" Margin="0,0,0,0" 
                        Source="{local:EmbeddedImage KeertanPothi.images.SearchHelp.jpg}"></Image>
-                <Label TextColor="{Binding PunjabiTranslationColor}"
+                <Label TextColor="{Binding PunjabiTranslationColor}" x:Name="lblThreeLetterInfo"
                        FontSize="Subtitle" Text="* Type 3 letters to start seeing results"></Label>
-                <Label TextColor="{Binding PunjabiTranslationColor}" 
-                       FontSize="Subtitle" Text="{Binding Source={x:Reference pckSearchType}, Path=SelectedItem.Value, StringFormat='* {0} selected.'}"></Label>
-                <Label TextColor="{Binding PunjabiTranslationColor}" FontSize="Subtitle" 
+                <Label TextColor="{Binding PunjabiTranslationColor}" x:Name="lblSelectedType"
+                       FontSize="Subtitle" Text="{Binding Source={x:Reference pckSearchType}, Path=SelectedItem.Value, StringFormat='* {0}.'}"></Label>
+                <Label TextColor="{Binding PunjabiTranslationColor}" FontSize="Subtitle" x:Name="lblHowToHelpInfo" 
                        Text="Click on 'Help' button below to access help on how to search"></Label>
                 <Button Text="Help" Clicked="Help_Clicked"></Button>
             </StackLayout>
@@ -42,13 +48,13 @@
                        x:Name="lblTotalRows" HeightRequest="20"></Label>
                 </StackLayout>
             </StackLayout>
-            <StackLayout x:Name="slList" IsVisible="False">
-                <ListView BackgroundColor="Transparent" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
+            <StackLayout x:Name="slList" IsVisible="False" VerticalOptions="FillAndExpand">
+                <ListView BackgroundColor="Transparent" CachingStrategy="RecycleElement" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
                     <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout VerticalOptions="Center" Padding="20, 5, 20, 5">
-                                <Label TextColor="{Binding PageBgTheme.FontColor}" Text="{Binding Gurmukhi}" FontFamily="PunjabiFont" FontSize="24"></Label>
+                                <Label TextColor="{Binding PageBgTheme.FontColor}" Text="{Binding Gurmukhi}" FontFamily="PunjabiFont" FontSize="26"></Label>
                                 <StackLayout Orientation="Horizontal" Spacing="2">
                                         <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" Text="By " FontSize="11"></Label>
                                     <Label StyleClass="CommonThemeOrange" FontAttributes="Bold" Text="{Binding WriterEnglish}" FontSize="11"></Label>
@@ -65,11 +71,11 @@
                 </ListView>
             </StackLayout>
         </StackLayout>
-        <StackLayout x:Name="EditToolbar" Margin="0">
+        <StackLayout Grid.Column="0" Grid.Row="1" x:Name="EditToolbar" Margin="0" BackgroundColor="Yellow" IsVisible="False">
             <Frame BackgroundColor="DarkGray" BorderColor="#606060" Padding="5,20,5,10" >
                 <StackLayout>
 
-                    <Picker FontSize="Small" ItemDisplayBinding="{Binding Value }" x:Name="pckSearchType" 
+                    <Picker FontSize="Medium" TextColor="White" ItemDisplayBinding="{Binding Value }" x:Name="pckSearchType" 
                             SelectedIndexChanged="pckSearchType_SelectedIndexChanged">
                     </Picker>
                     <Grid x:Name="controlGrid2" RowSpacing="1" ColumnSpacing="1"
@@ -253,5 +259,5 @@
                 </StackLayout>
             </Frame>
         </StackLayout>
-    </StackLayout>
+    </Grid>
 </ContentPage>

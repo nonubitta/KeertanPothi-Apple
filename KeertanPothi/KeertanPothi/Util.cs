@@ -25,7 +25,7 @@ namespace KeertanPothi
         internal static string DarkThemePunjabiTranlationColor = "#aad0ef";
         internal static string DarkThemeEnglishTranlationColor = "#f7f2d0";
         internal static string DarkThemeEnglishTransliterationColor = "#eae1f7";
-        internal static string DarkThemeSelectedItemBg = "#545a66";
+        internal static string DarkThemeSelectedItemBg = "#36383d";
 
         internal static string LightThemeBgColor = "#cfe2f3"; /** Main background color blue **/
         internal static string LightThemeFontColor = "#00008B";
@@ -34,6 +34,13 @@ namespace KeertanPothi
         internal static string LightThemeEnglishTransliterationColor = "#481b96";
         internal static string LightThemeSelectedItemBg = "#aad0ef";
 
+        internal static string RegularHeaderColor = "#1976D2";
+        internal static string FullBlackHeaderColor = "#202124";
+
+        internal const string ThemeNameBlue = "BLUE";
+        internal const string ThemeNameGray = "GRAY";
+        internal const string ThemeNameBlack = "BLACK";
+        internal const string ThemeNameFblack = "FBLACK";
         #endregion
 
         #region Magic strings
@@ -51,7 +58,7 @@ namespace KeertanPothi
         internal static string PrefDataExistsKey = "DataExists";
         internal static string PrefCurrentDbVersionKey = "CurrentDbVersion";
         internal static int CurrentDbVersion = 13;
-        internal static string ListSelectionColor = "#9dcaf2"; 
+        internal static string ListSelectionColor = "#9dcaf2";
 
         public enum SettingName
         {
@@ -93,6 +100,7 @@ namespace KeertanPothi
 
         private static string PrefDarkThemeKey = "PrefDarkTheme";
 
+        private static string PrefSelectedLanguageKey = "PrefSelectedLanguage";
 
         /****** Init Values ******/
         private static bool PrefGurmukhiVisibleInit = true;
@@ -112,6 +120,8 @@ namespace KeertanPothi
         private static int PrefShabadListFontSizeInit = 26;
 
         private static string PrefDarkThemeInit = "BLACK";
+
+        private static string PrefSelectedLanguageInit = "E";
 
 
         #endregion
@@ -279,6 +289,18 @@ namespace KeertanPothi
         internal static readonly string AutoSaveFileName = "AutoSave.json";
         public static readonly string LogFileName = "KeertanPothi.log";
 
+        public static string PrefSelectedLanguage
+        {
+            get
+            {
+                return Preferences.Get(Util.PrefSelectedLanguageKey, PrefSelectedLanguageInit);
+            }
+            set
+            {
+                Preferences.Set(Util.PrefSelectedLanguageKey, value);
+            }
+        }
+
         public static bool PrefIsAdmin
         {
             get
@@ -315,38 +337,22 @@ namespace KeertanPothi
         public static List<SideMenu> GetStaticMenu()
         {
             bool isAdmin = PrefIsAdmin;
+            StaticText.MenuText menuText = new StaticText.MenuText();
             List<SideMenu> menu = new List<SideMenu>();
-            menu.Add(new SideMenu("Search", "Search", true, "search.png", true));
-            menu.Add(new SideMenu("Random Shabad", "ShabadDetails", true, "Random.png", true));
-            menu.Add(new SideMenu("Keertan Pothi", "KirtanPothiList", true, "Book.png", true));
-            menu.Add(new SideMenu("Sundar Gutka", "NitnemList", true, "Nitnem.png", true));
-            //menu.Add(new SideMenu("Shabad Set", "CreateSet", true, "KeertanPothi.images.search.png"));
-            menu.Add(new SideMenu("Writer List", "WriterList", true, "writer.png", true));
-            menu.Add(new SideMenu("Raag List", "RaagList", true, "Raag.png", true));
-            //menu.Add(new SideMenu("Ang", "AngSearch", true, "images/Number.png", true));
-            menu.Add(new SideMenu("History", "History", true, "History.png", true));
-            menu.Add(new SideMenu("Help/Contact", "ContactUs", true, "help.png", true));
+            menu.Add(new SideMenu(menuText.MenuSearch, "Search", true, "search.png", true, menuText.FontSize));
+            menu.Add(new SideMenu(menuText.MenuRandom, "ShabadDetails", true, "Random.png", true, menuText.FontSize));
+            menu.Add(new SideMenu(menuText.MenuKeertanPothi, "KirtanPothiList", true, "Book.png", true, menuText.FontSize));
+            menu.Add(new SideMenu(menuText.MenuSundarGutka, "NitnemList", true, "Nitnem.png", true, menuText.FontSize));
+            menu.Add(new SideMenu(menuText.MenuWriterList, "WriterList", true, "writer.png", true, menuText.FontSize));
+            menu.Add(new SideMenu(menuText.MenuRaagList, "RaagList", true, "Raag.png", true, menuText.FontSize));
+            menu.Add(new SideMenu(menuText.MenuHistory, "History", true, "History.png", true, menuText.FontSize));
+            menu.Add(new SideMenu(menuText.MenuHelpContact, "ContactUs", true, "help.png", true, menuText.FontSize));
 
             //menu.Add(new SideMenu("Test", "TestPage", true, "KeertanPothi.images.search.png", true));
             //menu.Add(new SideMenu("SQL", "SqlView", true, "KeertanPothi.images.search.png", isAdmin));
             //menu.Add(new SideMenu("Admin", "Admin", true, "KeertanPothi.images.search.png", isAdmin));
             return menu;
         }
-        //public static List<NitnemBani> GetNitnemBanis()
-        //{
-        //List<NitnemBani> menu = new List<NitnemBani>();
-        //menu.Add(new NitnemBani(1, "jpjI swihb", "Japji Sahib", true, "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39"));
-        //menu.Add(new NitnemBani(2, "jwpu swihb", "Jaap Sahib", true, "7402,7403,7404,7405,7406,7407,7408,7409,7410,7411,7412,7413,7414,7415,7416,7417,7418,7419,7420,7421,7422,7423"));
-        //menu.Add(new NitnemBani(3, "qÍ pRswid ] sv`Xy ]", "Tav Prasad  Savayiye", true, "7426"));
-        //menu.Add(new NitnemBani(4, "bynqI cOpeI", "Benti Chaupai", true, "12794,12795"));
-        //menu.Add(new NitnemBani(5, "Anµdu swihb", "Anand Sahib", true, "333375,3375,333376"));
-        //menu.Add(new NitnemBani(6, "rhrwis swihb", "Rehraas Sahib", false, "1721, 40, 41, 42, 43, 44, 45, 46, 47, 48, 12794, 12795, 8095, 8096, 333375, 333376,5538, 5539, 1943,1944"));
-        //menu.Add(new NitnemBani(7, "soihlw swihb", "Sohila Sahib", false, "49,50,51,52,53"));
-        //menu.Add(new NitnemBani(8, "suKmnI swihb", "Sukhmani Sahib", false, "871,1086"));
-        //return menu;
-        //SukhmaniSahib ; 
-        //}
-
         #endregion
 
         #region Methods
@@ -489,7 +495,7 @@ namespace KeertanPothi
         {
             string append = "------------------------------\r\n";
             append += DateTime.Now + "\r\n";
-            SaveFile(LogFileName, append+text, true);
+            SaveFile(LogFileName, append + text, true);
         }
 
         public async static Task<string> GetPothiJson(Pothi pothi)
@@ -509,6 +515,11 @@ namespace KeertanPothi
         public static void SaveFile(string fileName, string json, bool autoSave)
         {
             DependencyService.Get<ISaveFile>().SaveFile(fileName, json, autoSave);
+        }
+
+        public static void SetStatusBarColor(Color color)
+        {
+            //DependencyService.Get<ISetStatusBarStyle>().SetStatusBarColor(color);
         }
 
         public static void AutoLoad()
@@ -847,7 +858,7 @@ namespace KeertanPothi
                         pothis.Add(ext);
                     }
                     string json = JsonConvert.SerializeObject(pothis);
-                    if(autoSave)
+                    if (autoSave)
                         Util.SaveFile(Util.AutoSaveFileName, json, true);
                     else
                         Util.SaveFile("Pothis.json", json, false);

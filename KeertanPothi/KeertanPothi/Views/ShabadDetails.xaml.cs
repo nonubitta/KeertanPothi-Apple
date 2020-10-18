@@ -177,8 +177,8 @@ namespace KeertanPothi.Views
             {
                 //CreateShareToolbar();
                 CreateSharePopupToolbar();
-                if (RequestFrom == RequestSource.Pothi)
-                    CreateNoteToolbar();
+                //if (RequestFrom == RequestSource.Pothi)
+                //    CreateNoteToolbar();
             }
 
         }
@@ -187,7 +187,8 @@ namespace KeertanPothi.Views
         {
             itemKeertanMode = new ToolbarItem();
             itemKeertanMode.Text = "Text Note";
-            itemKeertanMode.Order = ToolbarItemOrder.Secondary;
+            itemPlay.IconImageSource = ImageSource.FromResource("KeertanPothi.images.Play.png");
+            itemKeertanMode.Order = ToolbarItemOrder.Primary;
             itemKeertanMode.Clicked += Note_Clicked;
             ToolbarItems.Add(itemKeertanMode);
         }
@@ -261,11 +262,11 @@ namespace KeertanPothi.Views
         {
             if (RequestFrom != RequestSource.Ang && RequestFrom != RequestSource.Nitnem && RequestFrom != RequestSource.History)
                 Queries.SaveShabadToHistory(ShabadId, SelectedVerseId);
-            
+
             Theme theme = new Theme();
             versesObs?.ToList().ForEach(a => a.PageBgTheme = theme);
             BindingContext = theme;
-
+            EditToolbar.BackgroundColor = Color.FromHex(theme.HeaderColor);
             base.OnAppearing();
         }
 
@@ -304,7 +305,8 @@ namespace KeertanPothi.Views
                 }
                 else
                 {
-                    verses = await _con.QueryAsync<Verse>(Queries.ShabadById(ShabadId));
+                    string qr = Queries.ShabadById(ShabadId);
+                    verses = await _con.QueryAsync<Verse>(qr);
                 }
                 if (verses.Count > 0)
                 {
@@ -321,7 +323,7 @@ namespace KeertanPothi.Views
                     if (SelectedVerseId != null && SelectedVerseId > 0)
                     {
                         SelectedVerse = versesObs.FirstOrDefault(a => a.ID == SelectedVerseId);
-                        lstShabad.ScrollTo(SelectedVerse, ScrollToPosition.MakeVisible, false);
+                        lstShabad.ScrollTo(SelectedVerse, ScrollToPosition.Start, false);
                         SelectedVerse.ListBgColor = SelectedVerse?.PageBgTheme.DefaultItemBg;
                     }
                     else
@@ -514,6 +516,14 @@ namespace KeertanPothi.Views
                     Theme theme = new Theme();
                     versesObs?.ToList().ForEach(a => a.PageBgTheme = theme);
                     BindingContext = theme;
+                    Util.SetStatusBarColor(Color.FromHex(theme.HeaderColor));
+                    MasterDetailPage curPage = (MasterDetailPage)Application.Current.MainPage;
+                    if(curPage != null)
+                    {
+                        ((NavigationPage)curPage.Detail).BarBackgroundColor = Color.FromHex(theme.HeaderColor);
+                        EditToolbar.BackgroundColor = Color.FromHex(theme.HeaderColor);
+                    }
+
                     if (SelectedVerseId != null && SelectedVerseId > 0)
                     {
                         SelectedVerse = versesObs.FirstOrDefault(a => a.ID == SelectedVerseId);
@@ -669,7 +679,6 @@ namespace KeertanPothi.Views
             await Clipboard.SetTextAsync(str);
         }
         
-
         private string HtmlFileVishraam(Verse verse)
         {
             bool vishraam = Util.PrefShowVishraam;
@@ -863,10 +872,29 @@ namespace KeertanPothi.Views
             Navigation.PushPopupAsync(bookmarkPopup);
         }
 
-        private void SharePopup_Clicked(object sender, EventArgs e)
+        private async void SharePopup_Clicked(object sender, EventArgs e)
         {
-            ShareShabadPopup shareShabadPopup = new ShareShabadPopup(versesObs, ShabadId);
-            Navigation.PushPopupAsync(shareShabadPopup);
+            const string text = "Share as Text";
+            const string file = "Share as File";
+            const string clipboard = "Copy to clipboard";
+            string action = await DisplayActionSheet("Export/Import", "Cancel", null, text, file, clipboard);
+
+            switch (action)
+            {
+                case text:
+                    share_Clicked(null, null);
+                    break;
+                case file:
+                    shareFile_Clicked(null, null);
+                    break;
+                case clipboard:
+                    Clipboard_Clicked(null, null);
+                    break;
+                default:
+                    break;
+            }
+            //ShareShabadPopup shareShabadPopup = new ShareShabadPopup(versesObs, ShabadId);
+            //Navigation.PushPopupAsync(shareShabadPopup);
         }
 
         private void KeertanMode_Clicked(object sender, EventArgs e)

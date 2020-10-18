@@ -22,6 +22,7 @@ namespace KeertanPothi.Views
         SQLiteAsyncConnection _con;
         public Pothi _pothi { get; set; }
         ObservableCollection<VerseSearch> VerseObs;
+        StaticText.PothiShabadsText shabadsText = new StaticText.PothiShabadsText();
         bool isEditable = false;
         int? sortOrder = null;
         public PothiShabadList(Pothi pothi)
@@ -55,8 +56,11 @@ namespace KeertanPothi.Views
                     lstVerse.IsVisible = false;
                     slNoShabad.IsVisible = true;
                     btnMove.IsEnabled = false;
-
                 }
+                lblNoShabadAdded1.Text = shabadsText.NoShabadsAdded1;
+                lblNoShabadAdded2.Text = shabadsText.NoShabadsAdded2;
+                lblNoShabadAdded3.Text = shabadsText.NoShabadsAdded3;
+                btnSearch.Text = shabadsText.ButtonText;
             }
         }
 

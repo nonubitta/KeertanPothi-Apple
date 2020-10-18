@@ -23,6 +23,8 @@ namespace KeertanPothi.Views
         int englishTranslationFontSize = 0;
         int punjabiTranslationFontSize = 0;
         int TranslitrationFontSize = 0;
+
+
         private void InvokeSettingChanged(Util.SettingName settingName, bool? value)
         {
             SettingChangedEvent?.Invoke(settingName, value);
@@ -45,22 +47,36 @@ namespace KeertanPothi.Views
             chbHand.IsChecked = Util.PrefGurmukhiFontName == Util.HandFontKey;
             swtVishraam.IsToggled = Util.PrefShowVishraam;
             swtLadivaar.IsToggled = Util.PrefShowLadivaar;
+            //PopulateThemes();
             switch (Util.PrefDarkTheme)
             {
-                case "BLACK":
-                    rbBlack.IsChecked = true;
-                    break;
-                case "GRAY":
-                    rbGray.IsChecked = true;
-                    break;
-                case "BLUE":
+                case Util.ThemeNameBlue:
                     rbBlue.IsChecked = true;
                     break;
-
+                case Util.ThemeNameBlack:
+                    rbGray.IsChecked = true;
+                    break;
+                case Util.ThemeNameFblack:
+                    rbBlack.IsChecked = true;
+                    break;
             }
-            //swtDark.IsToggled = Util.PrefDarkTheme;
+
             Initializing = false;
         }
+
+        //private void PopulateThemes()
+        //{
+        //    List<KeyValue> themes = new List<KeyValue>();
+        //    themes.Add(new KeyValue { Value = "Blue", Key = Util.ThemeNameBlue });
+        //    themes.Add(new KeyValue { Value = "White/Blue", Key = Util.ThemeNameGray });
+        //    themes.Add(new KeyValue { Value = "Black/Blue", Key = Util.ThemeNameBlack });
+        //    themes.Add(new KeyValue { Value = "Full Black", Key = Util.ThemeNameFblack });
+        //    pckTheme.ItemsSource = themes;
+
+        //    KeyValue selected = themes.FirstOrDefault(a => a.Key == Util.PrefDarkTheme);
+        //    if (selected != null)
+        //        pckTheme.SelectedItem = selected;
+        //}
 
         private void swtGurmukhi_Toggled(object sender, ToggledEventArgs e)
         {
@@ -182,35 +198,16 @@ namespace KeertanPothi.Views
             InvokeSettingChanged(Util.SettingName.TransliterationVisible, swtTransliteration.IsToggled);
         }
 
-        private void rbBlue_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            if (rbBlue.IsChecked)
-            {
-                Util.PrefDarkTheme = "BLUE";
-                BindingContext = new Theme();
-                InvokeSettingChanged(Util.SettingName.Theme, true);
-            }
-        }
-
-        private void rbGray_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            if (rbGray.IsChecked)
-            {
-                Util.PrefDarkTheme = "GRAY";
-                BindingContext = new Theme();
-                InvokeSettingChanged(Util.SettingName.Theme, true);
-            }
-        }
-
-        private void rbBlack_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            if (rbBlack.IsChecked)
-            {
-                Util.PrefDarkTheme = "BLACK";
-                BindingContext = new Theme();
-                InvokeSettingChanged(Util.SettingName.Theme, true);
-            }
-        }
-
+        //private void pckTheme_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    KeyValue keyValue1 = pckTheme.SelectedItem as KeyValue;
+        //    if (keyValue1 != null)
+        //    {
+        //        Util.PrefDarkTheme = keyValue1.Key;
+        //        BindingContext = new Theme();
+        //        InvokeSettingChanged(Util.SettingName.Theme, true);
+        //    }
+        //}
+        private void rbBlue_CheckedChanged(object sender, CheckedChangedEventArgs e)         {             if (rbBlue.IsChecked)             {                 Util.PrefDarkTheme = Util.ThemeNameBlue;                 BindingContext = new Theme();                 InvokeSettingChanged(Util.SettingName.Theme, true);             }         }          private void rbGray_CheckedChanged(object sender, CheckedChangedEventArgs e)         {             if (rbGray.IsChecked)             {                 Util.PrefDarkTheme = Util.ThemeNameBlack;                 BindingContext = new Theme();                 InvokeSettingChanged(Util.SettingName.Theme, true);             }         }          private void rbBlack_CheckedChanged(object sender, CheckedChangedEventArgs e)         {             if (rbBlack.IsChecked)             {                 Util.PrefDarkTheme = Util.ThemeNameFblack;                 BindingContext = new Theme();                 InvokeSettingChanged(Util.SettingName.Theme, true);             }         } 
     }
 }

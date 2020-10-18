@@ -20,6 +20,7 @@ namespace KeertanPothi.Views
     {
         SQLiteAsyncConnection _con;
         ObservableCollection<Pothi> PothiObs;
+        StaticText.PothiText pothiText = new StaticText.PothiText();
         public KirtanPothiList()
         {
             BindingContext = new Theme();
@@ -67,12 +68,14 @@ namespace KeertanPothi.Views
             lstPothi.SelectedItem = null;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
-            LoadPothis();
+            await LoadPothis();
             Theme theme = new Theme();
             PothiObs?.ToList().ForEach(a => a.PageBgTheme = theme);
             BindingContext = theme;
+            lblRenameDelete.Text = pothiText.RenameDelete;
+            lblNoPothi.Text = pothiText.NoPothisFound;
         }
 
         private async void DeletePothi_Clicked(object sender, EventArgs e)
@@ -101,7 +104,7 @@ namespace KeertanPothi.Views
 
         private async void AddPothi_Clicked(object sender, EventArgs e)
         {
-            string pothiName = await DisplayPromptAsync("Add new Pothi", "Enter pothi name");
+            string pothiName = await DisplayPromptAsync(pothiText.NewPothiNameSubject, pothiText.NewPothiNameMsg);
             if (!string.IsNullOrWhiteSpace(pothiName))
             {
                 Pothi pothi = new Pothi();
@@ -186,7 +189,31 @@ namespace KeertanPothi.Views
                 Util.ShowRoast("Unable to export pothis");
             }
         }
-        
+
+        private async void ShareActionSheet(object sender, EventArgs e)
+        {
+            const string export = "Export Pothis";
+            const string import = "Import Pothis";
+            const string backup = "Backup";
+            string action = await DisplayActionSheet("Export/Import", "Cancel", null, export, import, backup);
+
+            switch (action)
+            {
+                case export:
+                    Export_Clicked(null, null);
+                    break;
+                case import:
+                    Import_Clicked(null, null);
+                    break;
+                case backup:
+                    Backup_Clicked(null, null);
+                    break;
+                default:
+                    break;
+            }
+           
+        }
+
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Pothi pothi = (e as TappedEventArgs).Parameter as Pothi;
