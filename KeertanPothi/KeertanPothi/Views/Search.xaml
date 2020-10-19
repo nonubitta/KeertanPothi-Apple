@@ -8,7 +8,7 @@
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              x:Class="KeertanPothi.Views.Search" BackgroundColor="{Binding PageBg}">
     <NavigationPage.TitleView>
-         <StackLayout Margin="0" Padding="25,2,0,6" Spacing="10" Orientation="Horizontal">
+         <StackLayout Margin="0" Padding="0,2,0,6" Spacing="10" Orientation="Horizontal">
             <Frame CornerRadius="10" Padding="5" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" HasShadow="False" >
                 <StackLayout HeightRequest="30" Padding="10,5,0,0" Orientation="Horizontal"  >
                     <StackLayout.GestureRecognizers>
