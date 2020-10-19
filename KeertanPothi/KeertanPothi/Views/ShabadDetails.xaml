@@ -25,7 +25,7 @@
                     <StackLayout VerticalOptions="FillAndExpand">
                         <ListView BackgroundColor="Transparent" x:Name="lstShabad" HasUnevenRows="True" SelectionMode="None">
                         <ListView.Header>
-                            <StackLayout>
+                            <StackLayout Spacing="0">
                                 <Expander x:Name="expNotes" IsVisible="False">
                                     <Expander.Header>
                                         <StackLayout Padding="10,2,10,2" BackgroundColor="Orange" Orientation="Horizontal">
@@ -75,7 +75,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     </StackLayout>
-                    <StackLayout x:Name="EditToolbar" BackgroundColor="#1976D2"  Opacity="1" AbsoluteLayout.LayoutBounds="0,1,1,45" 
+                    <StackLayout x:Name="EditToolbar" BackgroundColor="{Binding HeaderColor}"  Opacity="1" AbsoluteLayout.LayoutBounds="0,1,1,45" 
                          AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" Orientation="Horizontal" 
                          VerticalOptions="End" Padding="20,0,20,0">
                         <Grid HorizontalOptions="FillAndExpand" Padding="0,7,0,7" RowDefinitions="*" 
@@ -84,7 +84,7 @@
                             <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.prev.png}"
                                          Grid.Row="0" Grid.Column="0" Clicked="PrevVerse_Clicked">
                             </ImageButton>
-                            <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.fullscreen.png}"
+                            <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.actionMenu.png}"
                                          Grid.Row="0" Grid.Column="1" Clicked="btnMaximize_Clicked">
                             </ImageButton>
                             <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.settings2.png}" 

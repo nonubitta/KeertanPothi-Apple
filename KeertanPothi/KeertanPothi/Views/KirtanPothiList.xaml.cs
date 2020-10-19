@@ -190,30 +190,6 @@ namespace KeertanPothi.Views
             }
         }
 
-        private async void ShareActionSheet(object sender, EventArgs e)
-        {
-            const string export = "Export Pothis";
-            const string import = "Import Pothis";
-            const string backup = "Backup";
-            string action = await DisplayActionSheet("Export/Import", "Cancel", null, export, import, backup);
-
-            switch (action)
-            {
-                case export:
-                    Export_Clicked(null, null);
-                    break;
-                case import:
-                    Import_Clicked(null, null);
-                    break;
-                case backup:
-                    Backup_Clicked(null, null);
-                    break;
-                default:
-                    break;
-            }
-           
-        }
-
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Pothi pothi = (e as TappedEventArgs).Parameter as Pothi;
@@ -238,6 +214,29 @@ namespace KeertanPothi.Views
                 await LoadPothis();
                 Util.ShowRoast("Pothi imported successfully.");
                 await Queries.ExportPothis(PothiObs.ToList(), true);
+            }
+        }
+
+        async void ShareActionSheet_Clicked(System.Object sender, System.EventArgs e)
+        {
+            const string export = "Export Pothis";
+            const string import = "Import Pothis";
+            const string backup = "Backup";
+            string action = await DisplayActionSheet("Export/Import", "Cancel", null, export, import, backup);
+
+            switch (action)
+            {
+                case export:
+                    Export_Clicked(null, null);
+                    break;
+                case import:
+                    Import_Clicked(null, null);
+                    break;
+                case backup:
+                    Backup_Clicked(null, null);
+                    break;
+                default:
+                    break;
             }
         }
     }

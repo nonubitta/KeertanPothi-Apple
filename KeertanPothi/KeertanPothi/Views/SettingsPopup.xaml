@@ -86,9 +86,12 @@
                             <Label Text="Theme" FontAttributes="Bold" FontSize="16" TextColor="{Binding FontColor}" HorizontalOptions="StartAndExpand"></Label>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <RadioButton HorizontalOptions="StartAndExpand" Padding="0" BackgroundColor="Transparent" Text="Blue" x:Name="rbBlue" CheckedChanged="rbBlue_CheckedChanged"></RadioButton>
-                            <RadioButton HorizontalOptions="CenterAndExpand" Padding="0" BackgroundColor="Transparent" Text="Blue/Black" x:Name="rbGray" CheckedChanged="rbGray_CheckedChanged"></RadioButton>
-                            <RadioButton HorizontalOptions="EndAndExpand" Padding="0" BackgroundColor="Transparent" Text="Black" x:Name="rbBlack" CheckedChanged="rbBlack_CheckedChanged"></RadioButton>
+                            <RadioButton TextColor="{Binding EnglishTranslationColor}" HorizontalOptions="StartAndExpand" Padding="0"
+                                         BackgroundColor="Transparent" Text="Blue" x:Name="rbBlue" CheckedChanged="rbBlue_CheckedChanged"></RadioButton>
+                            <RadioButton TextColor="{Binding EnglishTranslationColor}" HorizontalOptions="CenterAndExpand" Padding="0"
+                                         BackgroundColor="Transparent" Text="Blue/Black" x:Name="rbGray" CheckedChanged="rbGray_CheckedChanged"></RadioButton>
+                            <RadioButton TextColor="{Binding EnglishTranslationColor}" HorizontalOptions="EndAndExpand" Padding="0"
+                                         BackgroundColor="Transparent" Text="Black" x:Name="rbBlack" CheckedChanged="rbBlack_CheckedChanged"></RadioButton>
                         </StackLayout>
 
                         <BoxView BackgroundColor="DarkGray" HeightRequest="1" ></BoxView>

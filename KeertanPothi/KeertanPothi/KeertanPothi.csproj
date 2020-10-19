@@ -35,7 +35,6 @@
     <None Remove="images\delete.png" />
     <None Remove="images\divider.png" />
     <None Remove="images\down.png" />
-    <None Remove="images\edit.png" />
     <None Remove="images\error.png" />
     <None Remove="images\errorBU.png" />
     <None Remove="images\exit_full_screen.png" />
@@ -80,7 +79,6 @@
     <None Remove="images\search.png" />
     <None Remove="images\search2.png" />
     <None Remove="images\search3.png" />
-    <None Remove="images\settings1.png" />
     <None Remove="images\settings2.png" />
     <None Remove="images\settings3.png" />
     <None Remove="images\settings4.png" />
@@ -104,8 +102,7 @@
     <None Remove="Resources\Fonts\HandFont3.otf" />
     <None Remove="Resources\Fonts\HandFontEdit.otf" />
     <None Remove="Resources\Fonts\PunjabiFont1.otf" />
-    <None Remove="images\shareSmall.png" />
-    <None Remove="images\Menu.png" />
+    <None Remove="images\actionMenu.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -121,7 +118,6 @@
     <EmbeddedResource Include="images\Contact.png" />
     <EmbeddedResource Include="images\crossb.png" />
     <EmbeddedResource Include="images\down.png" />
-    <EmbeddedResource Include="images\edit.png" />
     <EmbeddedResource Include="images\fullscreen.png" />
     <EmbeddedResource Include="images\delete.png" />
     <EmbeddedResource Include="images\harmonium.png" />
@@ -152,7 +148,6 @@
     <EmbeddedResource Include="images\Raag.png" />
     <EmbeddedResource Include="images\Random.png" />
     <EmbeddedResource Include="images\search.png" />
-    <EmbeddedResource Include="images\settings1.png" />
     <EmbeddedResource Include="images\settings2.png" />
     <EmbeddedResource Include="images\settings3.png" />
     <EmbeddedResource Include="images\Share.png" />
@@ -165,7 +160,8 @@
     <EmbeddedResource Include="Resources\Fonts\HandFont3.otf" />
     <EmbeddedResource Include="Resources\Fonts\PunjabiFont1.otf" />
     <EmbeddedResource Include="images\shareSmall.png" />
-    <EmbeddedResource Include="images\Menu.png" />
+    <EmbeddedResource Include="images\menuSmall.png" />
+    <EmbeddedResource Include="images\actionMenu.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -257,9 +253,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsPopup.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ShabadDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ShabadDetailsLight.xaml">

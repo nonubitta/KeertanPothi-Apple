@@ -177,8 +177,6 @@ namespace KeertanPothi.Views
             {
                 //CreateShareToolbar();
                 CreateSharePopupToolbar();
-                //if (RequestFrom == RequestSource.Pothi)
-                //    CreateNoteToolbar();
             }
 
         }
@@ -187,8 +185,7 @@ namespace KeertanPothi.Views
         {
             itemKeertanMode = new ToolbarItem();
             itemKeertanMode.Text = "Text Note";
-            itemPlay.IconImageSource = ImageSource.FromResource("KeertanPothi.images.Play.png");
-            itemKeertanMode.Order = ToolbarItemOrder.Primary;
+            itemKeertanMode.Order = ToolbarItemOrder.Secondary;
             itemKeertanMode.Clicked += Note_Clicked;
             ToolbarItems.Add(itemKeertanMode);
         }
@@ -226,8 +223,8 @@ namespace KeertanPothi.Views
         private void CreateSharePopupToolbar()
         {
             itemShare = new ToolbarItem();
-            itemShare.Text = "Share";
-            itemShare.IconImageSource = ImageSource.FromResource("KeertanPothi.images.shareSmall.png");
+            //itemShare.Text = "Share";
+            itemShare.IconImageSource = ImageSource.FromResource("KeertanPothi.images.actionMenu.png");
             itemShare.Order = ToolbarItemOrder.Primary;
             itemShare.Clicked += SharePopup_Clicked;
             ToolbarItems.Add(itemShare);
@@ -877,7 +874,12 @@ namespace KeertanPothi.Views
             const string text = "Share as Text";
             const string file = "Share as File";
             const string clipboard = "Copy to clipboard";
-            string action = await DisplayActionSheet("Export/Import", "Cancel", null, text, file, clipboard);
+            const string notepad = "Text Note";
+            string action = string.Empty;
+            if (RequestFrom == RequestSource.Pothi)
+                action = await DisplayActionSheet("Export/Import", "Cancel", null, text, file, clipboard, notepad);
+            else
+                action = await DisplayActionSheet("Actions", "Cancel", null, text, file, clipboard);
 
             switch (action)
             {
@@ -889,6 +891,9 @@ namespace KeertanPothi.Views
                     break;
                 case clipboard:
                     Clipboard_Clicked(null, null);
+                    break;
+                case notepad:
+                    Note_Clicked(null, null);
                     break;
                 default:
                     break;
