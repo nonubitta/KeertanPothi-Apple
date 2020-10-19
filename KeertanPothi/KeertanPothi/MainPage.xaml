@@ -8,7 +8,7 @@
              x:Class="KeertanPothi.MainPage"
             Title="Search" MasterBehavior="Popover" BackgroundColor="Cyan">
     <MasterDetailPage.Master >
-        <ContentPage Title="Menu" IconImageSource="hamburger.png" >
+        <ContentPage Title="Menu" IconImageSource="Number.png" >
             <!--☰≡𝌆⌘-->
             <StackLayout Spacing="0" BackgroundColor="#202124">
                 <StackLayout Padding="0,60,0,0" HeightRequest="90" Spacing="0" BackgroundColor="#1976D2" VerticalOptions="Start">

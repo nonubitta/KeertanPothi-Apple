@@ -19,6 +19,7 @@ namespace KeertanPothi.Views
         {
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
             InitializeComponent();
+            LoadWriters();
         }
 
         private async void LoadWriters()
@@ -28,8 +29,8 @@ namespace KeertanPothi.Views
         }
         protected override void OnAppearing()
         {
-            Util.SetThemeOnPage(this);
-            LoadWriters();
+            Theme theme = new Theme();
+            BindingContext = theme;
             base.OnAppearing();
         }
 

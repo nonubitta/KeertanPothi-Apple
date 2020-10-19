@@ -208,22 +208,6 @@ namespace KeertanPothi
             }
         }
 
-        internal static void SetThemeOnPage(Page page)
-        {
-            switch (PrefDarkTheme)
-            {
-                case "BLACK":
-                    page.BackgroundColor = Color.FromHex(Util.DarkThemeBgColor);
-                    break;
-                case "GRAY":
-                    page.BackgroundColor = Color.FromHex(Util.GrayThemeBgColor);
-                    break;
-                case "BLUE":
-                    page.BackgroundColor = Color.FromHex(Util.LightThemeBgColor);
-                    break;
-            }
-        }
-
         public static bool PrefPunjabiVisible
         {
             get

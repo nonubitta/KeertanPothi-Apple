@@ -23,8 +23,9 @@ namespace KeertanPothi.Views
             InitializeComponent();
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
 			_writer = writer;
+			Title = writer.WriterEnglish;
 			LoadWriterInfo();
-			BindingContext = _writer;
+			LoadWriterData();
 		}
 
 		private async void LoadWriterInfo()
@@ -46,9 +47,9 @@ namespace KeertanPothi.Views
 
 		protected override void OnAppearing()
 		{
-			Util.SetThemeOnPage(this);
+			Theme theme = new Theme();
+			BindingContext = theme;
 			base.OnAppearing();
-			LoadWriterData();
 		}
 
 		private async void LoadWriterData()

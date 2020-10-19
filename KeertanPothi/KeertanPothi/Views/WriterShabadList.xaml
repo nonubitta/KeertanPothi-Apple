@@ -4,15 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Title="{Binding WriterEnglish}"
              xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
-             x:Class="KeertanPothi.Views.WriterShabadList">
+             x:Class="KeertanPothi.Views.WriterShabadList" BackgroundColor="{Binding PageBg}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="AddPothi" IconImageSource="{local:EmbeddedImage KeertanPothi.images.info2.png}"
                      Clicked="AddPothi_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
         <StackLayout Padding="0,10,0,0">
-        <ListView BackgroundColor="Transparent" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
+        <ListView BackgroundColor="Transparent" CachingStrategy="RecycleElement" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

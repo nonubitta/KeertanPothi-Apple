@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Title="Writer List"
-             x:Class="KeertanPothi.Views.WriterList">
+             x:Class="KeertanPothi.Views.WriterList" BackgroundColor="{Binding PageBg}">
     <StackLayout Padding="10">
         <ListView BackgroundColor="Transparent" x:Name="lstWriter" RowHeight="70" ItemSelected="lstWriter_ItemSelected">
             <ListView.ItemTemplate>

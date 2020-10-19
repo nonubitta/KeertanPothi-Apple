@@ -34,7 +34,7 @@
                         <BoxView HeightRequest="10"></BoxView>
                         <Label Text="Select default line" HorizontalOptions="CenterAndExpand" 
                                             FontAttributes="Bold" FontSize="Small"></Label>
-                        <Picker Margin="20,0,20,0" x:Name="pckLine" IsVisible="False" ItemDisplayBinding="{Binding GurmukhiUni}"
+                        <Picker Margin="20,0,20,0" x:Name="pckLine" IsVisible="False" TextColor="White" ItemDisplayBinding="{Binding GurmukhiUni}"
                                 FontFamily="PunjabiFont"></Picker>
                         <Expander x:Name="expSelect" BindingContext="{x:Reference Name=swtExpandSwitch}" IsExpanded="{Binding Path=IsToggled}">
                             <Expander.Header>
