@@ -103,6 +103,7 @@
     <None Remove="Resources\Fonts\HandFontEdit.otf" />
     <None Remove="Resources\Fonts\PunjabiFont1.otf" />
     <None Remove="images\actionMenu.png" />
+    <None Remove="images\hamburger.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -160,8 +161,8 @@
     <EmbeddedResource Include="Resources\Fonts\HandFont3.otf" />
     <EmbeddedResource Include="Resources\Fonts\PunjabiFont1.otf" />
     <EmbeddedResource Include="images\shareSmall.png" />
-    <EmbeddedResource Include="images\menuSmall.png" />
     <EmbeddedResource Include="images\actionMenu.png" />
+    <EmbeddedResource Include="images\hamburger.png" />
   </ItemGroup>
 
   <ItemGroup>
