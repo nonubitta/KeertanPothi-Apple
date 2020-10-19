@@ -19,8 +19,8 @@
             <Label Text="Keertan Poth" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"></Label>
              <ImageButton BackgroundColor="Transparent" HorizontalOptions="End" Clicked="AddPothi_Clicked"
                           Source="{local:EmbeddedImage KeertanPothi.images.add.png}" ></ImageButton>
-            <ImageButton BackgroundColor="Transparent" HorizontalOptions="End" Clicked="ShareActionSheet_Clicked"
-                         Source="{local:EmbeddedImage KeertanPothi.images.dotsFake.png}" ></ImageButton>
+            <ImageButton BackgroundColor="Transparent" HorizontalOptions="End" Clicked="ShareActionSheet_Clicked" HeightRequest="30" WidthRequest="30"
+                         Source="{local:EmbeddedImage KeertanPothi.images.actionMenu.png}" ></ImageButton>
         </StackLayout>
     </NavigationPage.TitleView>
     <StackLayout Padding="10, 10, 10, 10">
