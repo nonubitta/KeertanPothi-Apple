@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeertanPothi.Android", "Kee
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeertanPothi.iOS", "KeertanPothi\KeertanPothi.iOS\KeertanPothi.iOS.csproj", "{3B5218EB-7B47-4193-A970-9C4E3D81FCFE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeertanPothi", "KeertanPothi\KeertanPothi\KeertanPothi.csproj", "{7DC972D4-5516-45AF-9F36-037A50F04781}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeertanPothi", "KeertanPothi\KeertanPothi\KeertanPothi.csproj", "{7DC972D4-5516-45AF-9F36-037A50F04781}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
