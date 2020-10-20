@@ -29,6 +29,7 @@ namespace KeertanPothi.Views
         public ImportPothiPopup(List<string> json)
         {
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
+            BindingContext = new Theme();
             InitializeComponent();
             Json = json;
             LoadPothis();

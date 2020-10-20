@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:local="clr-namespace:KeertanPothi.Controls"
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              x:Class="KeertanPothi.Views.NotesPopup">
     <pages:PopupPage.Animation>
@@ -22,13 +23,9 @@
     </pages:PopupPage.Animation>
     <ContentPage.Content>
         <ScrollView Padding="20,10,20,80" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Frame CornerRadius="10" Padding="0" BackgroundColor="Green" >
+            <Frame CornerRadius="10" Padding="0" BackgroundColor="{Binding PageBg}" BorderColor="#1976D2">
                 <Grid BackgroundColor="{Binding PageBg}" ColumnDefinitions="*" RowDefinitions="40,*, 80">
-                    <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HeightRequest="40" Padding="0" StyleClass="DarkBlueBg" HorizontalOptions="Fill">
-                        <Button IsEnabled="False" Text="" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
-                        <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Notes" TextColor="White" FontSize="Medium"></Label>
-                        <Button Text="X" Clicked="btnClose_Clicked" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
-                    </StackLayout>
+                    <local:PopupHeader Title="Notes"></local:PopupHeader>
                     <Editor Margin="20,0,20,0" Grid.Column="0" Grid.Row="1" x:Name="editNote" TextColor="{Binding FontColor}"></Editor>
                     <StackLayout Grid.Column="0" Grid.Row="2" Spacing="0" Padding="20,0,20,20">
                         <StackLayout Orientation="Horizontal">

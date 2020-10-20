@@ -41,6 +41,7 @@ namespace KeertanPothi.Views
         public SharePopup(int shabadId, int verseId, ActionType action = ActionType.added)
         {
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
+            BindingContext = new Theme();
             ShabadId = shabadId;
             VerseId = verseId;
             InitializeComponent();
@@ -52,6 +53,7 @@ namespace KeertanPothi.Views
         public SharePopup(List<PothiShabad> pothiShabad, ActionType action)
         {
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
+            BindingContext = new Theme();
             InitializeComponent();
             PothiShabad = pothiShabad;
             RequestType = RequestSource.Multiple;
@@ -71,11 +73,13 @@ namespace KeertanPothi.Views
             {
                 swtExpandSwitch2.IsToggled = true;
                 lblSelect.Text = NoPothiText;
+                Save.IsVisible = false;
             }
             else
             {
                 swtExpandSwitch.IsToggled = true;
                 lblSelect.Text = SelectText;
+                Save.IsVisible = true;
             }
 
             List<Verse> verses = await _con.QueryAsync<Verse>(Queries.ShabadById(ShabadId));

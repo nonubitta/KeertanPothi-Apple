@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:local="clr-namespace:KeertanPothi.Controls"
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              x:Class="KeertanPothi.Views.NitnemBookmarkPopup">
     <pages:PopupPage.Animation>
@@ -24,11 +25,7 @@
         <StackLayout VerticalOptions="Center" Padding="0,0,0,50" HorizontalOptions="FillAndExpand" >
              <Frame BackgroundColor="{Binding PageBg}" BorderColor="#1976D2" HasShadow="True" CornerRadius="10" Margin="25,10,25,0" VerticalOptions="Start">
                 <StackLayout Spacing="10" >
-                    <StackLayout Orientation="Horizontal" HeightRequest="40" Padding="0" Margin="0,0,0,0" StyleClass="DarkBlueBg" HorizontalOptions="Fill">
-                        <Button IsEnabled="False" Text="" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
-                        <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Bookmarks" TextColor="White" FontSize="Medium"></Label>
-                        <Button Text="X" Clicked="btnSave_Clicked" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
-                    </StackLayout>
+                    <local:PopupHeader Title="Bookmarks"></local:PopupHeader>
                     <StackLayout>
                         <ListView BackgroundColor="Transparent" x:Name="lstVerse" HasUnevenRows="True" ItemSelected="lstVerse_ItemSelected">
                             <ListView.ItemTemplate>

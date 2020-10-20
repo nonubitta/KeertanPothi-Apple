@@ -21,6 +21,7 @@ namespace KeertanPothi.Views
         public EditBaniList()
         {
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
+            BindingContext = new Theme();
             InitializeComponent();
             BindingContext = new Theme();
             LoadBaniList();

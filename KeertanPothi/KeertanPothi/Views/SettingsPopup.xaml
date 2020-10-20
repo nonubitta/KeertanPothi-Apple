@@ -19,12 +19,8 @@
         <ScrollView x:Name="MainScroll" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Frame BackgroundColor="{Binding PageBg}" BorderColor="#1976D2" HasShadow="True" CornerRadius="10" Margin="25,30,25,0" VerticalOptions="Start">
                 <StackLayout Spacing="2" Margin="0">
-                    <StackLayout Orientation="Horizontal" HeightRequest="40" Padding="0" Margin="0,0,0,0" StyleClass="DarkBlueBg" HorizontalOptions="Fill">
-                        <Button IsEnabled="False" Text="" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
-                        <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Quick Settings" TextColor="White" FontSize="Medium"></Label>
-                        <Button Text="X" Clicked="btnSave_Clicked" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
-                    </StackLayout>
-                        <BoxView BackgroundColor="Transparent" HeightRequest="5" ></BoxView>
+                   <local:PopupHeader Title="Quick Settings"></local:PopupHeader>
+                    <BoxView BackgroundColor="Transparent" HeightRequest="5" ></BoxView>
                     <StackLayout Padding="10,0,10,0">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Gurmukhi" FontSize="16" FontAttributes="Bold" TextColor="{Binding FontColor}" HorizontalOptions="StartAndExpand"></Label>

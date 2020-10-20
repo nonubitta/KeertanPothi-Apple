@@ -25,6 +25,7 @@ namespace KeertanPothi.Views
         public NitnemBookmarkPopup(int baniId)
         {
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
+            BindingContext = new Theme();
             BaniId = baniId;
             InitializeComponent();
             LoadBookmarks();

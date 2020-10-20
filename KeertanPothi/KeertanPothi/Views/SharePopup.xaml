@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:local="clr-namespace:KeertanPothi.Controls"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              x:Class="KeertanPothi.Views.SharePopup">
@@ -22,15 +23,12 @@
     </pages:PopupPage.Animation>
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Frame BorderColor="DarkBlue" HasShadow="True" CornerRadius="10" Margin="25,0,25,0" VerticalOptions="Center">
-                <StackLayout Spacing="2" Margin="-20,-20,-20,0">
+            <Frame BackgroundColor="{Binding PageBg}" BorderColor="#1976D2" HasShadow="True" CornerRadius="10" Margin="25,0,25,0" VerticalOptions="Center">
+                <StackLayout Spacing="2" Margin="0">
                     <Switch x:Name="swtExpandSwitch" IsToggled="True" Toggled="swtExpandSwitch_Toggled" IsVisible="False"></Switch>
                     <Switch x:Name="swtExpandSwitch2" IsToggled="False" Toggled="swtExpandSwitch2_Toggled" IsVisible="False"></Switch>
-                    <StackLayout Orientation="Horizontal" HeightRequest="40" Padding="0" Margin="0,0,0,0" StyleClass="DarkBlueBg" HorizontalOptions="Fill">
-                        <Button IsEnabled="False" Text="" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
-                        <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Add to Pothi" TextColor="White" FontSize="Medium"></Label>
-                        <Button Text="X" Clicked="btnClose_Clicked" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
-                    </StackLayout>
+                    <local:PopupHeader Title="Add to Pothi"></local:PopupHeader>
+                   
                         <BoxView HeightRequest="10"></BoxView>
                         <Label Text="Select default line" HorizontalOptions="CenterAndExpand" 
                                             FontAttributes="Bold" FontSize="Small"></Label>

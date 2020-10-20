@@ -84,7 +84,7 @@
                             <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.prev.png}"
                                          Grid.Row="0" Grid.Column="0" Clicked="PrevVerse_Clicked">
                             </ImageButton>
-                            <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.actionMenu.png}"
+                            <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.fullscreen.png}"
                                          Grid.Row="0" Grid.Column="1" Clicked="btnMaximize_Clicked">
                             </ImageButton>
                             <ImageButton BackgroundColor="Transparent" Source="{local:EmbeddedImage KeertanPothi.images.settings2.png}" 
