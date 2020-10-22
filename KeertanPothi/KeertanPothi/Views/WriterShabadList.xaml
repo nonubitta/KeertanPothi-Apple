@@ -7,8 +7,8 @@
              xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
              x:Class="KeertanPothi.Views.WriterShabadList" BackgroundColor="{Binding PageBg}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="AddPothi" IconImageSource="{local:EmbeddedImage KeertanPothi.images.info2.png}"
-                     Clicked="AddPothi_Clicked"></ToolbarItem>
+        <ToolbarItem x:Name="WriterInfo" IconImageSource="{local:EmbeddedImage KeertanPothi.images.info2.png}"
+                     Clicked="WriterInfo_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
         <StackLayout Padding="0,10,0,0">
         <ListView BackgroundColor="Transparent" CachingStrategy="RecycleElement" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">

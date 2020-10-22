@@ -21,7 +21,12 @@ namespace KeertanPothi.Views
             InitializeComponent();
         }
 
- 
+        protected override void OnAppearing()
+        {
+            Theme theme = new Theme();
+            BindingContext = theme;
+        }
+
         private void btnSend_Clicked(object sender, System.EventArgs e)
         {
             try
@@ -32,7 +37,7 @@ namespace KeertanPothi.Views
                     EnableSsl = true
                 };
                 client.Send("KeertanPothi@gmail.com", "nonubitta@gmail.com", txtSubject.Text, txtEmail.Text + ": " + txtBody.Text);
-                Util.ShowRoast("Message sent !!!");
+                Util.ShowRoast("Message sent !!!", true);
             }
             catch (Exception ex)
             {

@@ -372,9 +372,12 @@ namespace KeertanPothi
             Preferences.Set(Util.PrefDarkThemeKey, Util.PrefDarkThemeInit);
         }
 
-        public static void ShowRoast(string msg)
+        public static void ShowRoast(string msg, bool isShort = false)
         {
-            DependencyService.Get<IMessage>().LongAlert(msg);
+            if(isShort)
+                DependencyService.Get<IMessage>().ShortAlert(msg);
+            else
+                DependencyService.Get<IMessage>().LongAlert(msg);
         }
 
         internal async static void ToggleToolbar(StackLayout layout, bool isVisible, uint duration)

@@ -73,7 +73,7 @@ namespace KeertanPothi.Views
 			lstVerse.SelectedItem = null;
 		}
 
-		private void AddPothi_Clicked(object sender, EventArgs e)
+		private void WriterInfo_Clicked(object sender, EventArgs e)
 		{
 			Navigation.PushPopupAsync(new ShowWriterInfo(winfo));
 		}

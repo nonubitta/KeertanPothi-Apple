@@ -38,11 +38,5 @@ namespace KeertanPothi.Views
 			Navigation.PopPopupAsync();
 		}
 
-		protected override void OnAppearing()
-		{
-			Theme theme = new Theme();
-			BindingContext = theme;
-			base.OnAppearing();
-		}
 	}
 }

@@ -91,7 +91,7 @@ namespace KeertanPothi.Views
                     if (deleted > 0 || pothi.PothiId == null)
                     {
                         PothiObs.Remove(pothi);
-                        Util.ShowRoast("Pothi deleted successfully");
+                        Util.ShowRoast("Pothi deleted successfully", true);
                         await Queries.ExportPothis(PothiObs.ToList(), true);
                     }
                 }
@@ -115,7 +115,7 @@ namespace KeertanPothi.Views
                 {
                     PothiObs.Add(pothi);
                 }
-                Util.ShowRoast("Pothi added successfully");
+                Util.ShowRoast("Pothi added successfully", true);
                 await LoadPothis();
                 await Queries.ExportPothis(PothiObs.ToList(), true);
             }
@@ -197,22 +197,12 @@ namespace KeertanPothi.Views
             lstPothi.SelectedItem = null;
         }
 
-        private void SwipeView_SwipeStarted(object sender, SwipeStartedEventArgs e)
-        {
-            DisplayAlert("started", "started", "Cancel");
-        }
-
-        private void SwipeView_SwipeEnded(object sender, SwipeEndedEventArgs e)
-        {
-            DisplayAlert("ended", "ended", "Cancel");
-        }
-
         private async void PothisCreated(bool arg)
         {
             if (arg)
             {
                 await LoadPothis();
-                Util.ShowRoast("Pothi imported successfully.");
+                Util.ShowRoast("Pothi imported successfully.", true);
                 await Queries.ExportPothis(PothiObs.ToList(), true);
             }
         }

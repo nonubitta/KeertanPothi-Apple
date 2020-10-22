@@ -96,7 +96,7 @@ namespace KeertanPothi
                 }
                 else
                 {
-                    RenameDelete = "* Long press a pothi to rename or delete";
+                    RenameDelete = "* Swipe right on a pothi to rename or delete";
                     NoPothisFound = "No pothis found." + Environment.NewLine + "Click on plus button in top right" + Environment.NewLine + "to create your first pothi.";
                     NewPothiNameSubject = "Add new Pothi";
                     NewPothiNameMsg = "Enter pothi name";

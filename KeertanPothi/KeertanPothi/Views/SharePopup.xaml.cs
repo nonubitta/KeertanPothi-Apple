@@ -133,19 +133,19 @@ namespace KeertanPothi.Views
                 try
                 {
                     await _con.InsertAsync(pothiShabad);
-                    Util.ShowRoast($"Shabad {Action.ToString()} to pothi.");
+                    Util.ShowRoast($"Shabad {Action.ToString()} to pothi.", true);
                     await Queries.ExportPothis(null, true);
                 }
                 catch (SQLiteException ex)
                 {
                     if (ex.Message.Contains("Constraint"))
                     {
-                        Util.ShowRoast("Shabad already exists in Pothi");
+                        Util.ShowRoast("Shabad already exists in Pothi", true);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Util.ShowRoast("Failed to add shabad to pothi");
+                    Util.ShowRoast("Failed to add shabad to pothi", true);
                 }
             }
         }

@@ -6,8 +6,8 @@
              mc:Ignorable="d"
              xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
              x:Class="KeertanPothi.Views.ContactUs"
-            Title="Keertan Pothi Help" BackgroundColor="{Binding PageBg}">
-    <ContentPage x:Name="pgHelp" Title="Help">
+            Title="Keertan Pothi Help">
+    <ContentPage x:Name="pgHelp" Title="Help" BackgroundColor="{Binding PageBg}">
         <ScrollView x:Name="scrMain">
             <StackLayout Padding="10,10,10,10">
                 <Frame BorderColor="Black">
@@ -146,12 +146,12 @@
             </StackLayout>
         </ScrollView>
     </ContentPage>
-    <ContentPage x:Name="pgContact" Title="Contact" >
+    <ContentPage x:Name="pgContact" Title="Contact" BackgroundColor="{Binding PageBg}" >
         <ScrollView>
             <StackLayout Padding="20,30,20,40">
                 <Label Text="Contact US" FontAttributes="Bold" FontSize="Large" StyleClass="CommonThemeOrange" HorizontalTextAlignment="Center" ></Label>
                 <BoxView HeightRequest="50"></BoxView>
-                <Picker x:Name="Type" TextColor="{Binding FontColor}">
+                <Picker x:Name="Type" TextColor="#a8a7a7">
                     <Picker.Items>
                         <x:String>Suggestion</x:String>
                         <x:String>Bug/Error</x:String>
@@ -159,9 +159,9 @@
                     </Picker.Items>
                     <Picker.SelectedIndex>0</Picker.SelectedIndex>
                 </Picker>
-                <Entry TextColor="{Binding FontColor}" PlaceholderColor="{Binding FontColor}" x:Name="txtEmail" Placeholder="Email"></Entry>
-                <Entry TextColor="{Binding FontColor}" PlaceholderColor="{Binding FontColor}" x:Name="txtSubject" Placeholder="Subject"></Entry>
-                <Editor TextColor="{Binding FontColor}" PlaceholderColor="{Binding FontColor}" x:Name="txtBody" VerticalOptions="FillAndExpand" Placeholder="Message" HeightRequest="200" ></Editor>
+                <Entry TextColor="White" BackgroundColor="#606060" PlaceholderColor="#a8a7a7" x:Name="txtEmail" Placeholder="Email"></Entry>
+                <Entry  TextColor="White" BackgroundColor="#606060" PlaceholderColor="#a8a7a7"  x:Name="txtSubject" Placeholder="Subject"></Entry>
+                <Editor TextColor="White" BackgroundColor="#606060" PlaceholderColor="#a8a7a7"  x:Name="txtBody" VerticalOptions="FillAndExpand" Placeholder="Message" HeightRequest="200" ></Editor>
                 <Button x:Name="btnSend" Text="Send" Clicked="btnSend_Clicked" />
             </StackLayout>
         </ScrollView>

@@ -158,7 +158,7 @@ namespace KeertanPothi.Views
                     {
                         VerseObs.Remove(s);
                     }
-                    Util.ShowRoast("Shabad(s) deleted successfully");
+                    Util.ShowRoast("Shabad(s) deleted successfully", true);
                 }
             }
         }

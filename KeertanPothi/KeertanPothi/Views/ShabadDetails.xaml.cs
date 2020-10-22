@@ -352,12 +352,12 @@ namespace KeertanPothi.Views
             {
                 editNotes.Text = note;
                 expNotes.IsExpanded = true;
-                Util.ShowRoast("Note Saved.");
+                Util.ShowRoast("Note Saved.", true);
             }
             else
             {
                 expNotes.IsVisible = false;
-                Util.ShowRoast("Note Deleted.");
+                Util.ShowRoast("Note Deleted.", true);
             }
             LoadShabad();
             UserDialogs.Instance.HideLoading();
@@ -711,7 +711,7 @@ namespace KeertanPothi.Views
         {
             if (RequestFrom == RequestSource.Nitnem)
             {
-                Util.ShowRoast("Can't add Nitnem to keertan pothi");
+                Util.ShowRoast("Can't add Nitnem to keertan pothi", true);
                 return;
             }
             int? vId = SelectedVerseId;
@@ -821,9 +821,9 @@ namespace KeertanPothi.Views
                 if (RequestFrom == RequestSource.Pothi)
                 {
                     if (nxtOne)
-                        Util.ShowRoast("This is the last shabad in the pothi");
+                        Util.ShowRoast("This is the last shabad in the pothi", true);
                     else
-                        Util.ShowRoast("This is the first shabad in the pothi");
+                        Util.ShowRoast("This is the first shabad in the pothi", true);
                 }
             }
         }

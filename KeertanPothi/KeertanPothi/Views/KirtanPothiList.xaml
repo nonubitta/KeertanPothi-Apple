@@ -29,7 +29,7 @@
                Text="No pothis found.&#10;Click on plus button in top right&#10;to create your first pothi." IsVisible="False"></Label>
         <ListView BackgroundColor="Transparent" x:Name="lstPothi" RowHeight="70" ItemSelected="lstPothi_ItemSelected" SeparatorColor="Black">
             <ListView.Header>
-                <Label x:Name="lblRenameDelete" Text="* Long press a pothi to rename or delete" FontSize="Micro" FontAttributes="Italic"
+                <Label x:Name="lblRenameDelete" Text="* Swipe right on a pothi to rename or delete" FontSize="Micro" FontAttributes="Italic"
                         TextColor="{Binding PunjabiTranslationColor}" HorizontalOptions="CenterAndExpand"></Label>
             </ListView.Header>
             <ListView.ItemTemplate>
