@@ -94,7 +94,7 @@
     <BundleResource Include="Resources\writer.png" />
     <BundleResource Include="Resources\Book.png" />
     <Compile Include="SetStatusBarStyle.cs" />
-    <BundleResource Include="Resources\menu.png" />
+    <BundleResource Include="Resources\menu2.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -205,7 +205,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\KeertanPothi\KeertanPothi.csproj">
-      <Project>{7DC972D4-5516-45AF-9F36-037A50F04781}</Project>
+      <Project>{7524A7DA-8A66-4B08-86C3-37ADCD0662B7}</Project>
       <Name>KeertanPothi</Name>
     </ProjectReference>
   </ItemGroup>

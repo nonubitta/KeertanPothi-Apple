@@ -25,72 +25,6 @@
     <None Remove="banidb.db3" />
     <None Remove="DB\banidb.zip" />
     <None Remove="DB\RunScript.txt" />
-    <None Remove="images\add.png" />
-    <None Remove="images\AddToPothi.png" />
-    <None Remove="images\back.png" />
-    <None Remove="images\Book.png" />
-    <None Remove="images\bookmark.png" />
-    <None Remove="images\Contact.png" />
-    <None Remove="images\crossb.png" />
-    <None Remove="images\delete.png" />
-    <None Remove="images\divider.png" />
-    <None Remove="images\down.png" />
-    <None Remove="images\error.png" />
-    <None Remove="images\errorBU.png" />
-    <None Remove="images\exit_full_screen.png" />
-    <None Remove="images\fullscreen.png" />
-    <None Remove="images\gradient.png" />
-    <None Remove="images\harmonium.png" />
-    <None Remove="images\Help.png" />
-    <None Remove="images\help\AddToPothi.jpg" />
-    <None Remove="images\help\AddToPothi1.jpg" />
-    <None Remove="images\help\AddToPothi2.jpg" />
-    <None Remove="images\help\AngSearch.jpg" />
-    <None Remove="images\help\FirstLetterSearch.jpg" />
-    <None Remove="images\help\MainLetterSearch.jpg" />
-    <None Remove="images\help\NewPothi1.jpg" />
-    <None Remove="images\help\NewPothi2.jpg" />
-    <None Remove="images\help\NewPothi3.jpg" />
-    <None Remove="images\help\NewPothi4.jpg" />
-    <None Remove="images\help\Search.jpg" />
-    <None Remove="images\help\SearchShabad.jpg" />
-    <None Remove="images\help\ShabadEdit.jpg" />
-    <None Remove="images\help\ShabadMove.jpg" />
-    <None Remove="images\History.png" />
-    <None Remove="images\icons8-automatic-500.png" />
-    <None Remove="images\icons8-full-page-view-500.png" />
-    <None Remove="images\icons8-gear-500.png" />
-    <None Remove="images\icons8-next-500.png" />
-    <None Remove="images\icons8-previous-500.png" />
-    <None Remove="images\icons8-toggle-full-screen-500.png" />
-    <None Remove="images\info.png" />
-    <None Remove="images\info2.png" />
-    <None Remove="images\Menu.png" />
-    <None Remove="images\next.png" />
-    <None Remove="images\Nitnem.png" />
-    <None Remove="images\Number.png" />
-    <None Remove="images\Pause.png" />
-    <None Remove="images\Play.png" />
-    <None Remove="images\plusb.png" />
-    <None Remove="images\PothiYoutubeLink.png" />
-    <None Remove="images\prev.png" />
-    <None Remove="images\Raag.png" />
-    <None Remove="images\Random.png" />
-    <None Remove="images\search.png" />
-    <None Remove="images\search2.png" />
-    <None Remove="images\search3.png" />
-    <None Remove="images\settings2.png" />
-    <None Remove="images\settings3.png" />
-    <None Remove="images\settings4.png" />
-    <None Remove="images\Share.png" />
-    <None Remove="images\share2.png" />
-    <None Remove="images\Toolbar.png" />
-    <None Remove="images\trash.png" />
-    <None Remove="images\up.png" />
-    <None Remove="images\up1.png" />
-    <None Remove="images\up2.png" />
-    <None Remove="images\up3.png" />
-    <None Remove="images\writer.png" />
     <None Remove="Resources\Fonts\ghwadh_2.ttf" />
     <None Remove="Resources\Fonts\ghwadh_6.ttf" />
     <None Remove="Resources\Fonts\GurbaniLipiLight_Bold.ttf" />
@@ -102,10 +36,15 @@
     <None Remove="Resources\Fonts\HandFont3.otf" />
     <None Remove="Resources\Fonts\HandFontEdit.otf" />
     <None Remove="Resources\Fonts\PunjabiFont1.otf" />
-    <None Remove="images\actionMenu.png" />
     <None Remove="images\hamburger.png" />
+    <None Remove="images\actionMenu.png" />
+    <None Remove="images\actionMenu40.png" />
+    <None Remove="images\actionMenu70.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Remove="images\actionMenu.png" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DB\RunScript.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -116,11 +55,9 @@
     <EmbeddedResource Include="images\back.png" />
     <EmbeddedResource Include="images\Book.png" />
     <EmbeddedResource Include="images\bookmark.png" />
-    <EmbeddedResource Include="images\Contact.png" />
     <EmbeddedResource Include="images\crossb.png" />
     <EmbeddedResource Include="images\down.png" />
     <EmbeddedResource Include="images\fullscreen.png" />
-    <EmbeddedResource Include="images\delete.png" />
     <EmbeddedResource Include="images\harmonium.png" />
     <EmbeddedResource Include="images\help.png" />
     <EmbeddedResource Include="images\help\AddToPothi.jpg" />
@@ -136,6 +73,7 @@
     <EmbeddedResource Include="images\help\SearchShabad.jpg" />
     <EmbeddedResource Include="images\help\ShabadEdit.jpg" />
     <EmbeddedResource Include="images\help\ShabadMove.jpg" />
+    <EmbeddedResource Include="images\hamburger.png" />
     <EmbeddedResource Include="images\History.png" />
     <EmbeddedResource Include="images\info2.png" />
     <EmbeddedResource Include="images\next.png" />
@@ -152,17 +90,17 @@
     <EmbeddedResource Include="images\settings2.png" />
     <EmbeddedResource Include="images\settings3.png" />
     <EmbeddedResource Include="images\Share.png" />
+    <EmbeddedResource Include="images\shareSmall.png" />
     <EmbeddedResource Include="images\Toolbar.png" />
-    <EmbeddedResource Include="images\trash.png" />
     <EmbeddedResource Include="images\up.png" />
     <EmbeddedResource Include="images\writer.png" />
     <EmbeddedResource Include="Resources\Fonts\gurbaniwebthick.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Gurhindi.ttf" />
     <EmbeddedResource Include="Resources\Fonts\HandFont3.otf" />
     <EmbeddedResource Include="Resources\Fonts\PunjabiFont1.otf" />
-    <EmbeddedResource Include="images\shareSmall.png" />
     <EmbeddedResource Include="images\actionMenu.png" />
-    <EmbeddedResource Include="images\hamburger.png" />
+    <EmbeddedResource Include="images\actionMenu40.png" />
+    <EmbeddedResource Include="images\actionMenu70.png" />
   </ItemGroup>
 
   <ItemGroup>

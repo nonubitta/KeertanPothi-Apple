@@ -224,7 +224,7 @@ namespace KeertanPothi.Views
         {
             itemShare = new ToolbarItem();
             //itemShare.Text = "Share";
-            itemShare.IconImageSource = ImageSource.FromResource("KeertanPothi.images.actionMenu.png");
+            itemShare.IconImageSource = ImageSource.FromResource("KeertanPothi.images.actionMenu70.png");
             itemShare.Order = ToolbarItemOrder.Primary;
             itemShare.Clicked += SharePopup_Clicked;
             ToolbarItems.Add(itemShare);
