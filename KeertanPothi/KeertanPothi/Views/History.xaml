@@ -7,14 +7,15 @@
              x:Class="KeertanPothi.Views.History" BackgroundColor="{Binding PageBg}">
     <ContentPage.Content>
         <StackLayout>
-            <ListView BackgroundColor="Transparent" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
+            <ListView BackgroundColor="Transparent" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand"
+                      ItemSelected="lstVerse_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="10, 5, 10, 5">
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
