@@ -17,7 +17,7 @@
     </pages:PopupPage.Animation>
     <ContentPage.Content>
         <ScrollView x:Name="MainScroll" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Frame BackgroundColor="{Binding PageBg}" BorderColor="#1976D2" HasShadow="True" CornerRadius="10" Margin="25,30,25,0" VerticalOptions="Start">
+            <Frame BackgroundColor="{Binding PageBg}" BorderColor="#1976D2" HasShadow="True" CornerRadius="10" Margin="20,10,20,0" VerticalOptions="Start">
                 <StackLayout Spacing="2" Margin="0">
                    <local:PopupHeader Title="Quick Settings"></local:PopupHeader>
                     <BoxView BackgroundColor="Transparent" HeightRequest="5" ></BoxView>

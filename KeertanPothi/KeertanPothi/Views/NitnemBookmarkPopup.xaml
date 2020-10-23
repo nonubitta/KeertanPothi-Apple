@@ -23,7 +23,7 @@
     </pages:PopupPage.Animation>
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Padding="0,0,0,50" HorizontalOptions="FillAndExpand" >
-             <Frame BackgroundColor="{Binding PageBg}" BorderColor="#1976D2" HasShadow="True" CornerRadius="10" Margin="25,10,25,0" VerticalOptions="Start">
+             <Frame BackgroundColor="{Binding PageBg}" BorderColor="#1976D2" HasShadow="True" CornerRadius="10" Margin="20,10,20,20" VerticalOptions="Start">
                 <StackLayout Spacing="10" >
                     <local:PopupHeader Title="Bookmarks"></local:PopupHeader>
                     <StackLayout>
