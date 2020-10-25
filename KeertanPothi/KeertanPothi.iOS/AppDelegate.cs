@@ -32,6 +32,6 @@ namespace KeertanPothi.iOS
             UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(25, 118, 210);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White });
             return base.FinishedLaunching(app, options);
-    }
+        }
     }
 }

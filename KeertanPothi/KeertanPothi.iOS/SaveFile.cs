@@ -13,23 +13,39 @@ namespace KeertanPothi.iOS
 {
     public class SaveFile : ISaveFile
     {
+        string myDocs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         string externalPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
         void ISaveFile.SaveFile(string fileName, string json, bool autoSave)
         {
             string folderName = "KeertanPothi";
-            string folderPath = System.IO.Path.Combine(externalPath.ToString(), folderName);
+            string folderPath = string.Empty;
+            //string libPath = Path.Combine(docsPath, "..", "Library");
+
+            if (autoSave)
+                folderPath = System.IO.Path.Combine(externalPath, folderName);
+            else
+                folderPath = System.IO.Path.Combine(myDocs, folderName);
+
+
             DirectoryInfo dir = new DirectoryInfo(folderPath);
             if (!dir.Exists)
                 dir.Create();
 
-            var filePath = System.IO.Path.Combine(folderPath, fileName);
-            System.IO.File.WriteAllText(filePath, json);
+            var filePath = Path.Combine(folderPath, fileName);
+            File.WriteAllText(filePath, json);
         }
 
         List<string> ISaveFile.ReadFile(bool autoSave)
         {
             string folderName = "KeertanPothi";
-            string folderPath = System.IO.Path.Combine(externalPath.ToString(), folderName);
+            string folderPath = string.Empty;
+
+            if (autoSave)
+                folderPath = System.IO.Path.Combine(externalPath, folderName);
+            else
+                folderPath = System.IO.Path.Combine(myDocs, folderName);
+
             DirectoryInfo dir = new DirectoryInfo(folderPath);
             if (!dir.Exists)
             {
@@ -37,7 +53,7 @@ namespace KeertanPothi.iOS
             }
             else
             {
-                FileInfo[] files = dir.GetFiles("*.json"); ;
+                FileInfo[] files = dir.GetFiles("*.json");
                 if (files.Length > 0)
                 {
                     List<string> jsons = new List<string>();

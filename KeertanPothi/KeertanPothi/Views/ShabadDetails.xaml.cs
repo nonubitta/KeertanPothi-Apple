@@ -615,8 +615,8 @@ namespace KeertanPothi.Views
             bool ladivaar = Util.PrefShowLadivaar;
             if (ladivaar)
             {
-                versesObs.ToList().ForEach(a => a.GurmukhiHtml = a.GurmukhiHtml.Replace(" ", ""));
-                versesObs.ToList().ForEach(a => a.GurmukhiHtml = a.GurmukhiHtml.Replace("fontcolor", "font color"));
+                versesObs.ToList().ForEach(a => a.GurmukhiHtml = a.GurmukhiHtml?.Replace(" ", ""));
+                versesObs.ToList().ForEach(a => a.GurmukhiHtml = a.GurmukhiHtml?.Replace("fontcolor", "font color"));
             }
         }
 
