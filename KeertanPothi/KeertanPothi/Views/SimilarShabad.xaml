@@ -8,8 +8,8 @@
     <ContentPage.Content>
         <StackLayout Padding="20, 10">
             <StackLayout VerticalOptions="Start" HeightRequest="60">
-                <Label Text="Tap keywords to search for" TextColor="{Binding FontColor}"></Label>
-                <CollectionView x:Name="cvVerse" ItemsLayout="HorizontalList" SelectionMode="Multiple"  >
+                <Label Text="** Tap keywords to search for **" HorizontalTextAlignment="Center" TextColor="{Binding FontColor}"></Label>
+                <CollectionView x:Name="cvVerse" ItemsLayout="HorizontalList" SelectionMode="Multiple" SelectionChanged="cvVerse_SelectionChanged"  >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Padding="5">
@@ -19,7 +19,11 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
-            <Button Text="Search" Clicked="Search_Clicked"></Button>
+            <!--<StackLayout Orientation="Horizontal">
+                <RadioButton BackgroundColor="Transparent" Text="Exact search" IsChecked="True"></RadioButton>
+                <RadioButton BackgroundColor="Transparent" Text="Main letter search"></RadioButton>
+            </StackLayout>-->
+            <Button x:Name="btnSearch" Text="Search" IsEnabled="False" Clicked="Search_Clicked"></Button>
             <StackLayout VerticalOptions="CenterAndExpand">
                 <ListView BackgroundColor="Transparent" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
                     <ListView.ItemTemplate>

@@ -40,6 +40,11 @@
     <None Remove="images\actionMenu.png" />
     <None Remove="images\actionMenu40.png" />
     <None Remove="images\actionMenu70.png" />
+    <None Remove="images\AddToPothiSmall.png" />
+    <None Remove="images\settings2Small.png" />
+    <None Remove="images\fullscreenSmall.png" />
+    <None Remove="images\actionMenuSmall.png" />
+    <None Remove="images\addSmall.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -101,6 +106,11 @@
     <EmbeddedResource Include="images\actionMenu.png" />
     <EmbeddedResource Include="images\actionMenu40.png" />
     <EmbeddedResource Include="images\actionMenu70.png" />
+    <EmbeddedResource Include="images\AddToPothiSmall.png" />
+    <EmbeddedResource Include="images\settings2Small.png" />
+    <EmbeddedResource Include="images\fullscreenSmall.png" />
+    <EmbeddedResource Include="images\actionMenuSmall.png" />
+    <EmbeddedResource Include="images\addSmall.png" />
   </ItemGroup>
 
   <ItemGroup>

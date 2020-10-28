@@ -552,28 +552,27 @@ namespace KeertanPothi
 				order by vr.id";
         }
 
-        public static string SimilarShabadSearch(string searchString, string keywords)
+        public static string SimilarShabadSearch(List<string> keywords)
         {
-            string keywordWild = keywords;//.Replace(" ", "%");
-            return $@"
-                select distinct  VerseID, Gurmukhi, English, WriterEnglish, WriterGurmukhi, RaagEnglish, PageNo from (
-				select 1 sortby, vr.ID VerseID, Gurmukhi, vr.English, wr.WriterEnglish, wr.WriterGurmukhi, rg.RaagEnglish, vr.PageNo
-				from shabad sh 
-				inner join verse vr on sh.verseID = vr.ID 
-				left join Raag rg on vr.raagID = rg.RaagID 
-				left join Writer wr on vr.WriterID = wr.writerID 
-				where vr.gurmukhi like '%{searchString}%'
-				
-                union
-                select 2 sortby, vr.ID VerseID, Gurmukhi, vr.English, wr.WriterEnglish, wr.WriterGurmukhi, rg.RaagEnglish, vr.PageNo
-				from shabad sh 
-				inner join verse vr on sh.verseID = vr.ID 
-				left join Raag rg on vr.raagID = rg.RaagID 
-				left join Writer wr on vr.WriterID = wr.writerID 
-				where vr.gurmukhi like '%{keywordWild}%'
-				)
-                order by sortby, VerseID
-";
+            string query = string.Empty;
+    
+            query = $@"
+                        select vr.ID VerseID, Gurmukhi, vr.English, wr.WriterEnglish, wr.WriterGurmukhi, rg.RaagEnglish, vr.PageNo
+				        from shabad sh 
+				        inner join verse vr on sh.verseID = vr.ID 
+				        left join Raag rg on vr.raagID = rg.RaagID 
+				        left join Writer wr on vr.WriterID = wr.writerID 
+				        where 1=1
+                        ";
+
+            foreach (string key in keywords)
+            {
+                query += $@" and vr.gurmukhi like '%{key}%' ";
+            }
+
+            query += " order by VerseID";
+
+            return query;
         }
 
         public static string MainLetterSearch(string searchString)

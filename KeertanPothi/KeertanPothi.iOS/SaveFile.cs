@@ -53,24 +53,31 @@ namespace KeertanPothi.iOS
             }
             else
             {
-                FileInfo[] files = dir.GetFiles("*.json");
-                if (files.Length > 0)
+                try
                 {
-                    List<string> jsons = new List<string>();
-                    foreach (FileInfo file in files)
+                    FileInfo[] files = dir.GetFiles("*.json");
+                    if (files.Length > 0)
                     {
-                        FileStream stream = file.OpenRead();
-                        string js = string.Empty;
-                        using (StreamReader read = new StreamReader(stream))
+                        List<string> jsons = new List<string>();
+                        foreach (FileInfo file in files)
                         {
-                            js = read.ReadToEnd();
+                            FileStream stream = file.OpenRead();
+                            string js = string.Empty;
+                            using (StreamReader read = new StreamReader(stream))
+                            {
+                                js = read.ReadToEnd();
+                            }
+                            jsons.Add(js);
                         }
-                        jsons.Add(js);
+                        return jsons;
                     }
-                    return jsons;
+                    else
+                        return null;
                 }
-                else
+                catch (Exception)
+                {
                     return null;
+                }
             }
         }
     }

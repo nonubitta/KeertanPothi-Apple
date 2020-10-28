@@ -48,15 +48,35 @@ namespace KeertanPothi.Views
         {
             using (UserDialogs.Instance.Loading("Searching Shabads..."))
             {
-                string keywords = string.Empty;
                 List<object> items = cvVerse.SelectedItems.ToList();
+                List<string> keys = new List<string>();
+                //var charsToRemove = new string[] { "i", "I", "e", "E", "u", "U", "y", "Y", "w" };
+                string preWord = string.Empty;
+                string preCombWord = string.Empty;
                 foreach (object obj in items)
                 {
                     Words item = obj as Words;
-                    keywords += item.Item + "%";
+                    string str = item.Item;
+                    if (!string.IsNullOrEmpty(preWord) && item.Item == preWord)
+                    {
+                        string key = item.Item + "%" + preCombWord;
+                        keys.Add(key);
+                        preWord = item.Item;
+                        preCombWord = key;
+                    }
+                    else
+                    {
+                        keys.Add(str);
+                        preWord = item.Item;
+                        preCombWord = item.Item;
+                    }
+                    //foreach (var c in charsToRemove)
+                    //{
+                    //    str = str.Replace(c, string.Empty);
+                    //}
                 }
                 _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
-                string query = Queries.SimilarShabadSearch(VerseSelected, keywords.TrimEnd('%'));
+                string query = Queries.SimilarShabadSearch(keys);
                 List<VerseSearch> verseSearch = await _con.QueryAsync<VerseSearch>(query);
                 versesObs = new ObservableCollection<VerseSearch>(verseSearch);
                 lstVerse.ItemsSource = versesObs;
@@ -71,6 +91,14 @@ namespace KeertanPothi.Views
             Shabad shabad = await _con.Table<Shabad>().FirstOrDefaultAsync(a => a.VerseID == verse.VerseID);
             await Navigation.PushAsync(new ShabadDetails(shabad.ShabadID, verse.VerseID));
             lstVerse.SelectedItem = null;
+        }
+
+        private void cvVerse_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cvVerse.SelectedItems.Count > 0)
+                btnSearch.IsEnabled = true;
+            else
+                btnSearch.IsEnabled = false;
         }
     }
 }

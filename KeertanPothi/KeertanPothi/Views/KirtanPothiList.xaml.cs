@@ -159,11 +159,11 @@ namespace KeertanPothi.Views
 
         private async void Import_Clicked(object sender, EventArgs e)
         {
-            var pickResult = await FilePicker.PickAsync(new PickOptions
-            {
-                PickerTitle = "Select file"//,
-                //FileTypes = FilePickerFileType.Images
-            });
+            //var pickResult = await FilePicker.PickAsync(new PickOptions
+            //{
+            //    PickerTitle = "Select file"//,
+            //    //FileTypes = FilePickerFileType.Images
+            //});
             List<string> jsons = Util.ReadFile();
 
             if (jsons != null && jsons.Count > 0)

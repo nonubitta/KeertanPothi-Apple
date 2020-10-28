@@ -66,6 +66,7 @@ namespace KeertanPothi.Views
 			//	//ੳਅੲਸਹਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਵੜਸ਼
 			//	search = Util.ReplacePunjabiUnicode(search);
 			//}
+			EditToolbar.IsEnabled = false;
 			string query = string.Empty;
 			KeyValue searchItem = pckSearchType.SelectedItem as KeyValue;
 			if(searchItem != null)
@@ -98,6 +99,7 @@ namespace KeertanPothi.Views
 			slCount.IsVisible = true;
 			slList.IsVisible = true;
 			slLogo.IsVisible = false;
+			EditToolbar.IsEnabled = true;
 		}
 
 		private async void lstVerse_ItemSelected(object sender, SelectedItemChangedEventArgs e)
