@@ -324,7 +324,7 @@ namespace KeertanPothi.Views
                         SelectedVerse.ListBgColor = SelectedVerse?.PageBgTheme.DefaultItemBg;
                     }
                     else
-                        lstShabad.ScrollTo(versesObs[0], ScrollToPosition.MakeVisible, false);
+                        lstShabad.ScrollTo(versesObs[0], ScrollToPosition.Start, false);
                     
                 }
                 else
@@ -538,6 +538,7 @@ namespace KeertanPothi.Views
             if (isFullscreen)
             {
                 NavigationPage.SetHasNavigationBar(this, false);
+                slMain.Padding = new Thickness(0, 32, 0, 0);
                 await EditToolbar.TranslateTo(0, 50, 200, Easing.SinOut);
                 await Task.Delay(50);
                 EditToolbar.IsVisible = false;
@@ -547,6 +548,7 @@ namespace KeertanPothi.Views
             else
             {
                 btnRestore.IsVisible = false;
+                slMain.Padding = new Thickness(0, 0, 0, 0);
                 NavigationPage.SetHasNavigationBar(this, true);
                 EditToolbar.IsVisible = true;
                 await EditToolbar.TranslateTo(0, 0, 200, Easing.SinOut);
@@ -921,7 +923,7 @@ namespace KeertanPothi.Views
             if (verseId > 0)
             {
                 SelectedVerse = versesObs.FirstOrDefault(a => a.ID == verseId);
-                lstShabad.ScrollTo(SelectedVerse, ScrollToPosition.MakeVisible, false);
+                lstShabad.ScrollTo(SelectedVerse, ScrollToPosition.Start, false);
             }
         }
         

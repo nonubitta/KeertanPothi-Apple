@@ -71,7 +71,7 @@
                 </ListView>
             </StackLayout>
         </StackLayout>
-        <StackLayout Grid.Column="0" Grid.Row="1" x:Name="EditToolbar" Margin="0" BackgroundColor="Yellow" IsVisible="False">
+        <StackLayout Grid.Column="0" Grid.Row="1" x:Name="EditToolbar" Margin="0" BackgroundColor="Transparent" IsVisible="False">
             <Frame BackgroundColor="DarkGray" BorderColor="#606060" Padding="5,20,5,10" >
                 <StackLayout>
 

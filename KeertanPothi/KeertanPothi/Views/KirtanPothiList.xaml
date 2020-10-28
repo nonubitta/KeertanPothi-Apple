@@ -8,13 +8,7 @@
 
              xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
              x:Class="KeertanPothi.Views.KirtanPothiList" BackgroundColor="{Binding PageBg}">
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" x:Name="AddPothi" Text="Add" Icon="add.png" Clicked="AddPothi_Clicked"></ToolbarItem>
-        <ToolbarItem Text="Export Pothis" Order="Secondary" Clicked="Export_Clicked" Priority="0"></ToolbarItem>
-        <ToolbarItem Text="Import Pothis" Order="Secondary" Clicked="Import_Clicked" Priority="1"></ToolbarItem>
-        <ToolbarItem Text="Backup" Order="Secondary" Clicked="Backup_Clicked" Priority="2" ></ToolbarItem>
-    </ContentPage.ToolbarItems>-->
-    <NavigationPage.TitleView>
+    <!--<NavigationPage.TitleView>
          <StackLayout Margin="0" Padding="0,7,0,6" Spacing="10" Orientation="Horizontal">
             <Label Text="Keertan Poth" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="Subtitle"
                    FontAttributes="Bold" VerticalOptions="Center"></Label>
@@ -23,7 +17,7 @@
             <ImageButton BackgroundColor="Transparent" HeightRequest="23" WidthRequest="23" HorizontalOptions="End" Clicked="ShareActionSheet_Clicked"
                          Source="{local:EmbeddedImage KeertanPothi.images.actionMenuSmall.png}" ></ImageButton>
         </StackLayout>
-    </NavigationPage.TitleView>
+    </NavigationPage.TitleView>-->
     <StackLayout Padding="10, 10, 10, 10">
         <Label TextColor="{Binding PunjabiTranslationColor}" FontSize="Medium" Margin="10,0,10,0" HorizontalOptions="CenterAndExpand" 
                VerticalOptions="CenterAndExpand" x:Name="lblNoPothi" HorizontalTextAlignment="Center"

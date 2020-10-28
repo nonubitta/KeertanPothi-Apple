@@ -30,7 +30,24 @@ namespace KeertanPothi.Views
             MessagingCenter.Subscribe<App, bool>((App)Application.Current, "PothisImported", (sender, arg) => {
                 PothisCreated(arg);
             });
+            LoadToolbars();
         }
+
+        private void LoadToolbars()
+        {
+            ToolbarItem itemAdd = new ToolbarItem();
+            itemAdd.IconImageSource = ImageSource.FromResource("KeertanPothi.images.addSmall.png");
+            itemAdd.Order = ToolbarItemOrder.Primary;
+            itemAdd.Clicked += AddPothi_Clicked;
+            ToolbarItems.Add(itemAdd);
+
+            ToolbarItem itemShare = new ToolbarItem();
+            itemShare.IconImageSource = ImageSource.FromResource("KeertanPothi.images.actionMenu70.png");
+            itemShare.Order = ToolbarItemOrder.Primary;
+            itemShare.Clicked += ShareActionSheet_Clicked;
+            ToolbarItems.Add(itemShare);
+        }
+
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
