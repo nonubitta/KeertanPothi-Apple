@@ -25,7 +25,11 @@ namespace KeertanPothi
             VersionTracking.Track();
             Theme CurTheme = new Theme();
             InitializeComponent();
-            lblVersion.Text = $"Version: {VersionTracking.CurrentVersion} (Db V: {Util.CurrentDbVersion})";
+            string isDebug = string.Empty;
+            #if DEBUG
+                isDebug = "D";
+            #endif
+            lblVersion.Text = $"Version: {VersionTracking.CurrentVersion} (Db V: {Util.CurrentDbVersion}) {isDebug}";
             this.Detail = new NavigationPage(new Search())
             {
                 BarBackgroundColor = Color.FromHex(CurTheme.HeaderColor),

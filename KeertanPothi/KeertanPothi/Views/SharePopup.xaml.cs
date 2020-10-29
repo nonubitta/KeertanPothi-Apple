@@ -41,7 +41,6 @@ namespace KeertanPothi.Views
         public SharePopup(int shabadId, int verseId, ActionType action = ActionType.added)
         {
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
-            BindingContext = new Theme();
             ShabadId = shabadId;
             VerseId = verseId;
             InitializeComponent();
@@ -53,12 +52,17 @@ namespace KeertanPothi.Views
         public SharePopup(List<PothiShabad> pothiShabad, ActionType action)
         {
             _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
-            BindingContext = new Theme();
             InitializeComponent();
             PothiShabad = pothiShabad;
             RequestType = RequestSource.Multiple;
             Action = action;
             LoadLists();
+        }
+
+        protected override void OnAppearing()
+        {
+            BindingContext = new Theme();
+            base.OnAppearing();
         }
 
         private async void LoadLists()

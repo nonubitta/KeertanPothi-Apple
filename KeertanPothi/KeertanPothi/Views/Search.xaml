@@ -20,7 +20,7 @@
                        FontAttributes="Bold" Clicked="Clear_Clicked" Padding="0" WidthRequest="30"></Button>
                 </StackLayout>
             </Frame>
-            <Button BackgroundColor="Transparent" HorizontalOptions="End" Clicked="History_Clicked" Text="History" 
+            <Button BackgroundColor="Transparent" FontAttributes="Bold" HorizontalOptions="End" Clicked="History_Clicked" Text="History" 
                      Padding="5" HeightRequest="20"></Button>
         </StackLayout>
     </NavigationPage.TitleView>

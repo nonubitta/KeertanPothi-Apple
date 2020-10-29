@@ -37,10 +37,9 @@ namespace KeertanPothi.Views
         protected override void OnAppearing()
         {
             Theme theme = new Theme();
+            BindingContext = theme;
             versesObs?.ToList().ForEach(a => a.PageBgTheme = theme);
             Keywords?.ToList().ForEach(a => a.PageBgTheme = theme);
-            BindingContext = theme;
-
             base.OnAppearing();
         }
 

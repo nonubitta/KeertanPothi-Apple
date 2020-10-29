@@ -30,7 +30,7 @@
                     <local:PopupHeader Title="Add to Pothi"></local:PopupHeader>
                    
                         <BoxView HeightRequest="10"></BoxView>
-                        <Label Text="Select default line" HorizontalOptions="CenterAndExpand" 
+                        <Label Text="Select default line" HorizontalOptions="CenterAndExpand" TextColor="{Binding FontColor}"
                                             FontAttributes="Bold" FontSize="Small"></Label>
                         <Picker Margin="20,0,20,0" x:Name="pckLine" IsVisible="False" TextColor="White" ItemDisplayBinding="{Binding GurmukhiUni}"
                                 FontFamily="PunjabiFont"></Picker>
@@ -38,7 +38,7 @@
                             <Expander.Header>
                                 <StackLayout>
                                     <Label x:Name="lblSelect" Text="Select Pothi to add shabad" HorizontalOptions="CenterAndExpand" 
-                                            FontAttributes="Bold" FontSize="Small"></Label>
+                                       TextColor="{Binding FontColor}" FontAttributes="Bold" FontSize="Small"></Label>
                                 </StackLayout>
                             </Expander.Header>
                             <StackLayout Padding="20,0,20,20" Spacing="10">

@@ -264,7 +264,11 @@ namespace KeertanPothi.Views
             versesObs?.ToList().ForEach(a => a.PageBgTheme = theme);
             BindingContext = theme;
             EditToolbar.BackgroundColor = Color.FromHex(theme.HeaderColor);
+            lstShabad.SelectedItem = null;
+            lstShabad.SelectionMode = ListViewSelectionMode.None;
             base.OnAppearing();
+            if (!string.IsNullOrEmpty(lblWriter.Text))
+                Title = lblWriter.Text;
         }
 
         protected override void OnDisappearing()
@@ -367,7 +371,7 @@ namespace KeertanPothi.Views
         {
             lblScripture.Text = "Scripture: " + verse.SourceEnglish;
             lblAng.Text = "Ang: " + verse.PageNo.ToString();
-            lblWriter.Text = "Writer: " + writerEnglish;
+            lblWriter.Text = writerEnglish;
             lblRaag.Text = "Raag: " + verse.RaagEnglish;
             if (RequestFrom == RequestSource.Ang)
                 Title = "Ang: " + verse.PageNo.ToString();
@@ -840,11 +844,6 @@ namespace KeertanPothi.Views
             FullScreen(false);
         }
 
-        private void btnfindSimilar_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
         private async void Back_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync(true);
@@ -877,11 +876,12 @@ namespace KeertanPothi.Views
             const string file = "Share as File";
             const string clipboard = "Copy to clipboard";
             const string notepad = "Text Note";
+            const string similar = "Find similar shabads";
             string action = string.Empty;
             if (RequestFrom == RequestSource.Pothi)
-                action = await DisplayActionSheet("Export/Import", "Cancel", null, text, file, clipboard, notepad);
+                action = await DisplayActionSheet("Export/Import", "Cancel", null, text, file, clipboard, notepad, similar);
             else
-                action = await DisplayActionSheet("Actions", "Cancel", null, text, file, clipboard);
+                action = await DisplayActionSheet("Actions", "Cancel", null, text, file, clipboard, similar);
 
             switch (action)
             {
@@ -896,6 +896,14 @@ namespace KeertanPothi.Views
                     break;
                 case notepad:
                     Note_Clicked(null, null);
+                    break;
+                case similar:
+                    //if (lstShabad.SelectedItem == null)
+                    Util.ShowRoast("Please select a verse(line) to Find similar shabads", true);
+                    Title = similar;
+                    lstShabad.SelectionMode = ListViewSelectionMode.Single;
+                    //else
+                    //    FindSimilarShabads();
                     break;
                 default:
                     break;
@@ -945,30 +953,31 @@ namespace KeertanPothi.Views
             Navigation.PushAsync(similarShabad);
         }
 
-        private void Research_Clicked(object sender, EventArgs e)
+        private void FindSimilarShabads()
         {
-
+            Verse verse = lstShabad.SelectedItem as Verse;
+            SimilarShabad similarShabad = new SimilarShabad(verse.Gurmukhi);
+            Navigation.PushAsync(similarShabad);
         }
+
+        void lstShabad_ItemSelected(System.Object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null)
+                return;
+            Verse verse = e.SelectedItem as Verse;
+            SimilarShabad similarShabad = new SimilarShabad(verse.Gurmukhi);
+            Navigation.PushAsync(similarShabad);
+        }
+        //async void lstShabad_ItemTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        //{
+        //if(ToolbarVisible)
+        //    await EditToolbar.TranslateTo(0, 50, 200, Easing.SinOut);
+        //else
+        //    await EditToolbar.TranslateTo(0, 0, 200, Easing.SinOut);
+        ////EditToolbar.Opacity = (EditToolbar.Opacity == 1) ? 0 : 1;
+        //ToolbarVisible = !ToolbarVisible;
+        //}
     }
     #endregion
 }
 
-//private void PanGestureRecognizer_PanUpdated(object sender, PanUpdatedEventArgs e)
-//{
-//    if (e.StatusType == GestureStatus.Running || e.StatusType == GestureStatus.Completed)
-//    {
-//        double x = e.TotalX;
-//        double y = e.TotalY;
-//        versesObs.ToList().ForEach(a => a.GurmukhiFontSize += 2);
-//    }
-//}
-
-//private void PinchGestureRecognizer_PinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
-//{
-//    if (e.Status == GestureStatus.Running || e.Status == GestureStatus.Completed)
-//    {
-//        double x = e.Scale;
-//        Point y = e.ScaleOrigin;
-//        versesObs.ToList().ForEach(a => a.GurmukhiFontSize -= 2);
-//    }
-//}

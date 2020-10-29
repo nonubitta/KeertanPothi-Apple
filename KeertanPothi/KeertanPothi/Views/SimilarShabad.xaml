@@ -19,12 +19,8 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
-            <!--<StackLayout Orientation="Horizontal">
-                <RadioButton BackgroundColor="Transparent" Text="Exact search" IsChecked="True"></RadioButton>
-                <RadioButton BackgroundColor="Transparent" Text="Main letter search"></RadioButton>
-            </StackLayout>-->
             <Button x:Name="btnSearch" Text="Search" IsEnabled="False" Clicked="Search_Clicked"></Button>
-            <StackLayout VerticalOptions="CenterAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand">
                 <ListView BackgroundColor="Transparent" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
