@@ -94,6 +94,8 @@ namespace KeertanPothi.Views
             VerseObs.ToList().ForEach(a => a.IsEditable = isEditable);
             btnMove.Text = (isEditable) ? "Done" : "Edit";
             Util.ToggleToolbar(EditToolbar, isEditable, 200);
+            lstVerse.ItemsSource = null;
+            lstVerse.ItemsSource = VerseObs;
             //EditToolbar.IsVisible = isEditable;
             //if (isEditable)
             //{

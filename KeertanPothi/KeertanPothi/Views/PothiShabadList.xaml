@@ -61,7 +61,7 @@
                 <Button Text="Copy to other pothi" Clicked="Copy_Clicked"></Button>
             </StackLayout>
             <StackLayout HorizontalOptions="End">
-                <Button BackgroundColor="Red" VerticalOptions="CenterAndExpand" HeightRequest="35" Padding="0" Margin="0" Text="Delete" Clicked="Delete_Clicked"></Button>
+                <Button BackgroundColor="Red" VerticalOptions="CenterAndExpand" HeightRequest="35" Padding="10" Margin="0" Text="Delete" Clicked="Delete_Clicked"></Button>
             </StackLayout>
         </StackLayout>
     </StackLayout>
