@@ -21,9 +21,11 @@ namespace KeertanPothi.Views
         string VerseSelected = string.Empty;
         SQLiteAsyncConnection _con;
         ObservableCollection<VerseSearch> versesObs;
+        Theme theme = new Theme();
         public SimilarShabad(string verse)
         {
             InitializeComponent();
+            BindingContext = theme;
             VerseSelected = verse;
             string[] words = verse.Split();
             List<Words> keywords = new List<Words>();
@@ -36,8 +38,7 @@ namespace KeertanPothi.Views
         }
         protected override void OnAppearing()
         {
-            Theme theme = new Theme();
-            BindingContext = theme;
+        
             versesObs?.ToList().ForEach(a => a.PageBgTheme = theme);
             Keywords?.ToList().ForEach(a => a.PageBgTheme = theme);
             base.OnAppearing();

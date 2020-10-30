@@ -42,7 +42,7 @@
                                 </StackLayout>
                             </Expander.Header>
                             <StackLayout Padding="20,0,20,20" Spacing="10">
-                                <Picker Title="Select pothi" x:Name="ddlPothi" ItemDisplayBinding="{Binding Name}"/>
+                                <Picker TextColor="White" Title="Select pothi" x:Name="ddlPothi" ItemDisplayBinding="{Binding Name}"/>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
                                     <Button Text="Save" x:Name="Save" Clicked="Save_Clicked" ></Button>
                                     <Button Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked"></Button>

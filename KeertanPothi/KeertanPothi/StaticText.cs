@@ -23,7 +23,7 @@ namespace KeertanPothi
                 if (IsPunjabi)
                 {
                     MenuSearch = "ਸ਼ਬਦ ਖੋਜ";
-                    MenuRandom = "ਬੇਤਰਤੀਬ ਸ਼ਬਦ";
+                    MenuRandom = "ਰੈਨਡਮ ਸ਼ਬਦ";
                     MenuKeertanPothi = "ਕੀਰਤਨ ਪੋਥੀ";
                     MenuSundarGutka = "ਸੁੰਦਰ ਗੁਟਕਾ";
                     MenuWriterList = "ਲੇਖਕ ਸੂਚੀ";

@@ -11,12 +11,12 @@
         <ContentPage Title="Menu" IconImageSource="menu2.png" >
             <!--☰≡𝌆⌘-->
             <StackLayout Spacing="0" BackgroundColor="#202124">
-                <StackLayout Padding="0,50,0,0" HeightRequest="90" Spacing="0" BackgroundColor="#1976D2" VerticalOptions="Start">
+                <StackLayout Padding="0,45,0,0" HeightRequest="90" Spacing="0" BackgroundColor="#1976D2" VerticalOptions="Start">
                     <!--<StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Header_Tapped"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>-->
                     <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="#ffffff" 
-                           FontFamily="PunjabiFont" Text="kIrqnu poQI" FontSize="30"></Label>
+                           FontFamily="PunjabiFont" Text="kIrqnu poQI" FontSize="34"></Label>
                     <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="#ffffff" 
                            Text="Keertan Pothi" FontSize="18"></Label>
                     <Label VerticalOptions="Center" HorizontalOptions="Center" TextColor="#ffffff" 

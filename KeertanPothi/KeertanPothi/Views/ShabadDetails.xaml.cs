@@ -968,15 +968,16 @@ namespace KeertanPothi.Views
             SimilarShabad similarShabad = new SimilarShabad(verse.Gurmukhi);
             Navigation.PushAsync(similarShabad);
         }
-        //async void lstShabad_ItemTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
-        //{
-        //if(ToolbarVisible)
-        //    await EditToolbar.TranslateTo(0, 50, 200, Easing.SinOut);
-        //else
-        //    await EditToolbar.TranslateTo(0, 0, 200, Easing.SinOut);
-        ////EditToolbar.Opacity = (EditToolbar.Opacity == 1) ? 0 : 1;
-        //ToolbarVisible = !ToolbarVisible;
-        //}
+
+        async void lstShabad_ItemTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        {
+            if (ToolbarVisible)
+                await EditToolbar.TranslateTo(0, 50, 100, Easing.SinOut);
+            else
+                await EditToolbar.TranslateTo(0, 0, 100, Easing.SinOut);
+            //EditToolbar.Opacity = (EditToolbar.Opacity == 1) ? 0 : 1;
+            ToolbarVisible = !ToolbarVisible;
+        }
     }
     #endregion
 }

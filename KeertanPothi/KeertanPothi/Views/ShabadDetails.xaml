@@ -23,7 +23,7 @@
             </SwipeView.LeftItems>
             <SwipeView.Content>
                     <StackLayout VerticalOptions="FillAndExpand">
-                        <ListView BackgroundColor="Transparent" x:Name="lstShabad" HasUnevenRows="True" SelectionMode="None" ItemSelected="lstShabad_ItemSelected">
+                        <ListView ItemTapped="lstShabad_ItemTapped" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" x:Name="lstShabad" HasUnevenRows="True" SelectionMode="None" ItemSelected="lstShabad_ItemSelected">
                         <ListView.Header>
                             <StackLayout Spacing="0">
                                 <Expander x:Name="expNotes" IsVisible="False">
