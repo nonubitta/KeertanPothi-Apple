@@ -29,7 +29,7 @@
 	<key>CFBundleVersion</key>
 	<string>9</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>screenLaunched</string>
 	<key>CFBundleName</key>
 	<string>KeertanPothi</string>
 	<key>XSAppIconAssets</key>

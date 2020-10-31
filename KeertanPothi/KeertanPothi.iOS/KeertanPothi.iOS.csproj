@@ -82,7 +82,6 @@
     <BundleResource Include="Resources\gurbaniwebthick.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
-    <BundleResource Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\add.png" />
     <Compile Include="SaveFile.cs" />
     <BundleResource Include="Resources\help.png" />
@@ -95,6 +94,9 @@
     <BundleResource Include="Resources\Book.png" />
     <Compile Include="SetStatusBarStyle.cs" />
     <BundleResource Include="Resources\menu2.png" />
+    <BundleResource Include="Resources\splash.jpg" />
+    <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\logo2.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -175,6 +177,10 @@
     <ImageAsset Include="Assets.xcassets\add.imageset\add.png" />
     <ImageAsset Include="Assets.xcassets\add.imageset\add-1.png" />
     <ImageAsset Include="Assets.xcassets\add.imageset\add-2.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\sp10.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\sp10-1.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\sp10-2.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -219,5 +225,13 @@
     <Folder Include="Assets.xcassets\Random.imageset\" />
     <Folder Include="Assets.xcassets\Book.imageset\" />
     <Folder Include="Assets.xcassets\add.imageset\" />
+    <Folder Include="Assets.xcassets\splash.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\screenLaunched.storyboard" />
   </ItemGroup>
 </Project>
