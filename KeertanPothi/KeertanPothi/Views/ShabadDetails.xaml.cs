@@ -78,8 +78,7 @@ namespace KeertanPothi.Views
                 RequestFrom = RequestSource.History;
             else
                 RequestFrom = RequestSource.Search;
-            InitializeComponent();
-            LoadShabad();
+            CommonConstructor();
             initializing = false;
         }
 
@@ -93,8 +92,7 @@ namespace KeertanPothi.Views
             var rand = new Random();
             ShabadId = rand.Next(20, 5540);
             RequestFrom = RequestSource.Random;
-            InitializeComponent();
-            LoadShabad();
+            CommonConstructor();
             initializing = false;
         }
 
@@ -112,8 +110,7 @@ namespace KeertanPothi.Views
             SelectedVerseId = verseID;
             PothiId = pothiId;
             RequestFrom = RequestSource.Pothi;
-            InitializeComponent();
-            LoadShabad();
+            CommonConstructor();
             initializing = false;
         }
 
@@ -127,8 +124,7 @@ namespace KeertanPothi.Views
             initializing = true;
             AngNo = angNo;
             RequestFrom = RequestSource.Ang;
-            InitializeComponent();
-            LoadShabad();
+            CommonConstructor();
             initializing = false;
         }
 
@@ -142,11 +138,16 @@ namespace KeertanPothi.Views
             initializing = true;
             this._nitnemBani = bani;
             RequestFrom = RequestSource.Nitnem;
-            InitializeComponent();
-            LoadShabad();
+            CommonConstructor();
             initializing = false;
         }
 
+        private void CommonConstructor()
+        {
+            CreateToolbars();
+            InitializeComponent();
+            LoadShabad();
+        }
 
         #endregion
 
@@ -286,8 +287,8 @@ namespace KeertanPothi.Views
       
             using (UserDialogs.Instance.Loading("Loading Shabad..."))
             {
-                CreateToolbars();
-                _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
+                if(_con == null)
+                    _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
                 List<Verse> verses;
                 string notes = string.Empty;
                 if (RequestFrom == RequestSource.Pothi) {

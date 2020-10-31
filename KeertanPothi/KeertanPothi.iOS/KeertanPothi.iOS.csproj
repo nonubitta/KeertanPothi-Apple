@@ -228,10 +228,6 @@
     <Folder Include="Assets.xcassets\splash.imageset\" />
   </ItemGroup>
   <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork" />
-    <ITunesArtwork Include="iTunesArtwork%402x" />
-  </ItemGroup>
-  <ItemGroup>
     <InterfaceDefinition Include="Resources\screenLaunched.storyboard" />
   </ItemGroup>
 </Project>
