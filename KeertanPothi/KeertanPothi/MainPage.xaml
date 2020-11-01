@@ -23,7 +23,7 @@
                            Text="(Beta)" FontSize="Micro"></Label>
                 </StackLayout>
                 <StackLayout VerticalOptions="StartAndExpand" x:Name="slMenuBg">
-                    <ListView BackgroundColor="Transparent" VerticalOptions="Start" RowHeight="60" x:Name="lstMenu" ItemSelected="lstMenu_ItemSelected"
+                    <ListView BackgroundColor="Transparent" VerticalOptions="FillAndExpand" RowHeight="60" x:Name="lstMenu" ItemSelected="lstMenu_ItemSelected"
                           SeparatorColor="#4E4E4F">
                         <ListView.ItemTemplate>
                             <DataTemplate>

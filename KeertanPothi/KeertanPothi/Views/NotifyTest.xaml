@@ -9,7 +9,7 @@
     <StackLayout>
         <StackLayout Padding="10, 10, 10, 10">
             <Label x:Name="lblDbVersion"></Label>
-            <ListView BackgroundColor="Transparent" x:Name="lstWriter" RowHeight="70"  >
+            <ListView VerticalOptions="FillAndExpand" BackgroundColor="Transparent" x:Name="lstWriter" RowHeight="70"  >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

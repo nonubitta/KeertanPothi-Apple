@@ -13,7 +13,7 @@
         <Label TextColor="{Binding PunjabiTranslationColor}" FontSize="Medium" Margin="10,0,10,0" HorizontalOptions="CenterAndExpand" 
                VerticalOptions="CenterAndExpand" x:Name="lblNoBani" HorizontalTextAlignment="Center"
                Text="All banis are disabled&#10;Click on Edit List to add bani." IsVisible="False"></Label>
-        <ListView BackgroundColor="Transparent" VerticalOptions="Start" RowHeight="70" x:Name="lstNitnem" ItemSelected="lstNitnem_ItemSelected">
+        <ListView BackgroundColor="Transparent" VerticalOptions="FillAndExpand" RowHeight="70" x:Name="lstNitnem" ItemSelected="lstNitnem_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

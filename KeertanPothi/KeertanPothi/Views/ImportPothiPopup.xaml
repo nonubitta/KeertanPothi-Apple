@@ -27,7 +27,7 @@
                 <StackLayout Padding="10">
                     <local:PopupHeader Title="Import Pothis"></local:PopupHeader>
                     <StackLayout>
-                        <ListView BackgroundColor="Transparent" x:Name="lstPothi" HasUnevenRows="True" SelectionMode="None">
+                        <ListView VerticalOptions="FillAndExpand" BackgroundColor="Transparent" x:Name="lstPothi" HasUnevenRows="True" SelectionMode="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

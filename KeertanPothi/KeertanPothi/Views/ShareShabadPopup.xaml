@@ -29,7 +29,8 @@
                         <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Share" TextColor="White" FontSize="Medium"></Label>
                         <Button Text="X" Clicked="btnClose_Clicked" HeightRequest="30" HorizontalOptions="End" WidthRequest="30" Padding="0"></Button>
                     </StackLayout>
-                    <ListView BackgroundColor="Transparent" VerticalOptions="Start" RowHeight="60" x:Name="lstMenu" ItemSelected="lstMenu_ItemSelected">
+                    <ListView BackgroundColor="Transparent" VerticalOptions="Start" RowHeight="60" x:Name="lstMenu"
+                              ItemSelected="lstMenu_ItemSelected">
                         <ListView.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Share as Text</x:String>

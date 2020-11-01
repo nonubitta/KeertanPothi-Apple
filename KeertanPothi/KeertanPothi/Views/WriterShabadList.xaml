@@ -11,7 +11,8 @@
                      Clicked="WriterInfo_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
         <StackLayout Padding="0,10,0,0">
-        <ListView BackgroundColor="Transparent" CachingStrategy="RecycleElement" x:Name="lstVerse" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
+        <ListView BackgroundColor="Transparent" CachingStrategy="RecycleElement" x:Name="lstVerse" HasUnevenRows="True"
+                  VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

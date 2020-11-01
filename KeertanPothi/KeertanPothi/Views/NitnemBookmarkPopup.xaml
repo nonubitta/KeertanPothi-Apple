@@ -27,7 +27,7 @@
                 <StackLayout Spacing="10" >
                     <local:PopupHeader Title="Bookmarks"></local:PopupHeader>
                     <StackLayout>
-                        <ListView BackgroundColor="Transparent" x:Name="lstVerse" HasUnevenRows="True" ItemSelected="lstVerse_ItemSelected">
+                        <ListView VerticalOptions="FillAndExpand" BackgroundColor="Transparent" x:Name="lstVerse" HasUnevenRows="True" ItemSelected="lstVerse_ItemSelected">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

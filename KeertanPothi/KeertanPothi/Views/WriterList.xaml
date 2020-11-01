@@ -7,7 +7,7 @@
              Title="Writer List"
              x:Class="KeertanPothi.Views.WriterList" BackgroundColor="{Binding PageBg}">
     <StackLayout Padding="10">
-        <ListView BackgroundColor="Transparent" x:Name="lstWriter" RowHeight="70" ItemSelected="lstWriter_ItemSelected">
+        <ListView VerticalOptions="FillAndExpand" BackgroundColor="Transparent" x:Name="lstWriter" RowHeight="70" ItemSelected="lstWriter_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
