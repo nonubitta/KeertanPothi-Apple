@@ -638,6 +638,14 @@ namespace DBTest.Models
         public DateTime CreatedOn { get; set; }
     }
 
+    public class NewFeature
+    {
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public string Details { get; set; }
+        public string ImageUrl { get; set; }
+    }
+
     public class Theme : INotifyPropertyChanged
     {
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

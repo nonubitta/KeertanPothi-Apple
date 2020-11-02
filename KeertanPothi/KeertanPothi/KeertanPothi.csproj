@@ -44,6 +44,12 @@
     <None Remove="images\fullscreenSmall.png" />
     <None Remove="images\addSmall.png" />
     <None Remove="images\actionMenu70.png" />
+    <None Remove="images\help\akv1.jpg" />
+    <None Remove="images\help\akv2.jpg" />
+    <None Remove="images\help\exactsearch.jpg" />
+    <None Remove="images\help\language.jpg" />
+    <None Remove="images\help\similarshabads1.jpg" />
+    <None Remove="images\help\similarshabads2.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -109,6 +115,12 @@
     <EmbeddedResource Include="images\fullscreenSmall.png" />
     <EmbeddedResource Include="images\addSmall.png" />
     <EmbeddedResource Include="images\actionMenu70.png" />
+    <EmbeddedResource Include="images\help\akv1.jpg" />
+    <EmbeddedResource Include="images\help\akv2.jpg" />
+    <EmbeddedResource Include="images\help\exactsearch.jpg" />
+    <EmbeddedResource Include="images\help\language.jpg" />
+    <EmbeddedResource Include="images\help\similarshabads1.jpg" />
+    <EmbeddedResource Include="images\help\similarshabads2.jpg" />
   </ItemGroup>
 
   <ItemGroup>

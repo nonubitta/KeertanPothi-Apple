@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBTest.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -30,7 +31,7 @@ namespace KeertanPothi
                     MenuRaagList = "ਰਾਗ  ਸੂਚੀ";
                     MenuHistory = "ਖੋਜੇ ਸ਼ਬਦ";
                     MenuHelpContact = "ਮਦਦ/ਸੰਪਰਕ";
-                    FontSize = 24;
+                    FontSize = 21;
                 }
                 else
                 {
@@ -42,12 +43,12 @@ namespace KeertanPothi
                     MenuRaagList = "Raag List";
                     MenuHistory = "History";
                     MenuHelpContact = "Help/Contact";
-                    FontSize = 21;
+                    FontSize = 18;
                 }
             }
         }
-  
-        internal class SearchText: StaticTextBase
+
+        internal class SearchText : StaticTextBase
         {
             public string ThreeLetterInfo { get; }
             public string HowToHelpInfo { get; }
@@ -55,7 +56,8 @@ namespace KeertanPothi
             public string DDLMainLetterSearch { get; }
             public string DDLExactSearch { get; }
             public string DDLAngSearch { get; }
-            
+            public string NewFeatureLink { get; set; }
+
             public SearchText()
             {
                 if (IsPunjabi)
@@ -64,8 +66,9 @@ namespace KeertanPothi
                     HowToHelpInfo = "ਕਿਸ ਤਰ੍ਹਾਂ ਖੋਜ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ ਦੀ ਸਹਾਇਤਾ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ 'Help' ਬਟਨ 'ਤੇ ਕਲਿਕ ਕਰੋ";
                     DDLFirstLetterSearch = "ਪਹਿਲੇ ਅਖਰ ਤੋਂ ਖੋਜ";
                     DDLMainLetterSearch = "ਬਿਨਾ ਲਗਾ ਮਾਤਰਾ ਤੋਂ ਖੋਜ";
-                    DDLExactSearch = "Exact Search";
+                    DDLExactSearch = "ਲਗਾ ਮਾਤਰਾ ਨਾਲ ਖੋਜ";
                     DDLAngSearch = "ਅੰਗ ਖੋਜ";
+                    NewFeatureLink = "ਨਵੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਵੇਖਣ ਲਈ ਇੱਥੇ ਕਲਿੱਕ ਕਰੋ";
                 }
                 else
                 {
@@ -75,6 +78,7 @@ namespace KeertanPothi
                     DDLMainLetterSearch = "Main Letter Search";
                     DDLExactSearch = "Exact Search";
                     DDLAngSearch = "Ang Search";
+                    NewFeatureLink = "Click here to see new features";
                 }
             }
         }
@@ -96,7 +100,7 @@ namespace KeertanPothi
                 }
                 else
                 {
-                    RenameDelete = "* Swipe right on a pothi to rename or delete";
+                    RenameDelete = "* Long press a pothi to rename or delete";
                     NoPothisFound = "No pothis found." + Environment.NewLine + "Click on plus button in top right" + Environment.NewLine + "to create your first pothi.";
                     NewPothiNameSubject = "Add new Pothi";
                     NewPothiNameMsg = "Enter pothi name";
@@ -115,11 +119,11 @@ namespace KeertanPothi
             {
                 if (IsPunjabi)
                 {
-                   
+
                 }
                 else
                 {
-                    
+
                 }
 
             }
@@ -149,6 +153,194 @@ namespace KeertanPothi
                     ButtonText = "Search Shabad to add to this Pothi";
                 }
 
+            }
+        }
+
+        internal class NewFeaturePopup : StaticTextBase
+        {
+            public List<NewFeature> newFeatures = new List<NewFeature>();
+            public string Title { get; set; }
+            public NewFeaturePopup()
+            {
+                if (IsPunjabi)
+                {
+                    Title = "ਨਵੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ";
+                    newFeatures.Add(new NewFeature
+                    {
+                        Name = "ਪੰਜਾਬੀ ਭਾਸ਼ਾ",
+                        Location = "ਖੱਬਾ ਮੀਨੂੰ",
+                        Details = "ਜ਼ਿਆਦਾਤਰ ਸਕ੍ਰੀਨਾਂ ਲਈ ਪੰਜਾਬੀ ਨੂੰ ਵਿਕਲਪੀ ਭਾਸ਼ਾ ਵਜੋਂ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ ਹੈ",
+                        ImageUrl = "images/nfpunjabi.jpg"
+                    });
+                    newFeatures.Add(new NewFeature
+                    {
+                        Name = "ਆਸਾ ਕੀ ਵਾਰ ਮੋਡ",
+                        Location = "ਸੁੰਦਰ ਗੁਟਕਾ-> ਆਸਾ ਕੀ ਵਾਰ-> ਹਾਰਮੋਨੀਅਮ ਆਈਕਾਨ",
+                        Details = "ਸੰਗਤ ਹੁਣ ਕੀਰਤਨ ਪੋਥੀ ਦੇ ਨਾਲ ਆਸਾ ਦੀ ਵਾਰ ਦੀ ਵਰਤੋ ਕਰ ਸਕਦੀ ਹੈ. ਉਹ ਟੈਬਸ ਤੇ ਕਲਿਕ ਕਰਕੇ ਸ਼ਬਦ ਅਤੇ ਆਸਾ ਕੀ ਵਾਰ ਇਕ ਨਾਲ ਖੋਲ ਸਕਦੇ ਹਨ",
+                        ImageUrl = "images/nfakv.jpg"
+                    });
+                    newFeatures.Add(new NewFeature
+                    {
+                        Name = "ਮਿਲਦੇ ਸ਼ਬਦ ਲੱਭੋ",
+                        Location = "ਸ਼ਬਦ ਸਕ੍ਰੀਨ->ਸ਼ਬਦ ਦੀ ਲਾਇਨ ਨੂੰ ਦਬਾ ਕੇ ਰਖੋ->Find similar shabads",
+                        Details = "ਸੰਗਤ ਹੁਣ ਕਿਸੇ ਵੀ ਤੁਕ ਦੇ ਸਮਾਨ ਸ਼ਬਦਾਂ ਨੂੰ ਲੱਭ ਸਕਦਿਆ ਹਨ",
+                        ImageUrl = "images/nfsimilar.jpg"
+                    });
+                }
+                else
+                {
+                    Title = "New Features";
+                    newFeatures.Add(new NewFeature
+                    {
+                        Name = "Punjabi Language",
+                        Location = "Left Menu",
+                        Details = "Punjabi has been added as alternate language for most of the screens",
+                        ImageUrl = "images/nfpunjabi.jpg"
+                    });
+                    newFeatures.Add(new NewFeature
+                    {
+                        Name = "Asa ki Vaar mode",
+                        Location = "Sundar Gutka->Asa ki Vaar->Harmonium icon",
+                        Details = "User can now open asa ki vaar path along with keertan pothis. User can easily switch between shabads and asa ki vaar by clicking tabs",
+                        ImageUrl = "images/nfakv.jpg"
+                    });
+                    newFeatures.Add(new NewFeature
+                    {
+                        Name = "Find Similar Shabads",
+                        Location = "Shabad screen->Long press verse->Find similar shabads at the top",
+                        Details = "User can now find similar shabads for any verse",
+                        ImageUrl = "images/nfsimilar.jpg"
+                    });
+                }
+
+            }
+        }
+
+        internal class ShabadsDetails : StaticTextBase
+        {
+            public string FindSimilarShabadsText { get; }
+
+            public ShabadsDetails()
+            {
+                if (IsPunjabi)
+                {
+                    FindSimilarShabadsText = "ਮਿਲਦੇ ਸ਼ਬਦ ਲੱਭੋ";
+                }
+                else
+                {
+                    FindSimilarShabadsText = "Find similar shabads";
+                }
+
+            }
+        }
+
+        internal class ContactUsText : StaticTextBase
+        {
+            public string TitleSearchShabad { get; }
+            public string FirstLetterTitle { get; set; }
+            public string FirstLetterText { get; set; }
+
+            public string MainLetterTitle { get; set; }
+            public string MainLetterText { get; set; }
+
+            public string AngSearchTitle { get; set; }
+            public string AngSearchText { get; set; }
+
+            public string CreatePothi { get; set; }
+            public string CreatePothi1 { get; set; }
+            public string CreatePothi2 { get; set; }
+            public string CreatePothi3 { get; set; }
+            public string CreatePothi4 { get; set; }
+            public string CreatePothi5 { get; set; }
+
+            public string AddShabad { get; set; }
+            public string AddShabad1 { get; set; }
+            public string AddShabad2 { get; set; }
+            public string AddShabad4 { get; set; }
+
+            public string SimilarShabads { get; set; }
+            public string SimilarShabads1 { get; set; }
+            public string SimilarShabads2 { get; set; }
+            public string SimilarShabads3 { get; set; }
+
+            public string AsaKiVaarMode { get; set; }
+            public string AsaKiVaarMode1 { get; set; }
+            public string AsaKiVaarMode2 { get; set; }
+            public string AsaKiVaarMode3 { get; set; }
+
+            public ContactUsText()
+            {
+                if (IsPunjabi)
+                {
+                    TitleSearchShabad = "1. ਸ਼ਬਦ ਲੱਭਣਾ:";
+
+                    FirstLetterTitle = "ਪਹਿਲੇ ਅਖਰ ਤੋਂ ਖੋਜ: ";
+                    FirstLetterText = "ਹੇਠਾਂ ਦਿੱਤੀ ਸੂਚੀ ਵਿੱਚੋਂ 'ਪਹਿਲੇ ਅਖਰ ਤੋਂ ਖੋਜ' ਦੀ ਚੋਣ ਕਰੋ." + Environment.NewLine + "ਹਰੇਕ ਸ਼ਬਦ ਦਾ ਪਹਿਲਾ ਅੱਖਰ ਟਾਈਪ ਕਰੋ|" + Environment.NewLine + "ਉਦਾਹਰਣ ਦੇ ਲਈ:";
+                    MainLetterTitle = "ਬਿਨਾ ਲਗਾ ਮਾਤਰਾ ਤੋਂ ਖੋਜ: ";
+                    MainLetterText = "ਹੇਠਾਂ ਦਿੱਤੀ ਸੂਚੀ ਵਿੱਚੋਂ 'ਬਿਨਾ ਲਗਾ ਮਾਤਰਾ ਤੋਂ ਖੋਜ' ਦੀ ਚੋਣ ਕਰੋ." + Environment.NewLine + "ਹਰੇਕ ਅੱਖਰ ਬਿਨਾ ਲਗਾ ਮਾਤਰਾ ਤੋਂ ਟਾਈਪ ਕਰੋ|" + Environment.NewLine + "ਉਦਾਹਰਣ ਦੇ ਲਈ:";
+                    AngSearchTitle = "ਅੰਗ ਖੋਜ: ";
+                    AngSearchText = "ਹੇਠਾਂ ਦਿੱਤੀ ਸੂਚੀ ਵਿੱਚੋਂ 'ਅੰਗ ਖੋਜ' ਦੀ ਚੋਣ ਕਰੋ." + Environment.NewLine + "ਫਿਰ ਅੰਗ ਨੰਬਰ ਟਾਈਪ ਕਰੋ.";
+
+                    CreatePothi = "2. ਨਵੀਂ ਪੋਥੀ: ";
+                    CreatePothi1 = "ਨਵੀਂ ਪੋਥੀ ਬਣਾਓਣ ਲਈ";
+                    CreatePothi2 = "ਖੱਬੇ ਸੂਚੀ ਤੋਂ ਕੀਰਤਨ ਪੋਥੀ ਤੇ ਕਲਿਕ ਕਰੋ";
+                    CreatePothi3 = "ਸਕ੍ਰੀਨ ਦੇ ਉੱਪਰ ਸੱਜੇ ਪਾਸੇ ਪਲੱਸ ਆਈਕਨ ਤੇ ਕਲਿਕ ਕਰੋ.";
+                    CreatePothi4 = "ਨਵੀਂ ਪੋਥੀ ਲਈ ਨਾਮ ਦਰਜ ਕਰੋ";
+                    CreatePothi5 = "";
+
+                    AddShabad = "3. ਪੋਥੀ ਵਿਚ ਸ਼ਬਦ ਜੋੜਨ ਲਈ: ";
+                    AddShabad1 = "ਸ਼ਬਦ ਸਕ੍ਰੀਨ ਤੇ ਜਾਣ ਲਈ ਸ਼ਬਦ ਦੀ ਖੋਜ ਕਰੋ ਜਾਂ ਰੈਨਡਮ ਸ਼ਬਦ ਤੇ ਕਲਿਕ ਕਰੋ";
+                    AddShabad2 = "ਸ਼ਬਦ ਸਕ੍ਰੀਨ ਤੋਂ, ਕਿਤਾਬ ਆਈਕਨ ਤੇ ਕਲਿਕ ਕਰੋ";
+                    AddShabad4 = "ਸ਼ਬਦ ਨੂੰ ਜੋੜਨ ਲਈ ਪੋਥੀ ਦੀ ਚੋਣ ਕਰੋ";
+
+                    SimilarShabads = "4. ਮਿਲਦੇ ਸ਼ਬਦ ਲੱਭੋ: ";
+                    SimilarShabads1 = "ਸ਼ਬਦ ਸਕ੍ਰੀਨ ਤੇ ਜਾਣ ਲਈ ਸ਼ਬਦ ਦੀ ਖੋਜ ਕਰੋ ਜਾਂ ਰੈਨਡਮ ਸ਼ਬਦ ਤੇ ਕਲਿਕ ਕਰੋ";
+                    SimilarShabads2 = "ਸ਼ਬਦ ਦੀ ਤੁੱਕ ਨੂੰ ਲੰਮੇ ਸਮੇਂ ਲਈ ਦਬਾਓ ਫਿਰ 'Find similar shabads' ਬਟਨ ਦਬਾਓ";
+                    SimilarShabads3 = "ਉਹ ਸ਼ਬਦ ਦਬਾਓ ਜਿਸ ਦੀ ਤੁਸੀਂ ਖੋਜ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ";
+
+                    AsaKiVaarMode = "5. ਆਸਾ ਕੀ ਵਾਰ ਮੋਡ:";
+                    AsaKiVaarMode1 = "ਖੱਬੇ ਸੂਚੀ ਤੋਂ 'ਸੁੰਦਰ ਗੁਟਕਾ' ਤੇ ਕਲਿੱਕ ਕਰੋ";
+                    AsaKiVaarMode2 = "ਬਾਣੀ ਸੂਚੀ ਤੋਂ ਆਸਾ ਦੀ ਵਾਰ ਤੇ ਕਲਿੱਕ ਕਰੋ";
+                    AsaKiVaarMode3 = "ਸਕ੍ਰੀਨ ਦੇ ਉੱਪਰ ਸੱਜੇ ਪਾਸੇ ਹਾਰਮੋਨੀਅਮ ਆਈਕਾਨ ਤੇ ਕਲਿੱਕ ਕਰੋ";
+                }
+                else
+                {
+                    TitleSearchShabad = "1. Searching Shabad:";
+                    FirstLetterTitle = "First letter search: ";
+                    FirstLetterText = "Select First letter search from the list at the bottom." + Environment.NewLine +
+                        "Then type first letter of each word." + Environment.NewLine +
+                        "For example, to find shabad";
+                    MainLetterTitle = "Main letter search: ";
+                    MainLetterText = "Select Main letter search from the list at the bottom." + Environment.NewLine +
+                    "Then type all the main letters of each word leaving matras." + Environment.NewLine +
+                    "For example, To find shabad";
+                    AngSearchTitle = "Ang search: ";
+                    AngSearchText = "Select 'Ang Search' from the list at the bottom." + Environment.NewLine +
+                    "Then type the ang number.";
+
+                    CreatePothi = "2. Creating Pothi:";
+                    CreatePothi1 = "Create new pothi: ";
+                    CreatePothi2 = "Click on Keertan pothi from Menu";
+                    CreatePothi3 = "Click on the plus icon in top right of the screen.";
+                    CreatePothi4 = "Enter a name for new pothi";
+                    CreatePothi5 = "You should see new pothi created";
+
+                    AddShabad = "3. Adding shabad to pothi:";
+                    AddShabad1 = "Search Shabad or Click on Random Shabad to go to the Shabad screen";
+                    AddShabad2 = "From Shabad screen, click on the add to pothi icon";
+                    AddShabad4 = "Select which pothi to add shabad to";
+
+                    SimilarShabads = "4. Find similar shabads:";
+                    SimilarShabads1 = "Search Shabad or Click on Random Shabad to go to the Shabad screen";
+                    SimilarShabads2 = "Long press any verse, then click on 'Find similar shabads' at the top";
+                    SimilarShabads3 = "On 'Find similar shabads' screen, tap keywords to search for.";
+
+
+                    AsaKiVaarMode = "5. Asa ki Vaar mode:";
+                    AsaKiVaarMode1 = "Select 'Sundar Gutka' from the left menu";
+                    AsaKiVaarMode2 = "Select 'Asa ki vaar' from the list";
+                    AsaKiVaarMode3 = "Click on Harmonium icon at the top";
+                }
             }
         }
 

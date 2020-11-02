@@ -176,25 +176,44 @@ namespace KeertanPothi.Views
 
         private async void Import_Clicked(object sender, EventArgs e)
         {
-            //var pickResult = await FilePicker.PickAsync(new PickOptions
-            //{
-            //    PickerTitle = "Select file"//,
-            //    //FileTypes = FilePickerFileType.Images
-            //});
-            List<string> jsons = Util.ReadFile();
-
-            if (jsons != null && jsons.Count > 0)
+            var customFileType =
+                new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                {
+                    { DevicePlatform.iOS, new[] { "json" } }, // or general UTType values
+                });
+            var pickResult = await FilePicker.PickAsync(new PickOptions
             {
-                ImportPothiPopup importPothi = new ImportPothiPopup(jsons);
-                await Navigation.PushPopupAsync(importPothi);
+                PickerTitle = "Select file"
+                //,FileTypes = customFileType
+            });
+            if (pickResult != null)
+            {
+                if (pickResult.FileName.EndsWith("json", StringComparison.OrdinalIgnoreCase))
+                {
+                    var stream = await pickResult.OpenReadAsync();
+                    string js = string.Empty;
+                    using (StreamReader read = new StreamReader(stream))
+                    {
+                        js = read.ReadToEnd();
+                    }
+                    List<string> jsons = new List<string>();
+                    jsons.Add(js);
+                    if (jsons != null && jsons.Count > 0)
+                    {
+                        ImportPothiPopup importPothi = new ImportPothiPopup(jsons);
+                        await Navigation.PushPopupAsync(importPothi);
+                    }
+                    else
+                        Util.ShowRoast("No file found");
+                }
+                else
+                    await DisplayAlert("Wrong file","Not a valid json file", "OK");
             }
-            else
-                Util.ShowRoast("No file found");
         }
 
         private async void Backup_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Backup", "To back up your pothi, select Google Drive or any other cloud service", "OK");
+            //await DisplayAlert("Backup", "To back up your pothi, select Google Drive or any other cloud service", "OK");
             try
             {
                 List<PothiShabadExt> pothis = new List<PothiShabadExt>();
@@ -206,6 +225,7 @@ namespace KeertanPothi.Views
                 }
                 string json = JsonConvert.SerializeObject(pothis);
                 Util.ShareFile(json,"Pothis.json", "Pothi shared from Keertan Pothi");
+                Util.ShowRoast("Pothis exported successfully");
             }
             catch (Exception exception)
             {
@@ -234,19 +254,16 @@ namespace KeertanPothi.Views
         {
             const string export = "Export Pothis";
             const string import = "Import Pothis";
-            const string backup = "Backup";
-            string action = await DisplayActionSheet("Export/Import", "Cancel", null, export, import, backup);
+            //const string backup = "Backup";
+            string action = await DisplayActionSheet("Export/Import", "Cancel", null, export, import);
 
             switch (action)
             {
                 case export:
-                    Export_Clicked(null, null);
+                    Backup_Clicked(null, null);
                     break;
                 case import:
                     Import_Clicked(null, null);
-                    break;
-                case backup:
-                    Backup_Clicked(null, null);
                     break;
                 default:
                     break;

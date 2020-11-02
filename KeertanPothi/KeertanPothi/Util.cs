@@ -332,7 +332,7 @@ namespace KeertanPothi
             menu.Add(new SideMenu(menuText.MenuHistory, "History", true, "History.png", true, menuText.FontSize));
             menu.Add(new SideMenu(menuText.MenuHelpContact, "ContactUs", true, "help.png", true, menuText.FontSize));
 
-            menu.Add(new SideMenu("Test", "TestPage", true, "KeertanPothi.images.search.png", true));
+            //menu.Add(new SideMenu("Test", "TestPage", true, "KeertanPothi.images.search.png", true));
             //menu.Add(new SideMenu("SQL", "SqlView", true, "KeertanPothi.images.search.png", isAdmin));
             //menu.Add(new SideMenu("Admin", "Admin", true, "KeertanPothi.images.search.png", isAdmin));
             return menu;
