@@ -295,7 +295,7 @@ namespace KeertanPothi
 
                     SimilarShabads = "4. ਮਿਲਦੇ ਸ਼ਬਦ ਲੱਭੋ: ";
                     SimilarShabads1 = "ਸ਼ਬਦ ਸਕ੍ਰੀਨ ਤੇ ਜਾਣ ਲਈ ਸ਼ਬਦ ਦੀ ਖੋਜ ਕਰੋ ਜਾਂ ਰੈਨਡਮ ਸ਼ਬਦ ਤੇ ਕਲਿਕ ਕਰੋ";
-                    SimilarShabads2 = "ਸ਼ਬਦ ਦੀ ਤੁੱਕ ਨੂੰ ਲੰਮੇ ਸਮੇਂ ਲਈ ਦਬਾਓ ਫਿਰ 'Find similar shabads' ਬਟਨ ਦਬਾਓ";
+                    SimilarShabads2 = "ਉੱਪਰ ਸੱਜੇ ਕੋਨੇ ਤੋਂ ਤਿੰਨ ਬਿੰਦੀਆਂ ਤੇ ਕਲਿਕ ਕਰੋ ਅਤੇ ਫਿਰ 'Find similar shabads' ਤੇ ਕਲਿਕ ਕਰੋ.";
                     SimilarShabads3 = "ਉਹ ਸ਼ਬਦ ਦਬਾਓ ਜਿਸ ਦੀ ਤੁਸੀਂ ਖੋਜ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ";
 
                     AsaKiVaarMode = "5. ਆਸਾ ਕੀ ਵਾਰ ਮੋਡ:";
@@ -332,7 +332,7 @@ namespace KeertanPothi
 
                     SimilarShabads = "4. Find similar shabads:";
                     SimilarShabads1 = "Search Shabad or Click on Random Shabad to go to the Shabad screen";
-                    SimilarShabads2 = "Long press any verse, then click on 'Find similar shabads' at the top";
+                    SimilarShabads2 = "Click on three dots from the top right corner and select 'Find similar shabads'";
                     SimilarShabads3 = "On 'Find similar shabads' screen, tap keywords to search for.";
 
 
