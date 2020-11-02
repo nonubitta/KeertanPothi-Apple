@@ -23,11 +23,9 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>KeertanPothi</string>
+	<string>Keertan Pothi</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.KeertanPothi</string>
-	<key>CFBundleVersion</key>
-	<string>9</string>
 	<key>UILaunchStoryboardName</key>
 	<string>screenLaunched</string>
 	<key>CFBundleName</key>
@@ -42,5 +40,7 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleVersion</key>
+	<string>10</string>
 </dict>
 </plist>

@@ -67,9 +67,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: igsk@live.com (6R44YLGWUZ)</CodesignKey>
+    <CodesignKey>Apple Distribution: Gurmeet Khalsa (5GFBJWAMQ3)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>Kirtan Pothi profile</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
