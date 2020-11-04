@@ -69,6 +69,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Gurmeet Khalsa (5GFBJWAMQ3)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>KeertanPothiDistProvProfile</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -180,6 +181,7 @@
     <ImageAsset Include="Assets.xcassets\splash.imageset\sp10.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\sp10-1.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\sp10-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo1024sBG.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
