@@ -134,6 +134,8 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0-pre2" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.3.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="18.3.0.50" />
   </ItemGroup>
 
   <ItemGroup>

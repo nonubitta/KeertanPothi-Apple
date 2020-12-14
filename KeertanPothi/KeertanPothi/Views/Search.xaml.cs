@@ -25,8 +25,8 @@ namespace KeertanPothi.Views
 			BindingContext = new Theme();
 			_con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
             InitializeComponent();
-			//LoadHistory();
-        }
+			ToggleKeyboard(true);
+		}
 
 		//private async void LoadHistory()
 		//{
@@ -43,7 +43,7 @@ namespace KeertanPothi.Views
 			lblHowToHelpInfo.Text = SearchText.HowToHelpInfo;
 			base.OnAppearing();
 			SetSearchOptions();
-			ToggleKeyboard(true);
+			//ToggleKeyboard(true);
 		}
 
 		private async void SearchBar_TextChanged()
@@ -228,5 +228,15 @@ namespace KeertanPothi.Views
 		{
 			Navigation.PushAsync(new ContactUs());
 		}
-	}
+
+        private async void lstVerse_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+			if (e.ItemData == null)
+				return;
+			VerseSearch verse = e.ItemData as VerseSearch;
+			Shabad shabad = await _con.Table<Shabad>().FirstOrDefaultAsync(a => a.VerseID == verse.VerseID);
+			await Navigation.PushAsync(new ShabadDetails(shabad.ShabadID, verse.VerseID));
+			lstVerse.SelectedItem = null;
+		}
+    }
 }

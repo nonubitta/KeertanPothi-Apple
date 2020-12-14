@@ -4,7 +4,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:ctrl="clr-namespace:SfListViewSample"
              xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:tb="clr-namespace:KeertanPothi.Controls"
              x:Class="KeertanPothi.Views.ShabadDetails" BackgroundColor="{Binding PageBg}" >
 
@@ -22,33 +24,25 @@
                 </SwipeItems>
             </SwipeView.LeftItems>
             <SwipeView.Content>
-                    <StackLayout VerticalOptions="FillAndExpand">
-                        <ListView ItemTapped="lstShabad_ItemTapped" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" x:Name="lstShabad" HasUnevenRows="True" SelectionMode="None" ItemSelected="lstShabad_ItemSelected">
-                        <ListView.Header>
-                            <StackLayout Spacing="0">
-                                <Expander x:Name="expNotes" IsVisible="False">
-                                    <Expander.Header>
-                                        <StackLayout Padding="10,2,10,2" BackgroundColor="Orange" Orientation="Horizontal">
-                                            <Label TextColor="{Binding FontColor}" HorizontalOptions="CenterAndExpand" Text="Notes" FontSize="Medium" />
-                                        </StackLayout>
-                                    </Expander.Header>
-                                    <StackLayout BackgroundColor="#FEFF9C" Padding="20,10,20,10" >
-                                        <Label Text="*Notes functionality is still in Beta and may have issue" FontSize="Micro" 
-                                       HorizontalOptions="Center"></Label>
-                                        <ScrollView>
-                                            <Label x:Name="editNotes" TextColor="Black" Text="{Binding Notes}"></Label>
-                                        </ScrollView>
-                                    </StackLayout>
-                                </Expander>
+                <StackLayout VerticalOptions="FillAndExpand"><!--ItemHolding="lstShabad_ItemHolding"-->
+                    <syncfusion:SfListView ItemTapped="lstShabad_ItemTapped" VerticalOptions="FillAndExpand"
+                                           ListViewCachingStrategy="RecycleTemplate" 
+                                           BackgroundColor="Transparent" x:Name="lstShabad"
+                                           AutoFitMode="DynamicHeight" SelectionMode="None">
+                        <syncfusion:SfListView.Behaviors>
+                            <ctrl:Behavior CommandClicked="Behavior_CommandClicked" />
+                        </syncfusion:SfListView.Behaviors>
+                        <syncfusion:SfListView.HeaderTemplate>
+                            <DataTemplate>
                                 <StackLayout BackgroundColor="#5e6573" Padding="20,10,20,10" Spacing="0">
                                     <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblScripture" FontAttributes="Bold"></Label>
                                     <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblAng" FontAttributes="Bold"></Label>
                                     <Label TextColor="#cfe2f3" IsVisible="False" FontSize="12" x:Name="lblWriter" FontAttributes="Bold"></Label>
                                     <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblRaag" FontAttributes="Bold"></Label>
                                 </StackLayout>
-                            </StackLayout>
-                        </ListView.Header>
-                        <ListView.ItemTemplate>
+                            </DataTemplate>
+                        </syncfusion:SfListView.HeaderTemplate>
+                        <syncfusion:SfListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <!--<ViewCell.ContextActions>
@@ -72,11 +66,13 @@
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <ListView.Footer>
-                            <BoxView HeightRequest="40" ></BoxView>
-                        </ListView.Footer>
-                    </ListView>
+                        </syncfusion:SfListView.ItemTemplate>
+                        <syncfusion:SfListView.FooterTemplate>
+                            <DataTemplate>
+                                <BoxView HeightRequest="40" ></BoxView>
+                            </DataTemplate>
+                        </syncfusion:SfListView.FooterTemplate>
+                    </syncfusion:SfListView>
                     </StackLayout>
             </SwipeView.Content>
         </SwipeView>

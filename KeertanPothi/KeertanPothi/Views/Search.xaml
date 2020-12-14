@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:KeertanPothi.MarkupExtension"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              x:Class="KeertanPothi.Views.Search" BackgroundColor="{Binding PageBg}">
     <NavigationPage.TitleView>
@@ -49,27 +50,27 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout x:Name="slList" IsVisible="False" VerticalOptions="FillAndExpand">
-                <ListView BackgroundColor="Transparent" CachingStrategy="RecycleElement" x:Name="lstVerse" HasUnevenRows="True"
-                          VerticalOptions="FillAndExpand" ItemSelected="lstVerse_ItemSelected">
-                    <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout VerticalOptions="Center" Padding="20, 5, 20, 5">
-                                <Label TextColor="{Binding PageBgTheme.FontColor}" Text="{Binding Gurmukhi}" FontFamily="PunjabiFont" FontSize="26"></Label>
-                                <StackLayout Orientation="Horizontal" Spacing="2">
+                <syncfusion:SfListView BackgroundColor="Transparent"  x:Name="lstVerse"  
+                          VerticalOptions="FillAndExpand" AutoFitMode="Height" ItemTapped="lstVerse_ItemTapped" >
+                    <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="Center" Padding="20, 5, 20, 5">
+                                    <Label TextColor="{Binding PageBgTheme.FontColor}" Text="{Binding Gurmukhi}" FontFamily="PunjabiFont" FontSize="26"></Label>
+                                    <StackLayout Orientation="Horizontal" Spacing="2">
                                         <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" Text="By " FontSize="11"></Label>
-                                    <Label StyleClass="CommonThemeOrange" FontAttributes="Bold" Text="{Binding WriterEnglish}" FontSize="11"></Label>
+                                        <Label StyleClass="CommonThemeOrange" FontAttributes="Bold" Text="{Binding WriterEnglish}" FontSize="11"></Label>
                                         <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" Text=" in " FontSize="11"></Label>
-                                    <Label  TextColor="Orange" FontAttributes="Bold" Text="{Binding RaagEnglish}" FontSize="11"></Label>
+                                        <Label  TextColor="Orange" FontAttributes="Bold" Text="{Binding RaagEnglish}" FontSize="11"></Label>
                                         <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" Text=" on " FontSize="11"></Label>
                                         <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}" Text=" Ang " FontSize="11" FontAttributes="Bold" ></Label>
                                         <Label TextColor="{Binding PageBgTheme.PunjabiTranslationColor}"  Text="{Binding PageNo}" FontSize="11" FontAttributes="Bold" ></Label>
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                </ListView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+                </syncfusion:SfListView>
             </StackLayout>
         </StackLayout>
         <StackLayout Grid.Column="0" Grid.Row="1" x:Name="EditToolbar" Margin="0" BackgroundColor="Transparent" IsVisible="False">

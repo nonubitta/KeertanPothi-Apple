@@ -44,8 +44,9 @@ namespace KeertanPothi.Views
         ToolbarItem itemShare2 = null;
         ToolbarItem itemShare3 = null;
         ToolbarItem itemNote = null;
-
-
+        ToolbarItem itemSimilar = null;
+        private Verse similarShabadVerse = null;
+        private Label lblScripture2;
         public enum RequestSource
         {
             Search,
@@ -177,6 +178,7 @@ namespace KeertanPothi.Views
             else
             {
                 //CreateShareToolbar();
+                //CreateSimilarShabadToolbar();
                 CreateSharePopupToolbar();
             }
 
@@ -187,9 +189,21 @@ namespace KeertanPothi.Views
             itemKeertanMode = new ToolbarItem();
             itemKeertanMode.Text = "Text Note";
             itemKeertanMode.Order = ToolbarItemOrder.Secondary;
-            itemKeertanMode.Clicked += Note_Clicked;
+            //itemKeertanMode.Clicked += Note_Clicked;
             ToolbarItems.Add(itemKeertanMode);
         }
+
+        private void CreateSimilarShabadToolbar()
+        {
+            itemSimilar = new ToolbarItem();
+            itemSimilar.Text = "";
+            itemSimilar.Order = ToolbarItemOrder.Primary;
+            itemSimilar.Priority = 0;
+            itemSimilar.Clicked += SimilarShabad_Clicked;
+            itemSimilar.IsEnabled = false;
+            ToolbarItems.Add(itemSimilar);
+        }
+
 
         private void CreateKeertanMode()
         {
@@ -265,11 +279,9 @@ namespace KeertanPothi.Views
             versesObs?.ToList().ForEach(a => a.PageBgTheme = theme);
             BindingContext = theme;
             EditToolbar.BackgroundColor = Color.FromHex(theme.HeaderColor);
-            lstShabad.SelectedItem = null;
-            lstShabad.SelectionMode = ListViewSelectionMode.None;
+            if (lblScripture2 != null && string.IsNullOrEmpty(Title))
+                Title = lblScripture2.Text;
             base.OnAppearing();
-            if (!string.IsNullOrEmpty(lblWriter.Text))
-                Title = lblWriter.Text;
         }
 
         protected override void OnDisappearing()
@@ -281,9 +293,9 @@ namespace KeertanPothi.Views
 
         private async void LoadShabad()
         {
-            MessagingCenter.Subscribe<App, string>((App)Application.Current, "NoteUpdated", (sender, arg) => {
-                OnNoteUpdated(arg);
-            });
+            //MessagingCenter.Subscribe<App, string>((App)Application.Current, "NoteUpdated", (sender, arg) => {
+            //    OnNoteUpdated(arg);
+            //});
       
             using (UserDialogs.Instance.Loading("Loading Shabad..."))
             {
@@ -291,11 +303,11 @@ namespace KeertanPothi.Views
                     _con = DependencyService.Get<ISqliteDb>().GetSQLiteConnection();
                 List<Verse> verses;
                 string notes = string.Empty;
-                if (RequestFrom == RequestSource.Pothi) {
-                    notes = await _con.ExecuteScalarAsync<string>(Queries.GetNotes(PothiId, ShabadId));
-                    if (!string.IsNullOrEmpty(notes))
-                        ToggleNotes(notes);
-                }
+                //if (RequestFrom == RequestSource.Pothi) {
+                //    notes = await _con.ExecuteScalarAsync<string>(Queries.GetNotes(PothiId, ShabadId));
+                //    if (!string.IsNullOrEmpty(notes))
+                //        ToggleNotes(notes);
+                //}
                 if (RequestFrom == RequestSource.Ang)
                 {
                     verses = await _con.QueryAsync<Verse>(Queries.VerseByAng(AngNo));
@@ -320,60 +332,95 @@ namespace KeertanPothi.Views
 
                     lstShabad.ItemsSource = versesObs;
                     Verse verse = verses.FirstOrDefault(a => a.WriterID != null);
-                    if (verse != null)
-                        LoadShabadDetails(verses[0], verse?.WriterEnglish);
+                   
                     if (SelectedVerseId != null && SelectedVerseId > 0)
                     {
+                        lstShabad.ListViewCachingStrategy = Syncfusion.ListView.XForms.ListViewCachingStrategy.CreateNewTemplate;
                         SelectedVerse = versesObs.FirstOrDefault(a => a.ID == SelectedVerseId);
-                        lstShabad.ScrollTo(SelectedVerse, ScrollToPosition.Start, false);
+                        lstShabad.ScrollTo(SelectedVerse, Syncfusion.ListView.XForms.ScrollToPosition.Start, false);
                         SelectedVerse.ListBgColor = SelectedVerse?.PageBgTheme.DefaultItemBg;
                     }
                     else
-                        lstShabad.ScrollTo(versesObs[0], ScrollToPosition.Start, false);
-                    
+                        lstShabad.ScrollTo(versesObs[0], Syncfusion.ListView.XForms.ScrollToPosition.Start, false);
+
+                    if (verse != null)
+                        LoadShabadDetails(verses[0], verse?.WriterEnglish);
                 }
                 else
                     Util.ShowRoast("Error loading shabad...");
             }
         }
 
-        private void ToggleNotes(string notes)
-        {
-            if (!string.IsNullOrEmpty(notes))
-            {
-                editNotes.Text = notes;
-                expNotes.IsVisible = true;
-            }
-            else
-            {
-                expNotes.IsVisible = false;
-                editNotes.Text = string.Empty;
-            }
-        }
+        //private void ToggleNotes(string notes)
+        //{
+        //    if (!string.IsNullOrEmpty(notes))
+        //    {
+        //        editNotes.Text = notes;
+        //        expNotes.IsVisible = true;
+        //    }
+        //    else
+        //    {
+        //        expNotes.IsVisible = false;
+        //        editNotes.Text = string.Empty;
+        //    }
+        //}
 
-        private void OnNoteUpdated(string note)
-        {
-            if (!string.IsNullOrWhiteSpace(note))
-            {
-                editNotes.Text = note;
-                expNotes.IsExpanded = true;
-                Util.ShowRoast("Note Saved.", true);
-            }
-            else
-            {
-                expNotes.IsVisible = false;
-                Util.ShowRoast("Note Deleted.", true);
-            }
-            LoadShabad();
-            UserDialogs.Instance.HideLoading();
-        }
+        //private void OnNoteUpdated(string note)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(note))
+        //    {
+        //        editNotes.Text = note;
+        //        expNotes.IsExpanded = true;
+        //        Util.ShowRoast("Note Saved.", true);
+        //    }
+        //    else
+        //    {
+        //        expNotes.IsVisible = false;
+        //        Util.ShowRoast("Note Deleted.", true);
+        //    }
+        //    LoadShabad();
+        //    UserDialogs.Instance.HideLoading();
+        //}
 
         private void LoadShabadDetails(Verse verse, string writerEnglish)
         {
-            lblScripture.Text = "Scripture: " + verse.SourceEnglish;
-            lblAng.Text = "Ang: " + verse.PageNo.ToString();
-            lblWriter.Text = writerEnglish;
-            lblRaag.Text = "Raag: " + verse.RaagEnglish;
+            lstShabad.HeaderTemplate = new DataTemplate(() =>
+            {
+                var stack = new StackLayout();
+                stack.Spacing = 0;
+                stack.Padding = new Thickness(20, 10, 20, 10);
+                stack.BackgroundColor = Color.FromHex("#5e6573");
+                var headerLabel = new Label
+                {
+                    TextColor = Color.FromHex("#cfe2f3"),
+                    FontSize = 12,
+                    FontAttributes = FontAttributes.Bold,
+                    Text = "Scripture: " + verse.SourceEnglish
+                }; 
+                var headerLabel2 = new Label
+                {
+                    TextColor = Color.FromHex("#cfe2f3"),
+                    FontSize = 12,
+                    FontAttributes = FontAttributes.Bold,
+                    Text = "Ang: " + verse.PageNo.ToString()
+                };
+                var headerLabel3 = new Label
+                {
+                    TextColor = Color.FromHex("#cfe2f3"),
+                    FontSize = 12,
+                    FontAttributes = FontAttributes.Bold,
+                    Text = "Raag: " + verse.RaagEnglish
+                };
+                stack.Children.Add(headerLabel);
+                stack.Children.Add(headerLabel2);
+                stack.Children.Add(headerLabel3);
+
+                return stack;
+            });
+            //lblScripture.Text = "Scripture: " + verse.SourceEnglish;
+            //lblAng.Text = "Ang: " + verse.PageNo.ToString();
+            //lblWriter.Text = writerEnglish;
+            //lblRaag.Text = "Raag: " + verse.RaagEnglish;
             if (RequestFrom == RequestSource.Ang)
                 Title = "Ang: " + verse.PageNo.ToString();
             else if (RequestFrom == RequestSource.Nitnem)
@@ -820,7 +867,7 @@ namespace KeertanPothi.Views
             if ((newShabadId != 0 && newShabadId != ShabadId) || RequestFrom == RequestSource.Ang)
             {
                 ShabadId = newShabadId;
-                lstShabad.ScrollTo(versesObs[0], ScrollToPosition.Start, false);
+                lstShabad.ScrollTo(versesObs[0], Syncfusion.ListView.XForms.ScrollToPosition.Start, false);
                 LoadShabad();
             }
             else
@@ -877,12 +924,12 @@ namespace KeertanPothi.Views
             const string file = "Share as File";
             const string clipboard = "Copy to clipboard";
             const string notepad = "Text Note";
-            const string similar = "Find similar shabads";
+            //const string similar = "Find similar shabads";
             string action = string.Empty;
             if (RequestFrom == RequestSource.Pothi)
-                action = await DisplayActionSheet("Export/Import", "Cancel", null, text, file, clipboard, notepad, similar);
+                action = await DisplayActionSheet("Export/Import", "Cancel", null, text, file, clipboard, notepad);
             else
-                action = await DisplayActionSheet("Actions", "Cancel", null, text, file, clipboard, similar);
+                action = await DisplayActionSheet("Actions", "Cancel", null, text, file, clipboard);
 
             switch (action)
             {
@@ -896,16 +943,16 @@ namespace KeertanPothi.Views
                     Clipboard_Clicked(null, null);
                     break;
                 case notepad:
-                    Note_Clicked(null, null);
+                    //Note_Clicked(null, null);
                     break;
-                case similar:
-                    //if (lstShabad.SelectedItem == null)
-                    Util.ShowRoast("Please select a verse(line) to Find similar shabads", true);
-                    Title = similar;
-                    lstShabad.SelectionMode = ListViewSelectionMode.Single;
-                    //else
-                    //    FindSimilarShabads();
-                    break;
+                //case similar:
+                //    //if (lstShabad.SelectedItem == null)
+                //    Util.ShowRoast("Please select a verse(line) to Find similar shabads", true);
+                //    Title = similar;
+                //    //lstShabad.SelectionMode = ListViewSelectionMode.Single;
+                //    //else
+                //    //    FindSimilarShabads();
+                //    break;
                 default:
                     break;
             }
@@ -918,21 +965,21 @@ namespace KeertanPothi.Views
             Navigation.PushAsync(new AsaDiVaar());
         }
 
-        private void Note_Clicked(object sender, EventArgs e)
-        {
-            string abc = editNotes.Text;
-            editNotes.Text = string.Empty;
-            expNotes.IsExpanded = false;
+        //private void Note_Clicked(object sender, EventArgs e)
+        //{
+        //    string abc = editNotes.Text;
+        //    editNotes.Text = string.Empty;
+        //    expNotes.IsExpanded = false;
 
-            Navigation.PushPopupAsync(new NotesPopup(PothiId, ShabadId, abc));
-        }
+        //    Navigation.PushPopupAsync(new NotesPopup(PothiId, ShabadId, abc));
+        //}
 
         private void BookmarkSelected(int verseId)
         {
             if (verseId > 0)
             {
                 SelectedVerse = versesObs.FirstOrDefault(a => a.ID == verseId);
-                lstShabad.ScrollTo(SelectedVerse, ScrollToPosition.Start, false);
+                lstShabad.ScrollTo(SelectedVerse, Syncfusion.ListView.XForms.ScrollToPosition.Start, false);
             }
         }
         
@@ -948,9 +995,7 @@ namespace KeertanPothi.Views
 
         private void SimilarShabad_Clicked(object sender, EventArgs e)
         {
-            MenuItem menuItem = sender as MenuItem;
-            Verse verse = menuItem.BindingContext as Verse;
-            SimilarShabad similarShabad = new SimilarShabad(verse.Gurmukhi);
+            SimilarShabad similarShabad = new SimilarShabad(similarShabadVerse.Gurmukhi);
             Navigation.PushAsync(similarShabad);
         }
 
@@ -970,7 +1015,7 @@ namespace KeertanPothi.Views
             Navigation.PushAsync(similarShabad);
         }
 
-        async void lstShabad_ItemTapped(System.Object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        async void lstShabad_ItemTapped(System.Object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             if (ToolbarVisible)
                 await EditToolbar.TranslateTo(0, 50, 100, Easing.SinOut);
@@ -978,6 +1023,45 @@ namespace KeertanPothi.Views
                 await EditToolbar.TranslateTo(0, 0, 100, Easing.SinOut);
             //EditToolbar.Opacity = (EditToolbar.Opacity == 1) ? 0 : 1;
             ToolbarVisible = !ToolbarVisible;
+            //if(string.IsNullOrEmpty(Title))
+            //    ToggleSimilarShabadButton(false);
+
+        }
+
+        private void lstShabad_ItemHolding(object sender, Syncfusion.ListView.XForms.ItemHoldingEventArgs e)
+        {
+            if (e.ItemData == null)
+                return;
+            Verse verse = e.ItemData as Verse;
+            ToggleSimilarShabadButton(true, verse);
+        }
+
+        private void ToggleSimilarShabadButton(bool visible, Verse verse = null)
+        {
+            if (visible)
+            {
+                itemSimilar.Text = "Find similar shabads";
+                itemSimilar.IsEnabled = true;
+                similarShabadVerse = verse;
+                lblScripture2 = new Label();
+                lblScripture2.Text = Title;
+                Title = string.Empty;
+                //lstShabad.SelectedItem = verse;
+            }
+            else
+            {
+                if (lblScripture2 != null && !string.IsNullOrEmpty(lblScripture2.Text))
+                    Title = lblScripture2.Text;
+                lblScripture2 = null;
+                itemSimilar.Text = string.Empty;
+            }
+        }
+
+        private void Behavior_CommandClicked(object listItem)
+        {
+            Verse verse = listItem as Verse;
+            SimilarShabad similarShabad = new SimilarShabad(verse.Gurmukhi);
+            Navigation.PushAsync(similarShabad);
         }
     }
     #endregion

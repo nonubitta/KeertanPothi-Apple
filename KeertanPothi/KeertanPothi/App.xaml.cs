@@ -16,6 +16,7 @@ namespace KeertanPothi
         public App()
         {
             DeviceDisplay.KeepScreenOn = true;
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzUwOTYyQDMxMzgyZTMzMmUzMFNyaE5rZm0yVTBQdFpDbW5RQ1FRWTdXSlNlc0MwM2V5cXVVTzNsaWhNSDQ9");
             InitializeComponent();
             Device.SetFlags(new[]
             {

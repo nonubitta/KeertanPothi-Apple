@@ -5,6 +5,9 @@ using Xamarin.Essentials;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.XForms.iOS.EffectsView;
+using Syncfusion.XForms.iOS.PopupLayout;
 
 namespace KeertanPothi.iOS
 {
@@ -27,6 +30,9 @@ namespace KeertanPothi.iOS
             Rg.Plugins.Popup.Popup.Init();
             //Acr.UserDialogs.UserDialogs.Init();
             global::Xamarin.Forms.Forms.Init();
+            SfListViewRenderer.Init();
+            SfEffectsViewRenderer.Init();
+            SfPopupLayoutRenderer.Init();
             LoadApplication(new App());
             UINavigationBar.Appearance.TintColor = UIColor.White;
             UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(25, 118, 210);
