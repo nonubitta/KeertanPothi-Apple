@@ -79,10 +79,10 @@
       <Version>4.8.0.1560</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
-      <Version>18.3.0.52</Version>
+      <Version>18.4.0.31</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">
-      <Version>18.3.0.50</Version>
+      <Version>18.4.0.31</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

@@ -35,10 +35,10 @@
                         <syncfusion:SfListView.HeaderTemplate>
                             <DataTemplate>
                                 <StackLayout BackgroundColor="#5e6573" Padding="20,10,20,10" Spacing="0">
-                                    <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblScripture" FontAttributes="Bold"></Label>
-                                    <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblAng" FontAttributes="Bold"></Label>
-                                    <Label TextColor="#cfe2f3" IsVisible="False" FontSize="12" x:Name="lblWriter" FontAttributes="Bold"></Label>
-                                    <Label TextColor="#cfe2f3" FontSize="12" x:Name="lblRaag" FontAttributes="Bold"></Label>
+                                    <Label TextColor="#cfe2f3" FontSize="12" Text="Scripture" x:Name="lblScripture" FontAttributes="Bold"></Label>
+                                    <Label TextColor="#cfe2f3" FontSize="12" Text="Ang" x:Name="lblAng" FontAttributes="Bold"></Label>
+                                    <Label TextColor="#cfe2f3" Text="Writer" FontSize="12" x:Name="lblWriter" FontAttributes="Bold"></Label>
+                                    <Label TextColor="#cfe2f3" FontSize="12" Text="Raag" x:Name="lblRaag" FontAttributes="Bold"></Label>
                                 </StackLayout>
                             </DataTemplate>
                         </syncfusion:SfListView.HeaderTemplate>
